@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Model/Azienda.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/DAO/AziendaDAO.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/login.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/registrazioneAzienda.java</file>
+        </group>
     </open-files>
 </project-private>

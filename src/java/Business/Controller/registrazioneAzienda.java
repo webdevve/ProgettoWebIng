@@ -5,6 +5,10 @@
  */
 package Business.Controller;
 
+import Business.Model.Amministratore;
+import Business.Model.Azienda;
+import Business.Model.Studente;
+import framework.result.HTMLResult;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,20 +57,212 @@ public class registrazioneAzienda extends HttpServlet {
         sp = ", ";
         indirizzo = via + sp + città + sp + provincia + sp + cap;
         
-        if(ragione_sociale.equals("")){
-            String errore = "Compilare tutti i campi!";
+        try{
+            if(ragione_sociale.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(via.equals("") || città.equals("") || provincia.equals("--") || cap.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(partita_iva.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+        
+            if(codice_fiscale.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(nome_legale_rappr.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(cognome_legale_rappr.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(nome_responsabile.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(cognome_responsabile.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(telefono_responsabile.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(email_responsabile.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(foro.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(email_azienda.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(pwd.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            if(pwd_azienda.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            
+            if(!pwd.equals(pwd_azienda)){
+                String errore = "Attenzione! Confermare correttamente la Password!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+            }
+            
+            System.out.println(ragione_sociale);
+            System.out.println(indirizzo);
+            System.out.println(partita_iva);
+            System.out.println(codice_fiscale);
+            System.out.println(nome_legale_rappr);
+            System.out.println(cognome_legale_rappr);
+            System.out.println(nome_responsabile);
+            System.out.println(cognome_responsabile);
+            System.out.println(telefono_responsabile);
+            System.out.println(email_responsabile);
+            System.out.println(foro);
+            System.out.println(email_azienda);
+            System.out.println(pwd);
+            System.out.println(pwd_azienda);
+            
+            send_registrazione(request, response);
+        
+        }catch(IOException ex){
+            request.setAttribute("exception", ex);
+            action_error(request, response);
+        }
+        
+    }
+    
+    private void send_registrazione(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        System.out.println("Si procede con la registrazione...");
+        String ragione_sociale = request.getParameter("ragione_sociale");
+        String via = request.getParameter("via");
+        String città = request.getParameter("citta");
+        String provincia = request.getParameter("provincia");
+        String cap = request.getParameter("cap");
+        String partita_iva = request.getParameter("partita_iva");
+        String codice_fiscale = request.getParameter("codice_fiscale");
+        String nome_legale_rappr = request.getParameter("nome_legale_rappr");
+        String cognome_legale_rappr = request.getParameter("cognome_legale_rappr");
+        String nome_responsabile = request.getParameter("nome_responsabile");
+        String cognome_responsabile = request.getParameter("cognome_responsabile");
+        String telefono_responsabile = request.getParameter("telefono_responsabile");
+        String email_responsabile = request.getParameter("email_responsabile");
+        String foro = request.getParameter("foro");
+        String email_azienda = request.getParameter("email_azienda");
+        String pwd_azienda = request.getParameter("pwd_azienda");
+        
+        String indirizzo, sp;
+        sp = ", ";
+        indirizzo = via + sp + città + sp + provincia + sp + cap;
+        
+        boolean verifica = verificacredenziali(email_azienda);
+        if(!verifica){
+            System.out.println("Procedo con la registrazione");
+            boolean inserimentoAzienda = Azienda.inserimentoAziendaDB(ragione_sociale, 
+                    indirizzo, partita_iva, codice_fiscale, nome_legale_rappr, cognome_legale_rappr,
+                    nome_responsabile, cognome_responsabile, telefono_responsabile, email_responsabile,
+                    foro, email_azienda, pwd_azienda);
+            if(inserimentoAzienda){
+                System.out.println("Registrazione azienda avvenuta con successo");
+                response.sendRedirect("index.jsp");
+            }
+        }else{
+            String errore = "l'Azienda è già registrata!";
             request.setAttribute("err", errore);
             errore_compilazione(request, response);
         }
-        
-        System.out.println(indirizzo);
-        
+    }
+    
+    public static boolean verificacredenziali(String email){
+        String e = email;
+        //String pi = partita_iva;
+        if(e.equals("")){ //controllo ridondante
+            System.out.println("Inserire username e pwd");
+            return false;
+        }
+        //cerca utente nel db con le credenziali inserite dall'utente
+        /*
+        Amministratore amministratore = Amministratore.CercaAmministratore(e, p);
+        if(amministratore != null){
+            return true;
+        }else{
+            System.out.println("Non sei un Amministratore.");
+            Azienda azienda = Azienda.CercaAzienda(e, p);
+            if(azienda != null){
+                return true;
+            }else{
+                System.out.println("Non sei un Azienda.");
+                Studente studente = Studente.CercaStudente(e, p);
+                if(studente != null){
+                    return true;
+                }else{
+                    System.out.println("Non sei uno Studente.");
+                    System.out.println("Email o Password errati");
+                    return false;
+                }
+            }
+        }*/  
+        Azienda azienda = Azienda.CercaAziendaReg(e);
+        if(azienda != null){
+            return true;
+        }
+        return false;
     }
     
     private void errore_compilazione(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         //System.out.println("Errore");
         RequestDispatcher rd = request.getRequestDispatcher("registrazioneAzienda.jsp");
         rd.forward(request, response);
+    }
+    
+    private void action_error(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //assumiamo che l'eccezione sia passata tramite gli attributi della request
+        //we assume that the exception has been passed using the request attributes
+        Exception exception = (Exception) request.getAttribute("exception");
+        String message;
+        if (exception != null && exception.getMessage() != null) {
+            message = exception.getMessage();
+        } else {
+            message = "Unknown error";
+        }
+        HTMLResult result = new HTMLResult(getServletContext());
+        result.setTitle("ERROR");
+        result.setBody("<p>" + message + "</p>");
+        try {
+            result.activate(request, response);
+        } catch (IOException ex) {
+            //if error page cannot be sent, try a standard HTTP error message
+            //se non possiamo inviare la pagina di errore, proviamo un messaggio di errore HTTP standard
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -23,7 +23,7 @@ create table azienda(
     telefono_responsabile varchar(15) not null,
     email_responsabile varchar(100) not null,
     foro varchar(150) not null,
-    email_azienda varchar(100) not null,
+    email_azienda varchar(100) not null unique,
     pwd_azienda varchar(50) not null
 );
 

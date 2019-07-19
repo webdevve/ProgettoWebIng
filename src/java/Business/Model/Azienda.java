@@ -163,6 +163,38 @@ public class Azienda {
         return azienda;
     }
     
+    public static Azienda CercaAziendaReg(String email){
+        System.out.println("Cerco l'azienda (model) reg");
+        ArrayList<Object> lista = new ArrayList();
+        lista.add(email);
+        //lista.add(partita_iva);
+        Azienda azienda = (Azienda) new AziendaDAO().retrieveReg(lista);
+        return azienda;
+    }
+    
+    public static boolean inserimentoAziendaDB(String ragione_sociale, String indirizzo,
+            String partita_iva, String codice_fiscale, String nome_legale_rappr, String cognome_legale_rappr,
+            String nome_responsabile, String cognome_responsabile, String telefono_responsabile,
+            String email_responsabile, String foro, String email_azienda, String pwd_azienda){
+        System.out.println("Procedo all'inserimento (model)");
+        ArrayList<Object> lista = new ArrayList<>();
+        lista.add(ragione_sociale);
+        lista.add(indirizzo);
+        lista.add(partita_iva);
+        lista.add(codice_fiscale);
+        lista.add(nome_legale_rappr);
+        lista.add(cognome_legale_rappr);
+        lista.add(nome_responsabile);
+        lista.add(cognome_responsabile);
+        lista.add(telefono_responsabile);
+        lista.add(email_responsabile);
+        lista.add(foro);
+        lista.add(email_azienda);
+        lista.add(pwd_azienda);
+        boolean inserimentoAZdb = new AziendaDAO().insert(lista);
+        return inserimentoAZdb;
+    }
+    
     public static final synchronized Azienda setInstance(int id, String ragione_sociale, String indirizzo, String partita_iva, 
             String codice_fiscale, String nome_legale_rappr, String cognome_legale_rappr, 
             String nome_responsabile, String cognome_responsabile, String telefono_responsabile,
