@@ -6,13 +6,10 @@
 package Business.Controller;
 
 import static Business.Controller.registrazioneStudente.verificacredenziali;
-import Business.Model.Azienda;
 import framework.result.HTMLResult;
 import Business.Model.Studente;
 import DAO.StudenteDAO;
 import java.io.IOException;
-import java.sql.Date;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,12 +35,18 @@ public class registrazioneStudente extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
+    @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String luogo_nascita = request.getParameter("luogo_nascita");
-        String data_nascita = request.getParameter("data_nascita");
+        String giorno = request.getParameter("giorno");
+        String mese = request.getParameter("mese");
+        String anno = request.getParameter("anno");
+        //String data_nascita = request.getParameter("data_nascita");
+        String spazio = "-";
+        String data_nascita = anno + spazio + mese + spazio + giorno;
         String residenza = request.getParameter("residenza");
         String codice_fiscale = request.getParameter("codice_fiscale");
         String telefono = request.getParameter("telefono");
@@ -56,66 +59,136 @@ public class registrazioneStudente extends HttpServlet {
         
        try{
             if(nome.equals("")){
-                String errore = "Compilare tutti i campi!";
+                String errore = "Compilare tutti i campi nome!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(cognome.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(luogo_nascita.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
         
-            if(data_nascita.equals("")){
+            if(giorno.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
+            switch(giorno){
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "10":
+                case "11":
+                case "12":
+                case "13":
+                case "14":
+                case "15":
+                case "16":
+                case "17":
+                case "18":
+                case "19":
+                case "20":
+                case "21":
+                case "22":
+                case "23":
+                case "24":
+                case "25":
+                case "26":
+                case "27":
+                case "28":
+                case "29":
+                case "30":
+                case "31": 
+                    break;
+                default :
+                {
+                    String errore = "Data non corretta!";
+                    request.setAttribute("err", errore);
+                    errore_compilazione(request, response);
+                    return;
+                }
+            }
+            
+            if(mese.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+                return;
+            }
+            
+            if(anno.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+                return;
+            }
+            
             if(residenza.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(codice_fiscale.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(telefono.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(corso_laurea.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(handicap.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(email.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(password.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             
             if(!password.equals(conf_passw)){
                 String errore = "Attenzione! Confermare correttamente la Password!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
+            } else {
+                send_registrazione(request, response);
             }
             
             System.out.println(nome);
@@ -130,8 +203,6 @@ public class registrazioneStudente extends HttpServlet {
             System.out.println(email);
             System.out.println(password);
             
-            
-            send_registrazione(request, response);
         
         }catch(IOException ex){
             request.setAttribute("exception", ex);
@@ -148,7 +219,11 @@ public class registrazioneStudente extends HttpServlet {
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String luogo_nascita = request.getParameter("luogo_nascita");
-        String data_nascita = request.getParameter("data_nascita");
+        String giorno = request.getParameter("giorno");
+        String mese = request.getParameter("mese");
+        String anno = request.getParameter("anno");
+        String spazio = "-";
+        String data_nascita = anno + spazio + mese + spazio + giorno;
         String residenza = request.getParameter("residenza");
         String codice_fiscale = request.getParameter("codice_fiscale");
         String telefono = request.getParameter("telefono");
