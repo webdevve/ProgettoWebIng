@@ -8,8 +8,11 @@ package Business.Controller;
 import Business.Model.Amministratore;
 import Business.Model.Azienda;
 import Business.Model.Studente;
+import DAO.AziendaDAO;
+import DAO.StudenteDAO;
 import framework.result.HTMLResult;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -100,12 +103,12 @@ public class login extends HttpServlet {
             return true;
         }else{
             System.out.println("Non sei un Amministratore.");
-            Azienda azienda = Azienda.CercaAzienda(e, p);
+            Azienda azienda = CercaAzienda(e, p);
             if(azienda != null){
                 return true;
             }else{
                 System.out.println("Non sei un Azienda.");
-                Studente studente = Studente.CercaStudente(e, p);
+                Studente studente = CercaStudente(e, p);
                 if(studente != null){
                     return true;
                 }else{
@@ -137,6 +140,26 @@ public class login extends HttpServlet {
             //se non possiamo inviare la pagina di errore, proviamo un messaggio di errore HTTP standard
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
         }
+    }
+    
+    
+     public static Azienda CercaAzienda(String email, String password){
+        System.out.println("Cerco l'azienda (model)");
+        ArrayList<Object> lista = new ArrayList();
+        lista.add(email);
+        lista.add(password);
+        Azienda azienda = (Azienda) new AziendaDAO().retrieve(lista);
+        return azienda;
+    }
+    
+    
+    public static Studente CercaStudente(String email, String password){
+        System.out.println("Cerco lo studente (model)");
+        ArrayList<Object> lista = new ArrayList();
+        lista.add(email);
+        lista.add(password);
+        Studente studente = (Studente) new StudenteDAO().retrieve(lista);
+        return studente;
     }
     
 

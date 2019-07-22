@@ -8,8 +8,10 @@ package Business.Controller;
 import Business.Model.Amministratore;
 import Business.Model.Azienda;
 import Business.Model.Studente;
+import DAO.AziendaDAO;
 import framework.result.HTMLResult;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -186,7 +188,7 @@ public class registrazioneAzienda extends HttpServlet {
         boolean verifica = verificacredenziali(email_azienda);
         if(!verifica){
             System.out.println("Procedo con la registrazione");
-            boolean inserimentoAzienda = Azienda.inserimentoAziendaDB(ragione_sociale, 
+            boolean inserimentoAzienda = inserimentoAziendaDB(ragione_sociale, 
                     indirizzo, partita_iva, codice_fiscale, nome_legale_rappr, cognome_legale_rappr,
                     nome_responsabile, cognome_responsabile, telefono_responsabile, email_responsabile,
                     foro, email_azienda, pwd_azienda);
@@ -230,12 +232,49 @@ public class registrazioneAzienda extends HttpServlet {
                 }
             }
         }*/  
-        Azienda azienda = Azienda.CercaAziendaReg(e);
+        Azienda azienda = CercaAziendaReg(e);
         if(azienda != null){
             return true;
         }
         return false;
     }
+    
+    
+     public static Azienda CercaAziendaReg(String email){
+        System.out.println("Cerco l'azienda (model) reg");
+        ArrayList<Object> lista = new ArrayList();
+        lista.add(email);
+        //lista.add(partita_iva);
+        Azienda azienda = (Azienda) new AziendaDAO().retrieveReg(lista);
+        return azienda;
+    }
+     
+    
+    public static boolean inserimentoAziendaDB(String ragione_sociale, String indirizzo,
+            String partita_iva, String codice_fiscale, String nome_legale_rappr, String cognome_legale_rappr,
+            String nome_responsabile, String cognome_responsabile, String telefono_responsabile,
+            String email_responsabile, String foro, String email_azienda, String pwd_azienda){
+        System.out.println("Procedo all'inserimento (model)");
+        ArrayList<Object> lista = new ArrayList<>();
+        lista.add(ragione_sociale);
+        lista.add(indirizzo);
+        lista.add(partita_iva);
+        lista.add(codice_fiscale);
+        lista.add(nome_legale_rappr);
+        lista.add(cognome_legale_rappr);
+        lista.add(nome_responsabile);
+        lista.add(cognome_responsabile);
+        lista.add(telefono_responsabile);
+        lista.add(email_responsabile);
+        lista.add(foro);
+        lista.add(email_azienda);
+        lista.add(pwd_azienda);
+        boolean inserimentoAZdb = new AziendaDAO().insert(lista);
+        return inserimentoAZdb;
+    }
+    
+    
+    
     
     private void errore_compilazione(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         //System.out.println("Errore");

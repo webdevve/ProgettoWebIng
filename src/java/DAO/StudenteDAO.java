@@ -9,6 +9,7 @@ import Business.Model.Studente;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,7 +23,50 @@ public class StudenteDAO implements DAOinterface{
 
     @Override
     public boolean insert(ArrayList<Object> args) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Entro nel db");
+        Connection connect = null;
+	PreparedStatement preparedStatement = null;
+	boolean success = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            preparedStatement = connect.prepareStatement("INSERT INTO internshiptutor.studente (nome, cognome, luogo_nascita, data_nascita, cf, residenza, telefono, handicap,\n" +
+"corso_laurea, email_studente, pwd_studente) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            preparedStatement.setString(1, (String) args.get(0));
+            preparedStatement.setString(2, (String) args.get(1));
+            preparedStatement.setString(3, (String) args.get(2));
+            preparedStatement.setString(4, (String) args.get(3));
+            preparedStatement.setString(5, (String) args.get(4));
+            preparedStatement.setString(6, (String) args.get(5));
+            preparedStatement.setString(7, (String) args.get(6));
+            preparedStatement.setString(8, (String) args.get(7));
+            preparedStatement.setString(9, (String) args.get(8));
+            preparedStatement.setString(10, (String) args.get(9));
+            preparedStatement.setString(11, (String) args.get(10));
+            
+            
+            
+            preparedStatement.executeUpdate();
+            System.out.println("Sono entrato nel db, inserimento avvenuto con successo");
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+            success = false;
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+            success = false;
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+		if (preparedStatement != null)
+                    preparedStatement.close();
+		return success;
+            }catch (final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return false;
+            }
+        }
     }
 
     @Override
@@ -44,7 +88,7 @@ public class StudenteDAO implements DAOinterface{
                 String nome = resultSet.getString("nome");
                 String cognome = resultSet.getString("cognome");
                 String luogo_nascita = resultSet.getString("luogo_nascita");
-                Date data_nascita = resultSet.getDate("data_nascita");
+                String data_nascita = resultSet.getString("data_nascita");
                 String residenza = resultSet.getString("residenza");
                 String cf = resultSet.getString("cf");
                 String telefono = resultSet.getString("telefono");

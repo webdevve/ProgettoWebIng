@@ -5,6 +5,7 @@
  */
 package Business.Model;
 
+import DAO.AziendaDAO;
 import DAO.StudenteDAO;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Studente {
     private String nome;
     private String cognome;
     private String luogo_nascita;
-    private Date data_nascita;
+    private String data_nascita;
     private String residenza;
     private String cf;
     private String telefono;
@@ -30,7 +31,7 @@ public class Studente {
     private String pwd_studente;
     
     private Studente(int id, String nome, String cognome, String luogo_nascita, 
-            Date data_nascita, String residenza, String cf, String telefono,
+            String data_nascita, String residenza, String cf, String telefono,
             String corso_laurea, String handicap, String email_studente, String pwd_studente){
         this.id = id;
         this.nome = nome;
@@ -74,11 +75,11 @@ public class Studente {
         return luogo_nascita;
     }
     
-    public void setData_nascita(Date NewData_nascita){
+    public void setData_nascita(String NewData_nascita){
         this.data_nascita = NewData_nascita;
     }
     
-    public Date getData_nascita(){
+    public String getData_nascita(){
         return data_nascita;
     }
     
@@ -138,17 +139,11 @@ public class Studente {
         return pwd_studente;
     }
     
-    public static Studente CercaStudente(String email, String password){
-        System.out.println("Cerco lo studente (model)");
-        ArrayList<Object> lista = new ArrayList();
-        lista.add(email);
-        lista.add(password);
-        Studente studente = (Studente) new StudenteDAO().retrieve(lista);
-        return studente;
-    }
     
+    
+   
     public static final synchronized Studente setInstance(int id, String nome, String cognome, String luogo_nascita, 
-            Date data_nascita,  String residenza, String cf, String telefono, String corso_laurea,
+            String data_nascita,  String residenza, String cf, String telefono, String corso_laurea,
             String handicap, String email_studente, String pwd_studente) {
 	if ( instance == null ) {
             instance = new Studente(id, nome, cognome, luogo_nascita, data_nascita, residenza,
