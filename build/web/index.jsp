@@ -31,6 +31,9 @@
           <li>
             <a href="#aziende">Aziende</a>
           </li>
+            <li>
+            <a href="aggiungiOfferta.jsp">Aggiungi Offerta</a>
+          </li>
           <li>
             <a href="login.jsp">Accedi</a>
           </li>
