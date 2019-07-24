@@ -5,12 +5,11 @@
  */
 package Business.Controller;
 
-import Business.Model.Amministratore;
 import Business.Model.Azienda;
-import Business.Model.Studente;
 import DAO.AziendaDAO;
 import framework.result.HTMLResult;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -64,78 +63,95 @@ public class registrazioneAzienda extends HttpServlet {
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(via.equals("") || città.equals("") || provincia.equals("--") || cap.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(partita_iva.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
         
             if(codice_fiscale.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(nome_legale_rappr.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(cognome_legale_rappr.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(nome_responsabile.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(cognome_responsabile.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(telefono_responsabile.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(email_responsabile.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(foro.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(email_azienda.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(pwd.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             if(pwd_azienda.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
             }
             
             if(!pwd.equals(pwd_azienda)){
                 String errore = "Attenzione! Confermare correttamente la Password!";
                 request.setAttribute("err", errore);
                 errore_compilazione(request, response);
+                return;
+            } else{
+                send_registrazione(request, response);
             }
             
             System.out.println(ragione_sociale);
@@ -152,8 +168,6 @@ public class registrazioneAzienda extends HttpServlet {
             System.out.println(email_azienda);
             System.out.println(pwd);
             System.out.println(pwd_azienda);
-            
-            send_registrazione(request, response);
         
         }catch(IOException ex){
             request.setAttribute("exception", ex);

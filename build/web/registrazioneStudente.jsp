@@ -47,7 +47,7 @@
             <tr>
               <td class="left">Nome</td>
               <td>
-                <p><input size="30" type="text" name="nome" placeholder="Nome" maxlength="200" required/>*</p>
+                <p><input size="30" type="text" name="nome" placeholder="Nome" maxlength="200" />*</p>
               </td>
             </tr>
             <tr>
@@ -66,7 +66,11 @@
             <tr>
               <td class="left">Data di nascita</td>
               <td>
-                <p><input size="30" type="date" name="data_nascita" placeholder="Data di nascita" required/>*</p>
+                <p>
+                    <input size="2" type="number" name="giorno" placeholder="gg" required min="1" max="31"/>-
+                    <input size="2" type="number" name="mese" placeholder="mm" required min="1" max="12"/>-
+                    <input size="4" type="number" name="anno" placeholder="aaaa" required min="1900"/>*
+                </p>
               </td>
             </tr>
             <tr>
