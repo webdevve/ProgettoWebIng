@@ -42,7 +42,7 @@ public class OffertaDAO implements DAOinterface{
             preparedStatement.setString(6, (String) args.get(5));
             preparedStatement.setString(7, (String) args.get(6));
             preparedStatement.setString(8, (String) args.get(7));
-            preparedStatement.setString(9, (String) args.get(8));   
+            preparedStatement.setInt(9, (int) args.get(8));   
             
             
             preparedStatement.executeUpdate();
