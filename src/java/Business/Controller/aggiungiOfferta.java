@@ -102,7 +102,7 @@ public class aggiungiOfferta extends HttpServlet {
                 errore_compilazione(request, response);
                 return;
             } else {
-                send_registrazione(request, response);
+                aggiungi(request, response);
             }
             
             
@@ -129,7 +129,7 @@ public class aggiungiOfferta extends HttpServlet {
     
     
     
-    private void send_registrazione(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+    private void aggiungi(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         System.out.println("Si procede con la registrazione...");
         String titolo = request.getParameter("titolo");
         String descrizione = request.getParameter("descrizione");
