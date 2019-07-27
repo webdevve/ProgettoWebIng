@@ -1,32 +1,30 @@
 <%-- 
-    Document   : login
-    Created on : 4-lug-2019, 19.53.38
-    Author     : Davide Simboli
+    Document   : visualizzaOfferte
+    Created on : 5-lug-2019, 11.31.45
+    Author     : alesi
 --%>
+
 <?xml version="1.0" encoding="UTF-8"?>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-      <title>Internship Tutor - Login</title>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" href="css/login.css" type="text/css"/>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <%
-            String errore = (String)request.getAttribute("err");
-            String nome = (String)request.getAttribute("name");
-            if(errore == null){
-                errore="";
-            }
-            if(nome == null){
-                nome = "";
-            }
-        %>
-        
-    <!--HEADER-->
+    <title>Internship Tutor</title>
+    <!--<link rel="stylesheet" href="css/header.css" type="text/css"/>-->
+    <link rel="stylesheet" href="css/index.css" type="text/css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <%
+        String nome = (String)request.getAttribute("name");
+        if(nome == null){
+            nome = "";
+        }
+    %>
+ 
+   <!--HEADER-->
    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style=" z-index:1">
   <!-- Brand -->
   <a class="navbar-brand" href="#">Internship Tutor</a>
@@ -81,27 +79,33 @@
   </ul>
 </nav>
     <br><br>
-            
-       <script>
-        function attenzione() {
-        alert("Hello! I am an alert box!");
-        }
-       </script>
-      
-      <div class="container-login">
-        <h1>Accedi</h1>
-        <form action="login" method="POST">
-           <div>
-              <p>Username: <input type="email" name="username" required="required" placeholder="Email"/></p>
-              <p>Password: <input type="password" name="password" required="required" placeholder="Password"/></p>
-              <p><input type="submit" name="Accedi" class="btn btn-primary" value="Accedi"/></p>
-           </div>
-        </form>
+  
+
+            <label style="position:relative; left:45px"><strong>Offerte di tirocinio dell'azienda</strong></label><br><br>
+    <div>
+      <ul class="post">
+        <%
+            for(int i = 0; i < 2; i++){
+        %>
         
-        <font color="red">
-            <p><%=errore%></p>
-        </font>
-        <p>Non sei registrato? <a href="registrazione.jsp">registrati ora!</a></p>
-      </div>
-    </body>
+            
+                <form action="moreInfo" method="POST">
+                    <div class="card" style="width: 60rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Titolo</h5>
+                            <p class="card-text">Descrizione descrizione descrizione descrizione descrizione</p>
+                            <input type="submit"  class="btn btn-primary" value="Visualizza studenti interessati"></button>
+                            <input type="submit"  class="btn btn-danger" value="Elimina"></button>
+                        </div>
+                    </div>
+                    
+                </form>
+            
+        
+        <%
+            }
+        %>
+     
+    
+  </body>
 </html>

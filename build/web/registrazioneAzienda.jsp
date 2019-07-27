@@ -10,6 +10,10 @@
         <title>Internship Tutor - Registrazione</title>
         <link rel="stylesheet" href="css/registrazioneAzienda.css" type="text/css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/login.css" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
         <%
@@ -19,32 +23,61 @@
             }
         %>
       
-           <!--HEADER-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position:fixed; z-index:1">
+  <!--HEADER-->
+   <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style=" z-index:1">
+  <!-- Brand -->
   <a class="navbar-brand" href="#">Internship Tutor</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Aziende</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">News</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="aggiungiOfferta.jsp">Aggiungi offerta</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="login.jsp">Accedi</a>
-      </li>
-    </ul>
-  </div>
- </nav><br>
+
+  <!-- Links -->
+  <ul class="navbar-nav" style="position: relative; top:8px">
+    <li class="nav-item">
+      <a class="nav-link" href="index.jsp">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="visualizzaAziende.jsp">Aziende</a>
+    </li>
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Area azienda
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="aggiungiOfferta.jsp">Aggiungi offerta</a>
+        <a class="dropdown-item" href="visualizzaOfferte.jsp">Visualizza offerte</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Area studente
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="mieiTirocini.jsp">I miei tirocini</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Area amministratore
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="aziendeConvenzionare.jsp">Aziende da convenzionare</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="login.jsp">Accedi</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="">Logout</a>
+    </li>
+    <li>
+    <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="position:relative; left:160px;">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="position:relative; left:160px;">Search</button>
+  </form>
+    </li>
+  </ul>
+</nav>
+    
         
     <div class="container">
       <h1 class="center">Registrazione Azienda</h1>
@@ -271,7 +304,7 @@
               </td>
             </tr>
           </table>
-          <p class="center"><input type="submit" name="Registrati" value="Registrati"></p>
+          <p class="center"><input type="submit" name="Registrati" class="btn btn-primary" value="Registrati"></p>
         </form>
       </div>
     </div>
