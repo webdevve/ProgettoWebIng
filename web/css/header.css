@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-ago-2019, 9.59.03
+    Author     : Davide Simboli
+*/
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+header {
+    position: fixed;
+    top: 0;
+    min-height: 75px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    width: 100%;
+}
+nav {
+    font-weight: 400;
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 5px;
+}
+header nav ul {
+    width: 35vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+header li {
+    list-style: none;
+}
+
+header li a {
+  display: block;
+  color: grey;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+a:hover:not(.active) {
+  color: #484848;
+  font-weight: bold;
+}
+.selected{
+  color: #484848;
+  font-weight: bold;
+}

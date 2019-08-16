@@ -79,9 +79,9 @@ public class login extends HttpServlet {
         session.setAttribute("username", email);
         String str = session.getAttribute("username").toString();
         System.out.println(str + " è in sessione!");
-        //PrintWriter out = response.getWriter();
-        //out.print("Benvenuto " + str);
-        response.sendRedirect("informazione.jsp");
+        request.setAttribute("name", str);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
     
     private void errore_autenticazione(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
