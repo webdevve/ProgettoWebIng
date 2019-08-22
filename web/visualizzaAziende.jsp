@@ -12,54 +12,52 @@
     <link rel="stylesheet" href="css/index.css" type="text/css"/>
     <link rel="stylesheet" href="css/header.css" type="text/css"/>
   </head>
-    <body onload="document.autenticazione.submit()">
+    <body>
      <%
+         HttpSession sessione = request.getSession();
+            String str = (String)sessione.getAttribute("username");
+            request.setAttribute("name", str);
             String nome = (String)request.getAttribute("name");
+            String login = "";
+            String linkAccedi = "";
             if(nome == null){
-                nome = "";
+                //nome = "";
+                login = "Accedi";
+                linkAccedi = "login.jsp";
+            }else{
+                login = nome;
+                linkAccedi = "#profilo";
             }
     %> 
-    <form action="visualizzaAziende" name="autenticazione" method="POST"></form>
-    <header id="header">
-      <nav id="navbar">
-        <ul class="nav_header">
-          <li class="li_header">
-            <a href="index.jsp">Home</a>
-          </li>
-          <li>
-            <a href="#news">News</a>
-          </li>
-          <li>
-            <a href="visualizzaAziende.jsp">Aziende</a>
-          </li>
-          <li>
-            <a href="login.jsp">Accedi</a>
-          </li>
-            <li><a href="#profilo"><%=nome%></a></li>
-        </ul>
-      </nav>
-    </header>
+    <div class="header">
+        <a href="#default" class="logo">InternshipTutor</a>
+        <div class="header-right">
+          <a class="active" href="index.jsp">Home</a>
+          <a href="#news">News</a>
+          <a href="visualizzaAziende.jsp" >Aziende</a>
+          <a href="<%=linkAccedi%>"><%=login%></a>
+        </div>
+    </div>
 
     <div class="container">
-      <ul class="post">
+
         <%
             for(int i = 0; i < 12; i++){
         %>
-        <li class="item">
-            <div class="content">
-                <form action="visualizzaOfferte.jsp" method="POST">
-                    <section>
-                        <h2>Nome Azienda s.r.l.</h2>
-                    </section>
-                    <button type="submit" name="moreInformation" class="button button4" value="">Visualizza offerte</button>
-                </form>
+
+        <form action="#dettaglioOfferta" method="POST">
+            <div class="card">
+                <div class="cardContainer">
+                  <h2>Nome Azienda <%=i%> s.r.l.</h2>
+                  <p>Indirizzo: </p>
+                  <button type="submit" name="moreInformation" class="button button4" value="">Visualizza l'azienda</button>
+                </div>
             </div>
-        </li>
+        </form>
         <%
             }
         %>
-      </ul>
+
     </div>
-      Risposta: 
   </body>
 </html>

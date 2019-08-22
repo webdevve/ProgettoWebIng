@@ -7,20 +7,21 @@ package Business.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Davide Simboli
  */
-@WebServlet(name = "visualizzaAziende", urlPatterns = {"/visualizzaAziende"})
-public class visualizzaAziende extends HttpServlet {
+@WebServlet(name = "admin", urlPatterns = {"/admin"})
+public class admin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +34,29 @@ public class visualizzaAziende extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        System.out.println(session);
-        String str = session.getAttribute("username").toString();
-        System.out.println(str + " è in sessione!");
-        request.setAttribute("name", str);
-        RequestDispatcher rd = request.getRequestDispatcher("visualizzaAziende.jsp");
+        String stato = request.getParameter("stato");
+        
+        String id = request.getParameter("id");
+        String ragioneSociale = request.getParameter("ragioneSociale");
+        String nomeResponsabile = request.getParameter("nomeResponsabile");
+        String cognomeResponsabile = request.getParameter("cognomeResponsabile");
+        String rappresentante = nomeResponsabile + " " + cognomeResponsabile;
+        String sedeLegale = request.getParameter("sedeLegale");
+        String partitaIva = request.getParameter("partita_iva");
+        String descrizione = request.getParameter("descrizione");
+        String ambito = request.getParameter("ambito");
+        
+        String info = "L'azienda n° " + id + " è stata " + stato;
+        
+        request.setAttribute("getRagioneSociale", ragioneSociale);
+        request.setAttribute("getRappresentante", rappresentante);
+        request.setAttribute("getSedeLegale", sedeLegale);
+        request.setAttribute("getPartitaIva", partitaIva);
+        request.setAttribute("getDescrizione", descrizione);
+        request.setAttribute("getAmbito", ambito);
+        
+        request.setAttribute("getInfo", info);
+        RequestDispatcher rd = request.getRequestDispatcher("documentoConvenzione.jsp");
         rd.forward(request, response);
     }
 

@@ -24,7 +24,10 @@ create table azienda(
     email_responsabile varchar(100) not null,
     foro varchar(150) not null,
     email_azienda varchar(100) not null unique,
-    pwd_azienda varchar(50) not null
+    pwd_azienda varchar(50) not null,
+    descrizione text not null,
+    ambito varchar(150) not null,
+    stato enum ('approvata', 'inAttesa', 'nonApprovata') default 'inAttesa' not null
 );
 
 create table offerta(

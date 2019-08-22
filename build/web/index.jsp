@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : index
     Created on : 5-lug-2019, 11.31.45
     Author     : Davide Simboli
@@ -14,6 +14,9 @@
     </head>
     <body>
         <%
+            HttpSession sessione = request.getSession();
+            String str = (String)sessione.getAttribute("username");
+            request.setAttribute("name", str);
             String nome = (String)request.getAttribute("name");
             String login = "";
             String linkAccedi = "";
@@ -26,60 +29,42 @@
                 linkAccedi = "#profilo";
             }
         %>
-    <header id="header">
-      <nav id="navbar">
-        <ul class="nav_header">
-          <li class="li_header">
-            <a class="selected" href="index.jsp">Home</a>
-          </li>
-          <li>
-            <a href="#news">News</a>
-          </li>
-          <li>
-            <a href="visualizzaAziende.jsp" >Aziende</a>
-          </li>
-          <li>
-              <a href="<%=linkAccedi%>"><%=login%></a>
-          </li>
-            
-        </ul>
-      </nav>
-    </header>
+    <div class="header">
+        <a href="#default" class="logo">InternshipTutor</a>
+        <div class="header-right">
+          <a class="active" href="index.jsp">Home</a>
+          <a href="#news">News</a>
+          <a href="visualizzaAziende.jsp" >Aziende</a>
+          <a href="<%=linkAccedi%>"><%=login%></a>
+        </div>
+    </div>
 
     <div class="container">
-      <ul class="post">
+
         <%
             for(int i = 0; i < 12; i++){
         %>
-        <li class="item">
-            <div class="content">
-                <form action="#dettaglioOfferta" method="POST">
-                    <section>
-                        <h2>Nome Azienda s.r.l.</h2>
-                        <h3>Titolo tirocinio</h3>
-                    </section>
-                    <article>
-                        <p>
-                            Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
-                            Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
-                            Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
-                            Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
-                            Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
-                        </p>
-                    </article>
-                    <button type="submit" name="moreInformation" class="button button4" value="">More Informatio</button>
-                    
-                </form>
+
+        <form action="#dettaglioOfferta" method="POST">
+        <div class="card">
+            <div class="cardContainer">
+              <h2>Nome Azienda s.r.l.</h2>
+              <h3>Titolo tirocinio</h3>
+              <p>
+                  Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
+                  Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
+                  Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
+                  Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
+                  Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione Descrizione
+              </p>
+              <button type="submit" name="moreInformation" class="button button4" value="">Visualizza l'offerta</button>
             </div>
-        </li>
+        </div>
+        </form>
         <%
             }
         %>
-      </ul>
+
     </div>
-      <form>
-          <input type="text" value="<%=login%>" id="label"/>
-          <input type="submit" action="visualizzaAziende"/>
-      </form>
   </body>
 </html>

@@ -31,7 +31,7 @@ public class AziendaDAO implements DAOinterface{
             connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
 					"root", "ciao");
             preparedStatement = connect.prepareStatement("INSERT INTO internshiptutor.azienda (ragione_sociale, indirizzo, partita_iva, codice_fiscale, nome_legale_rappr, cognome_legale_rappr, nome_responsabile,\n" +
-"cognome_responsabile, telefono_responsabile, email_responsabile, foro, email_azienda, pwd_azienda) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+"cognome_responsabile, telefono_responsabile, email_responsabile, foro, email_azienda, pwd_azienda, descrizione, ambito) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             preparedStatement.setString(1, (String) args.get(0));
             preparedStatement.setString(2, (String) args.get(1));
             preparedStatement.setString(3, (String) args.get(2));
@@ -45,6 +45,8 @@ public class AziendaDAO implements DAOinterface{
             preparedStatement.setString(11, (String) args.get(10));
             preparedStatement.setString(12, (String) args.get(11));
             preparedStatement.setString(13, (String) args.get(12));
+            preparedStatement.setString(14, (String) args.get(13));
+            preparedStatement.setString(15, (String) args.get(14));
             preparedStatement.executeUpdate();
             System.out.println("Sono entrato nel db, inserimento avvenuto con successo");
         }catch(SQLException e){
@@ -97,11 +99,14 @@ public class AziendaDAO implements DAOinterface{
                 String foro = resultSet.getString("foro");
                 String email_azienda = resultSet.getString("email_azienda");
                 String pwd_azienda = resultSet.getString("pwd_azienda");
-                if(email_azienda.equals((String) args.get(0)) && pwd_azienda.equals((String) args.get(1))){
+                String descrizione = resultSet.getString("descrizione");
+                String ambito = resultSet.getString("ambito");
+                String stato = resultSet.getString("stato");
+                if(email_azienda.equals((String) args.get(0)) && pwd_azienda.equals((String) args.get(1)) && stato.equals("approvata")){
                     azienda = Azienda.setInstance(id, ragione_sociale, indirizzo, partita_iva,
                             codice_fiscale, nome_legale_rappr, cognome_legale_rappr, nome_responsabile,
                             cognome_responsabile, telefono_responsabile, email_responsabile, foro, 
-                            email_azienda, pwd_azienda);
+                            email_azienda, pwd_azienda, descrizione, ambito, stato);
                     connect.close();
                     Statement.close();
                     resultSet.close();
@@ -160,11 +165,14 @@ public class AziendaDAO implements DAOinterface{
                 String foro = resultSet.getString("foro");
                 String email_azienda = resultSet.getString("email_azienda");
                 String pwd_azienda = resultSet.getString("pwd_azienda");
+                String descrizione = resultSet.getString("descrizione");
+                String ambito = resultSet.getString("ambito");
+                String stato = resultSet.getString("stato");
                 if(email_azienda.equals((String) args.get(0))){
                     azienda = Azienda.setInstance(id, ragione_sociale, indirizzo, partita_iva,
                             codice_fiscale, nome_legale_rappr, cognome_legale_rappr, nome_responsabile,
                             cognome_responsabile, telefono_responsabile, email_responsabile, foro, 
-                            email_azienda, pwd_azienda);
+                            email_azienda, pwd_azienda, descrizione, ambito, stato);
                     connect.close();
                     Statement.close();
                     resultSet.close();

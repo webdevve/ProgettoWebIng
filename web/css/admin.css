@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-ago-2019, 11.45.03
+    Author     : Davide Simboli
+*/
+/*
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td{
+    padding: 5px;
+    text-align: left;
+}
+th{
+    text-align: center;
+}
+*/
+table, th, td{
+    border: 1px solid whitesmoke;
+    border-collapse: collapse;
+}
+th, td{
+    padding: 5px;
+    text-align: left;
+}
+th, td{
+    text-align: center;
+}
+#btnsi{
+    background-color: greenyellow;
+    border-radius: 2px;
+    border: none;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+}
+#btnno{
+    background-color: red;
+     border-radius: 2px;
+    border: none;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+}
+#colorTable{
+    background-color: whitesmoke;
+    margin-left: 10px;
+    margin-right: 10px;
+}

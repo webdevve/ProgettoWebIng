@@ -13,6 +13,20 @@
     </head>
     <body>
         <%
+            HttpSession sessione = request.getSession();
+            String str = (String)sessione.getAttribute("username");
+            request.setAttribute("name", str);
+            String nome = (String)request.getAttribute("name");
+            String login = "";
+            String linkAccedi = "";
+            if(nome == null){
+                //nome = "";
+                login = "Accedi";
+                linkAccedi = "login.jsp";
+            }else{
+                login = nome;
+                linkAccedi = "#profilo";
+            }
             String errore = (String)request.getAttribute("err");
             if(errore == null){
                 errore="";
@@ -29,10 +43,10 @@
                 <a href="#news">News</a>
              </li>
              <li>
-                <a href="#azienda">Aziende</a>
+                <a href="visualizzaAziende.jsp">Aziende</a>
              </li>
              <li>
-                <a href="login.jsp">Accedi</a>
+                <a href="<%=linkAccedi%>"><%=login%></a>
              </li>
           </ul>
        </nav>

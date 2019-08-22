@@ -29,11 +29,15 @@ public class Azienda {
     private String foro;
     private String email_azienda;
     private String pwd_azienda;
+    private String descrizione;
+    private String ambito;
+    private String stato;
     
     private Azienda(int id, String ragione_sociale, String indirizzo, String partita_iva, 
             String codice_fiscale, String nome_legale_rappr, String cognome_legale_rappr, 
             String nome_responsabile, String cognome_responsabile, String telefono_responsabile,
-            String email_responsabile, String foro, String email_azienda, String pwd_azienda){
+            String email_responsabile, String foro, String email_azienda, String pwd_azienda, 
+            String descrizione, String ambito, String stato){
         this.id = id;
         this.ragione_sociale = ragione_sociale;
         this.indirizzo = indirizzo;
@@ -48,6 +52,9 @@ public class Azienda {
         this.foro = foro;
         this.email_azienda = email_azienda;
         this.pwd_azienda = pwd_azienda;
+        this.descrizione = descrizione;
+        this.ambito = ambito;
+        this.stato = stato;
     }
     
     public int getID(){
@@ -154,17 +161,23 @@ public class Azienda {
         return pwd_azienda;
     }
     
+   public void setStato(String NewStato){
+       this.stato = NewStato;
+   }
    
+   public String getStato(){
+       return stato;
+   }
     
     
     public static final synchronized Azienda setInstance(int id, String ragione_sociale, String indirizzo, String partita_iva, 
             String codice_fiscale, String nome_legale_rappr, String cognome_legale_rappr, 
             String nome_responsabile, String cognome_responsabile, String telefono_responsabile,
-            String email_responsabile, String foro, String email_azienda, String pwd_azienda) {
+            String email_responsabile, String foro, String email_azienda, String pwd_azienda, String descrizione, String ambito, String stato) {
 	if ( instance == null ) {
             instance = new Azienda(id, ragione_sociale, indirizzo, partita_iva, codice_fiscale,
             nome_legale_rappr, cognome_legale_rappr, nome_responsabile, cognome_responsabile, 
-                    telefono_responsabile, email_responsabile, foro, email_azienda, pwd_azienda);
+                    telefono_responsabile, email_responsabile, foro, email_azienda, pwd_azienda, descrizione, ambito, stato);
 	}
 	return instance;
     }

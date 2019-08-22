@@ -27,6 +27,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "login", urlPatterns = {"/login"})
 public class login extends HttpServlet {
+    private static boolean admin = false;
+    private static boolean aziend = false;
+    private static boolean student = false;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -80,8 +83,22 @@ public class login extends HttpServlet {
         String str = session.getAttribute("username").toString();
         System.out.println(str + " è in sessione!");
         request.setAttribute("name", str);
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        if(admin){
+            RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
         rd.forward(request, response);
+        }else{
+            if(aziend){
+                RequestDispatcher rd = request.getRequestDispatcher("azienda.jsp");
+                rd.forward(request, response);
+            }else{
+                if(student){
+                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                    rd.forward(request, response);
+                }
+            }
+        }
+//        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//        rd.forward(request, response);
     }
     
     private void errore_autenticazione(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
@@ -100,16 +117,25 @@ public class login extends HttpServlet {
         //cerca utente nel db con le credenziali inserite dall'utente
         Amministratore amministratore = Amministratore.CercaAmministratore(e, p);
         if(amministratore != null){
+            admin = true;
+            aziend = false;
+            student = false;
             return true;
         }else{
             System.out.println("Non sei un Amministratore.");
             Azienda azienda = CercaAzienda(e, p);
             if(azienda != null){
+                admin = false;
+                aziend = true;
+                student = false;
                 return true;
             }else{
                 System.out.println("Non sei un Azienda.");
                 Studente studente = CercaStudente(e, p);
                 if(studente != null){
+                    admin = false;
+                    aziend = false;
+                    student = true;
                     return true;
                 }else{
                     System.out.println("Non sei uno Studente.");

@@ -53,6 +53,8 @@ public class registrazioneAzienda extends HttpServlet {
         String email_azienda = request.getParameter("email_azienda");
         String pwd = request.getParameter("pwd");
         String pwd_azienda = request.getParameter("pwd_azienda");
+        String descrizione = request.getParameter("descrizione");
+        String ambito = request.getParameter("ambito");
         
         String indirizzo, sp;
         sp = ", ";
@@ -132,6 +134,18 @@ public class registrazioneAzienda extends HttpServlet {
                 errore_compilazione(request, response);
                 return;
             }
+            if(descrizione.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+                return;
+            }
+            if(ambito.equals("")){
+                String errore = "Compilare tutti i campi!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+                return;
+            }
             if(pwd.equals("")){
                 String errore = "Compilare tutti i campi!";
                 request.setAttribute("err", errore);
@@ -168,6 +182,8 @@ public class registrazioneAzienda extends HttpServlet {
             System.out.println(email_azienda);
             System.out.println(pwd);
             System.out.println(pwd_azienda);
+            System.out.println(descrizione);
+            System.out.println(ambito);
         
         }catch(IOException ex){
             request.setAttribute("exception", ex);
@@ -194,6 +210,8 @@ public class registrazioneAzienda extends HttpServlet {
         String foro = request.getParameter("foro");
         String email_azienda = request.getParameter("email_azienda");
         String pwd_azienda = request.getParameter("pwd_azienda");
+        String descrizione = request.getParameter("descrizione");
+        String ambito = request.getParameter("ambito");
         
         String indirizzo, sp;
         sp = ", ";
@@ -205,7 +223,7 @@ public class registrazioneAzienda extends HttpServlet {
             boolean inserimentoAzienda = inserimentoAziendaDB(ragione_sociale, 
                     indirizzo, partita_iva, codice_fiscale, nome_legale_rappr, cognome_legale_rappr,
                     nome_responsabile, cognome_responsabile, telefono_responsabile, email_responsabile,
-                    foro, email_azienda, pwd_azienda);
+                    foro, email_azienda, pwd_azienda, descrizione, ambito);
             if(inserimentoAzienda){
                 System.out.println("Registrazione azienda avvenuta con successo");
                 response.sendRedirect("index.jsp");
@@ -267,7 +285,7 @@ public class registrazioneAzienda extends HttpServlet {
     public static boolean inserimentoAziendaDB(String ragione_sociale, String indirizzo,
             String partita_iva, String codice_fiscale, String nome_legale_rappr, String cognome_legale_rappr,
             String nome_responsabile, String cognome_responsabile, String telefono_responsabile,
-            String email_responsabile, String foro, String email_azienda, String pwd_azienda){
+            String email_responsabile, String foro, String email_azienda, String pwd_azienda, String descrizione, String ambito){
         System.out.println("Procedo all'inserimento (model)");
         ArrayList<Object> lista = new ArrayList<>();
         lista.add(ragione_sociale);
@@ -283,6 +301,8 @@ public class registrazioneAzienda extends HttpServlet {
         lista.add(foro);
         lista.add(email_azienda);
         lista.add(pwd_azienda);
+        lista.add(descrizione);
+        lista.add(ambito);
         boolean inserimentoAZdb = new AziendaDAO().insert(lista);
         return inserimentoAZdb;
     }

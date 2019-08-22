@@ -1,0 +1,33 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-ago-2019, 17.27.07
+    Author     : Davide Simboli
+*/
+
+h1, h3, #head{
+    text-align: center;
+}
+.card{
+    background-color: #FCFCFF;
+    width: 80%;
+    margin: 0 auto;
+}
+.centro{
+    width: 80%;
+    margin: 0 auto;
+}
+table{
+    border: 1px solid black;
+    font-variant: small-caps;
+}
+.page{
+    text-align: justify;
+    /*background-color: wheat;*/
+}
+.numPage{
+    color: #696969;
+}
