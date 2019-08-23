@@ -40,7 +40,7 @@
          <a href="#default" class="logo">InternshipTutor</a>
          <div class="header-right">
             <a class="active" href="admin.jsp">Home</a>
-            <a href="#news">News</a>
+            <a href="confermaConvenzione.jsp">Convenzioni da Confermare</a>
             <a href="#convenzioni" >Convenzioni</a>
             <a href="<%=linkAccedi%>"><%=login%></a>
          </div>
@@ -51,7 +51,7 @@
                <table style="width:100%">
                   <tr>
                      <th colspan="14" style="background-color: whitesmoke;">
-                         <h3>Aziende in attesa di convenzione</h3>
+                         <h3>Aziende in attesa di approvazione</h3>
                      </th>
                   </tr>
                   <tr style="background-color: whitesmoke;">
@@ -64,7 +64,7 @@
                      <th>Telefono Responsabile</th>
                      <th>Email Responsabile</th>
                      <th>Email Azienda</th>
-                     <th>Convenzionare</th>
+                     <th>Approvare Azienda</th>
                   </tr>
                   <%
                      Connection connect = null;
@@ -90,6 +90,9 @@
                           String sedeLegale = resultSet.getString("foro");
                           String descrizione = resultSet.getString("descrizione");
                           String ambito = resultSet.getString("ambito");
+                          String nome_legale_rappr = resultSet.getString("nome_legale_rappr");
+                          String cognome_legale_rappr = resultSet.getString("cognome_legale_rappr");
+                          String email_azienda = resultSet.getString("email_azienda");
                       %>
                       <input type="hidden" value="<%=id%>" name="id"/>
                       <input type="hidden" value="<%=ragioneSociale%>" name="ragioneSociale"/>
@@ -99,16 +102,19 @@
                       <input type="hidden" value="<%=sedeLegale%>" name="sedeLegale"/>
                       <input type="hidden" value="<%=descrizione%>" name="descrizione"/>
                       <input type="hidden" value="<%=ambito%>" name="ambito"/>
+                      <input type="hidden" value="<%=nome_legale_rappr%>" name="nome_legale_rappr"/>
+                      <input type="hidden" value="<%=cognome_legale_rappr%>" name="cognome_legale_rappr"/>
+                      <input type="hidden" value="<%=email_azienda%>" name="email_azienda"/>
                      <tr>
                         <td><%=id%></td>
                         <td><%=ragioneSociale%></td>
                         <td><%=resultSet.getString("indirizzo")%></td>
-                        <td><%=resultSet.getString("partita_iva")%></td>
-                        <td><%=resultSet.getString("nome_responsabile")%></td>
-                        <td><%=resultSet.getString("cognome_responsabile")%></td>
+                        <td><%=partita_iva%></td>
+                        <td><%=nomeResponsabile%></td>
+                        <td><%=cognomeResponsabile%></td>
                         <td><%=resultSet.getString("telefono_responsabile")%></td>
                         <td><%=resultSet.getString("email_responsabile")%></td>
-                        <td><%=resultSet.getString("email_azienda")%></td>
+                        <td><%=email_azienda%></td>
                         <td>
                            <button type="submit" name="stato" value="approvato" id='btnsi'>Si</button>
                            <button type="submit" name="stato" value="disapprovato" id='btnno'>No</button>

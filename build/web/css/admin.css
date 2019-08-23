@@ -39,6 +39,14 @@ th, td{
     height: 25px;
     cursor: pointer;
 }
+#btncarica{
+    background-color: greenyellow;
+    border-radius: 2px;
+    border: none;
+    width: 150px;
+    height: 25px;
+    cursor: pointer;
+}
 #btnno{
     background-color: red;
      border-radius: 2px;

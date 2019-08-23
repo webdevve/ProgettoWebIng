@@ -68,6 +68,71 @@ public class AziendaDAO implements DAOinterface{
             }
         }
     }
+    public boolean disapprovaConvenzione(ArrayList<Object> args){
+        System.out.println("Entro nel db");
+        Connection connect = null;
+	PreparedStatement preparedStatement = null;
+	boolean success = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.azienda SET stato='nonApprovata' WHERE email_azienda=?");
+            preparedStatement.setString(1, (String) args.get(0));
+            preparedStatement.executeUpdate();
+            System.out.println("Disapprovazione avvenuta con successo!");
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+            success = false;
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+            success = false;
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+		if (preparedStatement != null)
+                    preparedStatement.close();
+		return success;
+            }catch (final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return false;
+            }
+        }
+    }
+    
+    public boolean approvaConvenzione(ArrayList<Object> args){
+        System.out.println("Entro nel db");
+        Connection connect = null;
+	PreparedStatement preparedStatement = null;
+	boolean success = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.azienda SET stato='approvata' WHERE email_azienda=?");
+            preparedStatement.setString(1, (String) args.get(0));
+            preparedStatement.executeUpdate();
+            System.out.println("Disapprovazione avvenuta con successo!");
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+            success = false;
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+            success = false;
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+		if (preparedStatement != null)
+                    preparedStatement.close();
+		return success;
+            }catch (final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return false;
+            }
+        }
+    }
 
     @Override
     public Object retrieve(ArrayList<Object> args) {
@@ -102,7 +167,7 @@ public class AziendaDAO implements DAOinterface{
                 String descrizione = resultSet.getString("descrizione");
                 String ambito = resultSet.getString("ambito");
                 String stato = resultSet.getString("stato");
-                if(email_azienda.equals((String) args.get(0)) && pwd_azienda.equals((String) args.get(1)) && stato.equals("approvata")){
+                if(email_azienda.equals((String) args.get(0)) && pwd_azienda.equals((String) args.get(1)) && stato.equals("convenzionata")){
                     azienda = Azienda.setInstance(id, ragione_sociale, indirizzo, partita_iva,
                             codice_fiscale, nome_legale_rappr, cognome_legale_rappr, nome_responsabile,
                             cognome_responsabile, telefono_responsabile, email_responsabile, foro, 
