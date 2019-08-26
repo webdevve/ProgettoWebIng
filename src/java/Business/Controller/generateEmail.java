@@ -16,8 +16,10 @@ import java.util.Date;
  */
 public class generateEmail {
     public static void emailDisapprovazione(String email_azienda)throws IOException{
+        String userprofile = System.getenv("USERPROFILE");
+        //System.out.println("Profilo: "+userprofile);
         Date data = new Date();
-        File file = new File("C:\\Users\\Davide Simboli\\Desktop/disapprovazione-"+email_azienda+".txt");
+        File file = new File(userprofile + "\\Downloads/disapprovazione-"+email_azienda+".txt");
         if(file.exists()){
             System.out.println("il file esiste");
         }else if(file.createNewFile()){
@@ -35,8 +37,9 @@ public class generateEmail {
     }
     
     public static void emailApprovazione(String email_azienda)throws IOException{
+        String userprofile = System.getenv("USERPROFILE");
         Date data = new Date();
-        File file = new File("C:\\Users\\Davide Simboli\\Desktop/convenzione-"+email_azienda+".txt");
+        File file = new File(userprofile + "\\Downloads/convenzione-"+email_azienda+".txt");
         if(file.exists()){
             System.out.println("il file esiste");
         }else if(file.createNewFile()){

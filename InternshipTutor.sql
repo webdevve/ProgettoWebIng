@@ -27,7 +27,8 @@ create table azienda(
     pwd_azienda varchar(50) not null,
     descrizione text not null,
     ambito varchar(150) not null,
-    stato enum ('approvata', 'inAttesa', 'nonApprovata') default 'inAttesa' not null
+    documento_convenzione varchar(150),
+    stato enum ('convenzionata','approvata', 'inAttesa', 'nonApprovata') default 'inAttesa' not null
 );
 
 create table offerta(

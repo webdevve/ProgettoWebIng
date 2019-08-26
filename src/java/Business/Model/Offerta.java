@@ -5,10 +5,6 @@
  */
 package Business.Model;
 
-import DAO.AziendaDAO;
-import DAO.StudenteDAO;
-import Business.Model.Azienda;
-import java.util.ArrayList;
 /**
  *
  * @author alesi
@@ -129,7 +125,4 @@ public class Offerta {
 	}
 	return instance;
     }
-    
-    
-    
 }

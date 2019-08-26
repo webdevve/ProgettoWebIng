@@ -31,13 +31,14 @@ public class Azienda {
     private String pwd_azienda;
     private String descrizione;
     private String ambito;
+    private String documento_convenzione;
     private String stato;
     
     private Azienda(int id, String ragione_sociale, String indirizzo, String partita_iva, 
             String codice_fiscale, String nome_legale_rappr, String cognome_legale_rappr, 
             String nome_responsabile, String cognome_responsabile, String telefono_responsabile,
             String email_responsabile, String foro, String email_azienda, String pwd_azienda, 
-            String descrizione, String ambito, String stato){
+            String descrizione, String ambito, String documento_convenzione, String stato){
         this.id = id;
         this.ragione_sociale = ragione_sociale;
         this.indirizzo = indirizzo;
@@ -54,6 +55,7 @@ public class Azienda {
         this.pwd_azienda = pwd_azienda;
         this.descrizione = descrizione;
         this.ambito = ambito;
+        this.documento_convenzione = documento_convenzione;
         this.stato = stato;
     }
     
@@ -168,16 +170,26 @@ public class Azienda {
    public String getStato(){
        return stato;
    }
+   
+   public void setDocumento_convenzione(String NewDocumento_convenzione){
+       this.documento_convenzione = NewDocumento_convenzione;
+   }
+   
+   public String getDocumento_convenzione(){
+       return documento_convenzione;
+   }
     
     
     public static final synchronized Azienda setInstance(int id, String ragione_sociale, String indirizzo, String partita_iva, 
             String codice_fiscale, String nome_legale_rappr, String cognome_legale_rappr, 
             String nome_responsabile, String cognome_responsabile, String telefono_responsabile,
-            String email_responsabile, String foro, String email_azienda, String pwd_azienda, String descrizione, String ambito, String stato) {
+            String email_responsabile, String foro, String email_azienda, String pwd_azienda, String descrizione, String ambito,
+            String documento_convenzione, String stato) {
 	if ( instance == null ) {
             instance = new Azienda(id, ragione_sociale, indirizzo, partita_iva, codice_fiscale,
             nome_legale_rappr, cognome_legale_rappr, nome_responsabile, cognome_responsabile, 
-                    telefono_responsabile, email_responsabile, foro, email_azienda, pwd_azienda, descrizione, ambito, stato);
+                    telefono_responsabile, email_responsabile, foro, email_azienda, pwd_azienda, descrizione, ambito,
+                    documento_convenzione, stato);
 	}
 	return instance;
     }

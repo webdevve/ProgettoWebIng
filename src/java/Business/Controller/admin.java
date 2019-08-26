@@ -5,15 +5,10 @@
  */
 package Business.Controller;
 
-import Business.Model.Azienda;
 import DAO.AziendaDAO;
-import java.io.File;
-import java.io.FileWriter;
+import framework.result.HTMLResult;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,41 +43,68 @@ public class admin extends HttpServlet {
                 disapprovaAzienda(request, response);
                 System.out.println("L'azienda deve essere disapprovata");
             }
-        }catch(Exception e){
-            System.out.println(e);
+        }catch(IOException e){
+            request.setAttribute("exception", e);
+            action_error(request, response);
         }
-        
+    }
+    
+    private void action_error(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //assumiamo che l'eccezione sia passata tramite gli attributi della request
+        //we assume that the exception has been passed using the request attributes
+        Exception exception = (Exception) request.getAttribute("exception");
+        String message;
+        if (exception != null && exception.getMessage() != null) {
+            message = exception.getMessage();
+        } else {
+            message = "Unknown error";
+        }
+        HTMLResult result = new HTMLResult(getServletContext());
+        result.setTitle("ERROR");
+        result.setBody("<p>" + message + "</p>");
+        try {
+            result.activate(request, response);
+        } catch (IOException ex) {
+            //if error page cannot be sent, try a standard HTTP error message
+            //se non possiamo inviare la pagina di errore, proviamo un messaggio di errore HTTP standard
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+        }
     }
     
     protected void generaDocumentoConvenzione(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        String stato = request.getParameter("stato");
-        String id = request.getParameter("id");
-        String ragioneSociale = request.getParameter("ragioneSociale");
-        String nomeResponsabile = request.getParameter("nomeResponsabile");
-        String cognomeResponsabile = request.getParameter("cognomeResponsabile");
-        String rappresentante = nomeResponsabile + " " + cognomeResponsabile;
-        String sedeLegale = request.getParameter("sedeLegale");
-        String partitaIva = request.getParameter("partita_iva");
-        String descrizione = request.getParameter("descrizione");
-        String ambito = request.getParameter("ambito");
-        String nome_legale_rappr = request.getParameter("nome_legale_rappr");
-        String cognome_legale_rappr = request.getParameter("cognome_legale_rappr");
-        String legaleRappresentante = nome_legale_rappr + " " + cognome_legale_rappr;
-        
-        String info = "L'azienda n° " + id + " è stata " + stato;
-        
-        request.setAttribute("getRagioneSociale", ragioneSociale);
-        request.setAttribute("getRappresentante", rappresentante);
-        request.setAttribute("getSedeLegale", sedeLegale);
-        request.setAttribute("getPartitaIva", partitaIva);
-        request.setAttribute("getDescrizione", descrizione);
-        request.setAttribute("getAmbito", ambito);
-        request.setAttribute("getLegaleRappresentante", legaleRappresentante);
-        
-        request.setAttribute("getInfo", info);
-        RequestDispatcher rd = request.getRequestDispatcher("documentoConvenzione.jsp");
-        rd.forward(request, response);
+        try{
+            String stato = request.getParameter("stato");
+            String id = request.getParameter("id");
+            String ragioneSociale = request.getParameter("ragioneSociale");
+            String nomeResponsabile = request.getParameter("nomeResponsabile");
+            String cognomeResponsabile = request.getParameter("cognomeResponsabile");
+            String rappresentante = nomeResponsabile + " " + cognomeResponsabile;
+            String sedeLegale = request.getParameter("sedeLegale");
+            String partitaIva = request.getParameter("partita_iva");
+            String descrizione = request.getParameter("descrizione");
+            String ambito = request.getParameter("ambito");
+            String nome_legale_rappr = request.getParameter("nome_legale_rappr");
+            String cognome_legale_rappr = request.getParameter("cognome_legale_rappr");
+            String legaleRappresentante = nome_legale_rappr + " " + cognome_legale_rappr;
+
+            String info = "L'azienda n° " + id + " è stata " + stato;
+
+            request.setAttribute("getRagioneSociale", ragioneSociale);
+            request.setAttribute("getRappresentante", rappresentante);
+            request.setAttribute("getSedeLegale", sedeLegale);
+            request.setAttribute("getPartitaIva", partitaIva);
+            request.setAttribute("getDescrizione", descrizione);
+            request.setAttribute("getAmbito", ambito);
+            request.setAttribute("getLegaleRappresentante", legaleRappresentante);
+
+            request.setAttribute("getInfo", info);
+            RequestDispatcher rd = request.getRequestDispatcher("documentoConvenzione.jsp");
+            rd.forward(request, response);
+        }catch(IOException e){
+            request.setAttribute("exception", e);
+            action_error(request, response);
+        }
     }
     
     protected void disapprovaAzienda(HttpServletRequest request, HttpServletResponse response)
@@ -90,15 +112,20 @@ public class admin extends HttpServlet {
         //System.out.println("Si procede con la disapprovazione...");
         try{
             String email_azienda = request.getParameter("email_azienda");
-             
+            String ragioneSociale = request.getParameter("ragioneSociale");
             boolean disapprova = disapprovaConvenzione(email_azienda);
             if(disapprova){
                 //System.out.println("L'azienda è stata disapprovata");
                 generateEmail.emailDisapprovazione(email_azienda);
-                response.sendRedirect("admin.jsp");
+                String errore = ragioneSociale + " E' stata DISAPPROVATA!\n"
+                        + "email inviata a " + email_azienda;
+                request.setAttribute("err", errore);
+                RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+                rd.forward(request, response);
             }
-        }catch(Exception e){
-            System.out.println(e);
+        }catch(IOException e){
+            request.setAttribute("exception", e);
+            action_error(request, response);
         }
     }
     
@@ -109,7 +136,8 @@ public class admin extends HttpServlet {
              
             approvaConvenzione(email_azienda);
         }catch(Exception e){
-            System.out.println(e);
+            request.setAttribute("exception", e);
+            action_error(request, response);
         }
     }
     

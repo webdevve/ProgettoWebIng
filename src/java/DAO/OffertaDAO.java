@@ -6,8 +6,6 @@
 package DAO;
 
 import Business.Model.Offerta;
-import Business.Model.Azienda;
-import Business.Model.Studente;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -42,7 +40,7 @@ public class OffertaDAO implements DAOinterface{
             preparedStatement.setString(6, (String) args.get(5));
             preparedStatement.setString(7, (String) args.get(6));
             preparedStatement.setString(8, (String) args.get(7));
-            preparedStatement.setInt(9, (int) args.get(8));   
+            preparedStatement.setString(9, (String) args.get(8));   
             
             
             preparedStatement.executeUpdate();

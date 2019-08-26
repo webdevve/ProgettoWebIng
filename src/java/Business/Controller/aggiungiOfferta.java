@@ -5,13 +5,9 @@
  */
 package Business.Controller;
 
-import static Business.Controller.registrazioneStudente.inserimentoStudenteDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import Business.Model.Offerta;
 import DAO.OffertaDAO;
-import DAO.StudenteDAO;
 import framework.result.HTMLResult;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;

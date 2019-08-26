@@ -133,6 +133,40 @@ public class AziendaDAO implements DAOinterface{
             }
         }
     }
+    
+    public boolean convenzionaAziendaDOC(String email, String fileName){
+        System.out.println("Entro nel db");
+        Connection connect = null;
+	PreparedStatement preparedStatement = null;
+	boolean success = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.azienda SET documento_convenzione='"+fileName+"' WHERE email_azienda='"+email+"'");
+            preparedStatement.executeUpdate();
+            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.azienda SET stato='convenzionata' WHERE email_azienda='"+email+"'");
+            preparedStatement.executeUpdate();
+            System.out.println("L'Azienda è stata convenzionata!!");
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+            success = false;
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+            success = false;
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+		if (preparedStatement != null)
+                    preparedStatement.close();
+		return success;
+            }catch (final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return false;
+            }
+        }
+    }
 
     @Override
     public Object retrieve(ArrayList<Object> args) {
@@ -166,12 +200,13 @@ public class AziendaDAO implements DAOinterface{
                 String pwd_azienda = resultSet.getString("pwd_azienda");
                 String descrizione = resultSet.getString("descrizione");
                 String ambito = resultSet.getString("ambito");
+                String documento_convenzione = resultSet.getString("documento_convenzione");
                 String stato = resultSet.getString("stato");
                 if(email_azienda.equals((String) args.get(0)) && pwd_azienda.equals((String) args.get(1)) && stato.equals("convenzionata")){
                     azienda = Azienda.setInstance(id, ragione_sociale, indirizzo, partita_iva,
                             codice_fiscale, nome_legale_rappr, cognome_legale_rappr, nome_responsabile,
                             cognome_responsabile, telefono_responsabile, email_responsabile, foro, 
-                            email_azienda, pwd_azienda, descrizione, ambito, stato);
+                            email_azienda, pwd_azienda, descrizione, ambito, documento_convenzione, stato);
                     connect.close();
                     Statement.close();
                     resultSet.close();
@@ -232,12 +267,13 @@ public class AziendaDAO implements DAOinterface{
                 String pwd_azienda = resultSet.getString("pwd_azienda");
                 String descrizione = resultSet.getString("descrizione");
                 String ambito = resultSet.getString("ambito");
+                String documento_convenzione = resultSet.getString("documento_convenzione");
                 String stato = resultSet.getString("stato");
                 if(email_azienda.equals((String) args.get(0))){
                     azienda = Azienda.setInstance(id, ragione_sociale, indirizzo, partita_iva,
                             codice_fiscale, nome_legale_rappr, cognome_legale_rappr, nome_responsabile,
                             cognome_responsabile, telefono_responsabile, email_responsabile, foro, 
-                            email_azienda, pwd_azienda, descrizione, ambito, stato);
+                            email_azienda, pwd_azienda, descrizione, ambito, documento_convenzione, stato);
                     connect.close();
                     Statement.close();
                     resultSet.close();

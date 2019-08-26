@@ -1,5 +1,5 @@
 <%-- 
-   Document   : login
+   Document   : registrazioneAzienda
    Created on : 4-lug-2019, 19.53.38
    Author     : Davide Simboli
    --%>
@@ -19,6 +19,10 @@
          if(errore == null){
            errore="";
          }
+         String notifica = (String)request.getAttribute("notify");
+         if(notifica == null){
+           notifica="";
+         }
          %>
       <div class="header" id="header">
          <a href="#default" class="logo">InternshipTutor</a>
@@ -34,6 +38,9 @@
             <div class="wrap-login100 p-b-90 p-t-50">
                <font color="red" id="err">
                   <p><%=errore%></p>
+               </font>
+               <font color="green">
+                <p><%=notifica%></p>
                </font>
                <form class="login100-form flex-sb flex-w" action="registrazioneAzienda" method="post">
                   <span class="login100-form-title">Registrazione Azienda</span>

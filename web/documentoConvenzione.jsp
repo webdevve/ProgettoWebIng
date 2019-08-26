@@ -20,16 +20,8 @@
             HttpSession sessione = request.getSession();
             String str = (String)sessione.getAttribute("username");
             request.setAttribute("name", str);
-            String nome = (String)request.getAttribute("name");
-            String login = "";
-            String linkAccedi = "";
-            if(nome == null){
-                //nome = "";
-                login = "Accedi";
-                linkAccedi = "login.jsp";
-            }else{
-                login = nome;
-                linkAccedi = "#profilo";
+            if(str == null){
+                response.sendRedirect("login.jsp");
             }
             
             String info = (String)request.getAttribute("getInfo");
@@ -68,10 +60,10 @@
         <div class="header">
             <a href="#default" class="logo">InternshipTutor</a>
             <div class="header-right">
-              <a class="active" href="#home">Home</a>
-              <a href="#news">News</a>
-              <a href="visualizzaAziende.jsp" >Aziende</a>
-              <a href="#profilo"><%=login%></a>
+              <a href="#home">Home</a>
+              <a href="#confermaConvenzione">Convenzioni da Confermare</a>
+              <a href="#convenzioni" >Convenzioni</a>
+              <a href="#profilo.jsp"><%=str%></a>
             </div>
         </div>
             
@@ -537,7 +529,7 @@
         <input type="hidden" name="descrizione" value="<%=descrizione%>"/>
         <input type="hidden" name="ambito" value="<%=ambito%>"/>
         <div class="container-login100-form-btn m-t-17">
-            <button type="submit" name="stampa" value="convenzione" class="login100-form-btn">Stampa documento di convenzione</button>
+            <button type="submit" name="stampa" value="convenzione" class="login100-form-btn">Salva documento di convenzione</button>
         </div>
         </form>
         

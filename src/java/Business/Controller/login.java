@@ -85,7 +85,7 @@ public class login extends HttpServlet {
         request.setAttribute("name", str);
         if(admin){
             RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-        rd.forward(request, response);
+            rd.forward(request, response);
         }else{
             if(aziend){
                 RequestDispatcher rd = request.getRequestDispatcher("azienda.jsp");

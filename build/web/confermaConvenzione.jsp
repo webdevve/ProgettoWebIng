@@ -23,29 +23,35 @@
    <body>
       <%
          HttpSession sessione = request.getSession();
-         String str = (String)sessione.getAttribute("username");
-         request.setAttribute("name", str);
-         String nome = (String)request.getAttribute("name");
-         String login = "";
-         String linkAccedi = "";
-         if(nome == null){
-             //nome = "";
-             login = "Accedi";
-             linkAccedi = "login.jsp";
-         }else{
-             login = nome;
-             linkAccedi = "#profilo";
+            String str = (String)sessione.getAttribute("username");
+            request.setAttribute("name", str);
+            if(str == null){
+                response.sendRedirect("login.jsp");
+            }
+         String notifica = (String)request.getAttribute("notify");
+         if(notifica == null){
+           notifica="";
          }
+        String errore = (String)request.getAttribute("err");
+        if(errore == null){
+          errore="";
+        }
          %>
       <div class="header">
          <a href="#default" class="logo">InternshipTutor</a>
          <div class="header-right">
             <a href="admin.jsp">Home</a>
             <a href="confermaConvenzione.jsp" class="active">Convenzioni da Confermare</a>
-            <a href="#convenzioni" >Convenzioni</a>
-            <a href="<%=linkAccedi%>"><%=login%></a>
+            <a href="aziendeConvenzionate.jsp" >Convenzioni</a>
+            <a href="#profilo.jsp"><%=str%></a>
          </div>
       </div>
+         <font color="green">
+            <p><%=notifica%></p>
+          </font>
+          <font color="red" id="err">
+            <p><%=errore%></p>
+          </font>
       <div class="container">
          <div class="cardAdmin" style="overflow-x:auto;">
             <div class="cardContainer">
@@ -60,6 +66,7 @@
                      <th>Ragione Sociale</th>
                      <th>Email Azienda</th>
                      <th>Documento</th>
+                     <th>Conferma</th>
                   </tr>
                   <%
                      Connection connect = null;
@@ -74,22 +81,33 @@
                              Statement = connect.createStatement();
                              resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.azienda where stato = 'approvata'");
                              while(resultSet.next()){
+                                 
                      %>
                   <form action="confermaConvenzione" method="post">
                       <%
                           int id = resultSet.getInt("ID");
                           String ragioneSociale = resultSet.getString("ragione_sociale");
                           String email_azienda = resultSet.getString("email_azienda");
+                          String documento_convenzione = resultSet.getString("documento_convenzione");
+                          if(documento_convenzione == null){
+                              documento_convenzione = "";
+                          }
                       %>
                       <input type="hidden" value="<%=id%>" name="id"/>
                       <input type="hidden" value="<%=ragioneSociale%>" name="ragioneSociale"/>
                       <input type="hidden" value="<%=email_azienda%>" name="email_azienda"/>
+                      
                      <tr>
                         <td><%=id%></td>
                         <td><%=ragioneSociale%></td>
                         <td><%=email_azienda%></td>
                         <td>
-                           <button type="submit" name="stato" value="caricaDocumento" id='btncarica'>Carica Documento</button>
+                            Seleziona il Documento: <input type="file" name="myFile" id='btncaricaBlue'/>
+                            
+                           <%=documento_convenzione%>
+                        </td>
+                        <td>
+                           <button type="submit" name="stato" value="confermaDocumento" id='btncarica'>Conferma</button>
                         </td>
                      </tr>
                   </form>
@@ -101,6 +119,7 @@
                      resultSet.close();
                      if(count == 0){
                      %>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>

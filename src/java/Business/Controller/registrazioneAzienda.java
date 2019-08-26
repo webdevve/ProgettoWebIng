@@ -225,8 +225,12 @@ public class registrazioneAzienda extends HttpServlet {
                     nome_responsabile, cognome_responsabile, telefono_responsabile, email_responsabile,
                     foro, email_azienda, pwd_azienda, descrizione, ambito);
             if(inserimentoAzienda){
-                System.out.println("Registrazione azienda avvenuta con successo");
-                response.sendRedirect("index.jsp");
+                //System.out.println("Registrazione azienda avvenuta con successo");
+                String notifica = "L'Azienda  e' stata registrata!\n"
+                        + "Riceverai una email a "+ email_azienda + " quando sarà possibile fare l'accesso.";
+                request.setAttribute("notify", notifica);
+                RequestDispatcher rd = request.getRequestDispatcher("registrazioneAzienda.jsp");
+                rd.forward(request, response);
             }
         }else{
             String errore = "l'Azienda è già registrata!";
@@ -237,33 +241,11 @@ public class registrazioneAzienda extends HttpServlet {
     
     public static boolean verificacredenziali(String email){
         String e = email;
-        //String pi = partita_iva;
         if(e.equals("")){ //controllo ridondante
             System.out.println("Inserire username e pwd");
             return false;
         }
         //cerca utente nel db con le credenziali inserite dall'utente
-        /*
-        Amministratore amministratore = Amministratore.CercaAmministratore(e, p);
-        if(amministratore != null){
-            return true;
-        }else{
-            System.out.println("Non sei un Amministratore.");
-            Azienda azienda = Azienda.CercaAzienda(e, p);
-            if(azienda != null){
-                return true;
-            }else{
-                System.out.println("Non sei un Azienda.");
-                Studente studente = Studente.CercaStudente(e, p);
-                if(studente != null){
-                    return true;
-                }else{
-                    System.out.println("Non sei uno Studente.");
-                    System.out.println("Email o Password errati");
-                    return false;
-                }
-            }
-        }*/  
         Azienda azienda = CercaAziendaReg(e);
         if(azienda != null){
             return true;

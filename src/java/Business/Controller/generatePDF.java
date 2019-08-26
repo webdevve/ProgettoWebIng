@@ -10,7 +10,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,13 +35,12 @@ public class generatePDF extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("richiesta di stampa");
+        //System.out.println("richiesta di stampa");
         String richiesta = request.getParameter("stampa");
         if(richiesta.equals("convenzione")){
             generateConvenzionePDF(request, response);
         }
         response.sendRedirect("admin.jsp");
-        
     }
     
     protected void generateConvenzionePDF(HttpServletRequest request, HttpServletResponse response)
@@ -283,7 +281,8 @@ public class generatePDF extends HttpServlet {
     protected void generatePDF(String documento, String name)
             throws IOException{
         try{
-            String fileName = "C:\\Users\\Davide Simboli\\Desktop/Convenzione-"+name+".pdf";
+            String userprofile = System.getenv("USERPROFILE");
+            String fileName = userprofile + "\\Downloads/Convenzione-"+name+".pdf";
             Document document = new Document();
         
             PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -291,7 +290,7 @@ public class generatePDF extends HttpServlet {
             Paragraph para = new Paragraph(documento);
             document.add(para);
             document.close();
-            System.out.println("Documento pdf creato");
+            //System.out.println("Documento pdf creato");
         }catch(Exception e){
             System.out.println(e);
         }

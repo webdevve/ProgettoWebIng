@@ -1,9 +1,8 @@
 <%-- 
-    Document   : confermaConvenzione
-    Created on : 24-ago-2019, 1.08.24
+    Document   : aziendeConvenzionate
+    Created on : 26-ago-2019, 12.18.03
     Author     : Davide Simboli
 --%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="Business.Model.Azienda"%>
 <%@page import="java.sql.ResultSet"%>
@@ -13,44 +12,46 @@
 <%@page import="java.util.ArrayList"%>
 <?xml version="1.0" encoding="UTF-8"?>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<html xmlns="http://www.w3.org/1999/xhtml">
-   <head>
-      <title>Admin</title>
-      <link rel="stylesheet" href="css/header.css" type="text/css"/>
-      <link rel="stylesheet" href="css/index.css" type="text/css"/>
-      <link rel="stylesheet" href="css/admin.css" type="text/css"/>
-   </head>
-   <body>
-      <%
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Aziende Convenzionate</title>
+        <link rel="stylesheet" href="css/header.css" type="text/css"/>
+        <link rel="stylesheet" href="css/index.css" type="text/css"/>
+        <link rel="stylesheet" href="css/admin.css" type="text/css"/>
+    </head>
+    <body>
+        <%
          HttpSession sessione = request.getSession();
-            String str = (String)sessione.getAttribute("username");
-            request.setAttribute("name", str);
-            if(str == null){
-                response.sendRedirect("login.jsp");
-            }
-         String notifica = (String)request.getAttribute("notify");
-         if(notifica == null){
-           notifica="";
+         String str = (String)sessione.getAttribute("username");
+         request.setAttribute("name", str);
+         if(str == null){
+             response.sendRedirect("login.jsp");
          }
-        String errore = (String)request.getAttribute("err");
+         String errore = (String)request.getAttribute("err");
         if(errore == null){
           errore="";
         }
+        String notifica = (String)request.getAttribute("notify");
+         if(notifica == null){
+           notifica="";
+         }
          %>
       <div class="header">
          <a href="#default" class="logo">InternshipTutor</a>
          <div class="header-right">
             <a href="admin.jsp">Home</a>
-            <a href="confermaConvenzione.jsp" class="active">Convenzioni da Confermare</a>
-            <a href="aziendeConvenzionate.jsp" >Convenzioni</a>
+            <a href="confermaConvenzione.jsp">Convenzioni da Confermare</a>
+            <a href="aziendeConvenzionate.jsp" class="active">Convenzioni</a>
             <a href="#profilo.jsp"><%=str%></a>
          </div>
       </div>
-         <font color="green">
-            <p><%=notifica%></p>
-          </font>
-          <font color="red" id="err">
+         <font color="red" id="err">
             <p><%=errore%></p>
+          </font>
+          <font color="green">
+            <p><%=notifica%></p>
           </font>
       <div class="container">
          <div class="cardAdmin" style="overflow-x:auto;">
@@ -58,15 +59,19 @@
                <table style="width:100%">
                   <tr>
                      <th colspan="14" style="background-color: whitesmoke;">
-                         <h3>Aziende in attesa di convenzione</h3>
+                         <h3>Aziende in attesa di approvazione</h3>
                      </th>
                   </tr>
                   <tr style="background-color: whitesmoke;">
                      <th>ID</th>
                      <th>Ragione Sociale</th>
+                     <th>Indirizzo</th>
+                     <th>Partita IVA</th>
+                     <th>Nome Responsabile</th>
+                     <th>Cognome Responsabile</th>
+                     <th>Telefono Responsabile</th>
+                     <th>Email Responsabile</th>
                      <th>Email Azienda</th>
-                     <th>Documento</th>
-                     <th>Conferma</th>
                   </tr>
                   <%
                      Connection connect = null;
@@ -79,36 +84,44 @@
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.azienda where stato = 'approvata'");
+                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.azienda where stato = 'convenzionata'");
                              while(resultSet.next()){
-                                 
                      %>
-                  <form action="confermaConvenzione" method="post">
+                  <form action="admin" method="post">
                       <%
                           int id = resultSet.getInt("ID");
                           String ragioneSociale = resultSet.getString("ragione_sociale");
+                          String partita_iva = resultSet.getString("partita_iva");
+                          String nomeResponsabile = resultSet.getString("nome_responsabile");
+                          String cognomeResponsabile = resultSet.getString("cognome_responsabile");
+                          String sedeLegale = resultSet.getString("foro");
+                          String descrizione = resultSet.getString("descrizione");
+                          String ambito = resultSet.getString("ambito");
+                          String nome_legale_rappr = resultSet.getString("nome_legale_rappr");
+                          String cognome_legale_rappr = resultSet.getString("cognome_legale_rappr");
                           String email_azienda = resultSet.getString("email_azienda");
-                          String documento_convenzione = resultSet.getString("documento_convenzione");
-                          if(documento_convenzione == null){
-                              documento_convenzione = "";
-                          }
                       %>
                       <input type="hidden" value="<%=id%>" name="id"/>
                       <input type="hidden" value="<%=ragioneSociale%>" name="ragioneSociale"/>
+                      <input type="hidden" value="<%=nomeResponsabile%>" name="nomeResponsabile"/>
+                      <input type="hidden" value="<%=cognomeResponsabile%>" name="cognomeResponsabile"/>
+                      <input type="hidden" value="<%=partita_iva%>" name="partita_iva"/>
+                      <input type="hidden" value="<%=sedeLegale%>" name="sedeLegale"/>
+                      <input type="hidden" value="<%=descrizione%>" name="descrizione"/>
+                      <input type="hidden" value="<%=ambito%>" name="ambito"/>
+                      <input type="hidden" value="<%=nome_legale_rappr%>" name="nome_legale_rappr"/>
+                      <input type="hidden" value="<%=cognome_legale_rappr%>" name="cognome_legale_rappr"/>
                       <input type="hidden" value="<%=email_azienda%>" name="email_azienda"/>
-                      
                      <tr>
                         <td><%=id%></td>
                         <td><%=ragioneSociale%></td>
+                        <td><%=resultSet.getString("indirizzo")%></td>
+                        <td><%=partita_iva%></td>
+                        <td><%=nomeResponsabile%></td>
+                        <td><%=cognomeResponsabile%></td>
+                        <td><%=resultSet.getString("telefono_responsabile")%></td>
+                        <td><%=resultSet.getString("email_responsabile")%></td>
                         <td><%=email_azienda%></td>
-                        <td>
-                            Seleziona il Documento: <input type="file" name="myFile" id='btncaricaBlue'/>
-                            
-                           <%=documento_convenzione%>
-                        </td>
-                        <td>
-                           <button type="submit" name="stato" value="confermaDocumento" id='btncarica'>Conferma</button>
-                        </td>
                      </tr>
                   </form>
                   <%
@@ -119,6 +132,10 @@
                      resultSet.close();
                      if(count == 0){
                      %>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
@@ -147,5 +164,5 @@
             </div>
          </div>
       </div>
-   </body>
+    </body>
 </html>

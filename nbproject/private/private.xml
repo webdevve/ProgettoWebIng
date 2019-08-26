@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/admin.jsp</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/confermaConvenzione.jsp</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/confermaConvenzione.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/addOfferta.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/azienda.jsp</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/DAO/OffertaDAO.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/login.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/registrazioneAzienda.jsp</file>
         </group>
     </open-files>
 </project-private>

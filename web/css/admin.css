@@ -60,3 +60,11 @@ th, td{
     margin-left: 10px;
     margin-right: 10px;
 }
+#btncaricaBlue{
+    background-color: dodgerblue;
+    border-radius: 2px;
+    border: none;
+    width: 150px;
+    height: 25px;
+    cursor: pointer;
+}

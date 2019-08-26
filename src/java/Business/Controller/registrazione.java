@@ -5,8 +5,8 @@
  */
 package Business.Controller;
 
+import framework.result.HTMLResult;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,8 +45,31 @@ public class registrazione extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("registrazione.jsp");
                 rd.forward(request, response);
             }
-        }catch(Exception e){
-            System.out.println("Errore: " + e);
+        }catch(IOException e){
+            request.setAttribute("exception", e);
+            action_error(request, response);
+        }
+    }
+    
+    private void action_error(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //assumiamo che l'eccezione sia passata tramite gli attributi della request
+        //we assume that the exception has been passed using the request attributes
+        Exception exception = (Exception) request.getAttribute("exception");
+        String message;
+        if (exception != null && exception.getMessage() != null) {
+            message = exception.getMessage();
+        } else {
+            message = "Unknown error";
+        }
+        HTMLResult result = new HTMLResult(getServletContext());
+        result.setTitle("ERROR");
+        result.setBody("<p>" + message + "</p>");
+        try {
+            result.activate(request, response);
+        } catch (IOException ex) {
+            //if error page cannot be sent, try a standard HTTP error message
+            //se non possiamo inviare la pagina di errore, proviamo un messaggio di errore HTTP standard
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
         }
     }
 

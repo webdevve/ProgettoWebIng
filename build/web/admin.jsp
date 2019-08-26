@@ -24,16 +24,16 @@
          HttpSession sessione = request.getSession();
          String str = (String)sessione.getAttribute("username");
          request.setAttribute("name", str);
-         String nome = (String)request.getAttribute("name");
-         String login = "";
-         String linkAccedi = "";
-         if(nome == null){
-             //nome = "";
-             login = "Accedi";
-             linkAccedi = "login.jsp";
-         }else{
-             login = nome;
-             linkAccedi = "#profilo";
+         if(str == null){
+             response.sendRedirect("login.jsp");
+         }
+         String errore = (String)request.getAttribute("err");
+        if(errore == null){
+          errore="";
+        }
+        String notifica = (String)request.getAttribute("notify");
+         if(notifica == null){
+           notifica="";
          }
          %>
       <div class="header">
@@ -41,10 +41,16 @@
          <div class="header-right">
             <a class="active" href="admin.jsp">Home</a>
             <a href="confermaConvenzione.jsp">Convenzioni da Confermare</a>
-            <a href="#convenzioni" >Convenzioni</a>
-            <a href="<%=linkAccedi%>"><%=login%></a>
+            <a href="aziendeConvenzionate.jsp" >Convenzioni</a>
+            <a href="#profilo.jsp"><%=str%></a>
          </div>
       </div>
+         <font color="red" id="err">
+            <p><%=errore%></p>
+          </font>
+          <font color="green">
+            <p><%=notifica%></p>
+          </font>
       <div class="container">
          <div class="cardAdmin" style="overflow-x:auto;">
             <div class="cardContainer">
