@@ -17,6 +17,8 @@
         <title>Azienda</title>
         <link rel="stylesheet" href="css/header.css" type="text/css"/>
         <link rel="stylesheet" href="css/index.css" type="text/css"/>
+        <link rel="stylesheet" href="css/azienda.css" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
     </head>
     <body>
         <%
@@ -116,32 +118,32 @@
                     <table>
                         <tr>
                             <td>Titolo Tirocinio: </td>
-                            <td><input type="text" name="titoloTirocinio" placeholder="Titolo Tirocinio" required/></td>
+                            <td><input type="text" name="titoloTirocinio" placeholder="Titolo Tirocinio" required class="form-control"/></td>
                         </tr>
                         <tr>
                             <td>Descrizione Tirocinio: </td>
-                            <td><textarea name="descrizioneTirocinio" placeholder="Descrizione..." required></textarea></td>
+                            <td><textarea name="descrizioneTirocinio" placeholder="Descrizione..." required class="form-control"></textarea></td>
                         </tr>
                         <tr>
                             <td>Luogo: </td>
-                            <td><input type="text" name="luogo" placeholder="Luogo" required/></td>
+                            <td><input type="text" name="luogo" placeholder="Luogo" required class="form-control"/></td>
                         </tr>
                         <tr>
                             <td>Orari: </td>
-                            <td><input type="text" name="orari" placeholder="Orari" required/></td>
+                            <td><input type="text" name="orari" placeholder="Orari" required class="form-control"/></td>
                         </tr>
                         <tr>
                             <td>Durata: </td>
-                            <td><input type="text" name="durata" placeholder="Durata" required/></td>
+                            <td><input type="text" name="durata" placeholder="Durata" required class="form-control"/></td>
                         </tr>
                         <tr>
                             <td>Obiettivi: </td>
-                            <td><textarea name="obiettivi" placeholder="Obiettivi" required></textarea></td>
+                            <td><textarea name="obiettivi" placeholder="Obiettivi" required class="form-control"></textarea></td>
                         </tr>
                         <tr>
                             <td>Modalità: </td>
                             <td>
-                                <select name="modalita">
+                                <select name="modalita" class="form-control">
                                     <option value="team aziendale">Team Aziendale</option>
                                     <option value="in remoto">Remoto</option>
                                 </select>
@@ -150,7 +152,7 @@
                         <tr>
                             <td>Rimborsi: </td>
                             <td>
-                                <select name="rimborsi">
+                                <select name="rimborsi" class="form-control">
                                     <option value="si">Si</option>
                                     <option value="no">No</option>
                                 </select>
