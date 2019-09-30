@@ -41,7 +41,7 @@
             <a href="#default" class="logo">InternshipTutor</a>
             <div class="header-right">
               <a class="active" href="azienda.jsp">Home</a>
-              <a href="#news">Le Mie Offerte</a>
+              <a href="leMieOfferte.jsp">Le Mie Offerte</a>
               <a href="#offerteChiuse">Offerte Chiuse</a>
               <a href="#profilo.jsp"><%=str%></a>
             </div>
@@ -53,7 +53,7 @@
             <p><%=notifica%></p>
           </font>
         <div class="container">
-            <div class="card">
+            <div class="cardAzienda">
                 <div class="cardContainer">
                     <form action="addOfferta" method="post">
                         <%
@@ -114,8 +114,8 @@
                      }
                      }
                      %>
-                    <h2>Inserisci una nuova Offerta di Tirocinio</h2>
-                    <table>
+                     <h2 id="h2title">Inserisci una nuova Offerta di Tirocinio</h2>
+                     <table id="tableAzienda">
                         <tr>
                             <td>Titolo Tirocinio: </td>
                             <td><input type="text" name="titoloTirocinio" placeholder="Titolo Tirocinio" required class="form-control"/></td>
@@ -159,7 +159,9 @@
                             </td>
                         </tr>
                     </table>
-                    <button type="submit" name="addOfferta" class="button button4" value="" style="background-color: greenyellow;">Conferma</button>
+                     <div id="btnchiudi">
+                         <button type="submit" name="addOfferta" class="button button4" value="" style="background-color: greenyellow;">Conferma</button>
+                     </div>
                     </form>
                 </div>
             </div>

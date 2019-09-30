@@ -14,3 +14,13 @@ and open the template in the editor.
     height: 40px;
     font-family: 'Noto Serif', serif;
 }
+
+#h2title{
+    text-align: center;
+}
+#tableAzienda{
+    margin: 0 auto;
+}
+#btnchiudi{
+    text-align: center;
+}
