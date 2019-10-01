@@ -42,7 +42,7 @@
             <div class="header-right">
               <a class="active" href="azienda.jsp">Home</a>
               <a href="leMieOfferte.jsp">Le Mie Offerte</a>
-              <a href="#offerteChiuse">Offerte Chiuse</a>
+              <a href="offerteChiuse.jsp">Offerte Chiuse</a>
               <a href="#profilo.jsp"><%=str%></a>
             </div>
         </div>

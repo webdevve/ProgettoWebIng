@@ -1,9 +1,8 @@
 <%-- 
-    Document   : leMieOfferte
-    Created on : 30-set-2019, 21.35.38
+    Document   : offerteChiuse
+    Created on : 1-ott-2019, 22.05.05
     Author     : Davide Simboli
 --%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -14,7 +13,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Le Mie Offerte</title>
+        <title>Offerte Chiuse</title>
         <link rel="stylesheet" href="css/header.css" type="text/css"/>
       <link rel="stylesheet" href="css/index.css" type="text/css"/>
       <link rel="stylesheet" href="css/admin.css" type="text/css"/>
@@ -40,8 +39,8 @@
             <a href="#default" class="logo">InternshipTutor</a>
             <div class="header-right">
               <a href="azienda.jsp">Home</a>
-              <a class="active" href="#news">Le Mie Offerte</a>
-              <a href="offerteChiuse.jsp">Offerte Chiuse</a>
+              <a href="leMieOfferte.jsp">Le Mie Offerte</a>
+              <a class="active" href="offerteChiuse.jsp">Offerte Chiuse</a>
               <a href="#profilo.jsp"><%=str%></a>
             </div>
         </div>
@@ -57,7 +56,7 @@
                <table style="width:100%">
                   <tr>
                      <th colspan="14" style="background-color: whitesmoke;">
-                         <h3>Le Mie Offerte</h3>
+                         <h3>Le Mie Offerte Chiuse</h3>
                      </th>
                   </tr>
                   <tr style="background-color: whitesmoke;">
@@ -108,7 +107,7 @@
                         <td><%=rimborsi%></td>
                         <td><a href="#dettaglioOfferta">Vedi</a></td>
                         <td>
-                           <button type="submit" name="stato" value="chiudi" id='btnchiudi'>Chiudi</button>
+                            <button type="submit" name="stato" value="chiudi" id='btnsi' style="width: 100px;">Apri</button>
                         </td>
                      </tr>
                   </form>

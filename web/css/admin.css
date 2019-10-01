@@ -58,12 +58,13 @@ th, td{
 
 #btnchiudi{
     background-color: red;
-     border-radius: 2px;
+    border-radius: 2px;
     border: none;
     width: 100px;
     height: 25px;
     cursor: pointer;
 }
+
 #colorTable{
     background-color: whitesmoke;
     margin-left: 10px;

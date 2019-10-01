@@ -41,7 +41,7 @@
             <div class="header-right">
               <a href="azienda.jsp">Home</a>
               <a class="active" href="#news">Le Mie Offerte</a>
-              <a href="#offerteChiuse">Offerte Chiuse</a>
+              <a href="offerteChiuse.jsp">Offerte Chiuse</a>
               <a href="#profilo.jsp"><%=str%></a>
             </div>
         </div>
@@ -67,6 +67,7 @@
                      <th>Durata</th>
                      <th>Modalità</th>
                      <th>Rimborsi</th>
+                     <th>Dettaglio</th>
                      <th>Chiudi Offerta</th>
                   </tr>
                   <%
@@ -105,6 +106,7 @@
                         <td><%=durata%></td>
                         <td><%=modalita%></td>
                         <td><%=rimborsi%></td>
+                        <td><a href="#dettaglioOfferta">Vedi</a></td>
                         <td>
                            <button type="submit" name="stato" value="chiudi" id='btnchiudi'>Chiudi</button>
                         </td>
@@ -118,6 +120,7 @@
                      resultSet.close();
                      if(count == 0){
                      %>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>

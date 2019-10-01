@@ -32,9 +32,9 @@
     <div class="header">
         <a href="#default" class="logo">InternshipTutor</a>
         <div class="header-right">
-          <a class="active" href="index.jsp">Home</a>
+          <a href="index.jsp">Home</a>
           <a href="#news">News</a>
-          <a href="visualizzaAziende.jsp" >Aziende</a>
+          <a class="active" href="visualizzaAziende.jsp" >Aziende</a>
           <a href="<%=linkAccedi%>"><%=login%></a>
         </div>
     </div>
