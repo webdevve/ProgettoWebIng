@@ -6,7 +6,7 @@ create table amministratore(
 	id integer unsigned primary key not null auto_increment,
     nome varchar(100) not null,
     cognome varchar(100) not null,
-    email_admin varchar (100) not null,
+    email_admin varchar (100) not null unique,
     pwd_admin varchar(50) not null
 );
 
@@ -41,6 +41,7 @@ create table offerta(
     obiettivi text,
     modalita enum('team aziendale', 'in remoto'),
     rimborsi enum('si', 'no') default 'no',
+    stato enum('aperta','chiusa') default 'aperta',
     id_azienda integer unsigned not null,
     constraint offerta_azienda foreign key (id_azienda) references azienda(id) on update cascade on delete cascade
 );
@@ -56,7 +57,7 @@ create table studente(
     telefono varchar(15) not null,
     corso_laurea varchar(150) not null,
     handicap enum('si', 'no') default 'no',
-    email_studente varchar(100) not null,
+    email_studente varchar(100) not null unique,
     pwd_studente varchar(50) not null
 );
 
