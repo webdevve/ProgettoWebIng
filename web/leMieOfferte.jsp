@@ -81,10 +81,11 @@
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta join internshiptutor.azienda ON azienda.id = offerta.id_azienda where azienda.email_azienda = '"+str+"'");
+                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta join internshiptutor.azienda ON azienda.id = offerta.id_azienda where azienda.email_azienda = '"+str+"'"
+                                     + "AND offerta.stato = 'aperta'");
                              while(resultSet.next()){
                      %>
-                  <form action="#" method="post">
+                  <form action="leMieOfferte" method="get">
                       <%
                           int id = resultSet.getInt("ID");
                           String titolo = resultSet.getString("titolo");
@@ -106,7 +107,9 @@
                         <td><%=durata%></td>
                         <td><%=modalita%></td>
                         <td><%=rimborsi%></td>
-                        <td><a href="#dettaglioOfferta">Vedi</a></td>
+                        <td>
+                            <button type="submit" name="stato" value="dettaglio" id='btnsi'>Vedi</button>
+                        </td>
                         <td>
                            <button type="submit" name="stato" value="chiudi" id='btnchiudi'>Chiudi</button>
                         </td>

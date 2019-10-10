@@ -122,6 +122,35 @@ public class OffertaDAO implements DAOinterface{
             }
         }
     }
+
+    public boolean chiudiApriOfferta(int id, String stato) {
+        Connection connect = null;
+	PreparedStatement preparedStatement = null;
+	boolean success = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            System.out.println("Connessione Stabilita!");
+            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.offerta SET stato='"+stato+"' WHERE id="+id);
+            preparedStatement.executeUpdate();
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+		if (preparedStatement != null)
+                    preparedStatement.close();
+		return success;
+            } catch(final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return false;
+            }
+        }
+    }
     
     
     

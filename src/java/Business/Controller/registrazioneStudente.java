@@ -9,6 +9,7 @@ import static Business.Controller.registrazioneStudente.verificacredenziali;
 import framework.result.HTMLResult;
 import Business.Model.Studente;
 import DAO.StudenteDAO;
+import framework.security.Encryption;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -182,6 +183,22 @@ public class registrazioneStudente extends HttpServlet {
                 return;
             }
             
+            int lenght = password.length();
+            if(lenght<8){
+                String errore = "Password troppo corta! Inserire almeno 8 caratteri.";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+                return;
+            }
+            
+            char c = password.charAt(0);
+            if(!checkPassword(c)){
+                String errore = "Il primo carattere non può essere un numero!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+                return;
+            }
+            
             if(!password.equals(conf_passw)){
                 String errore = "Attenzione! Confermare correttamente la Password!";
                 request.setAttribute("err", errore);
@@ -211,7 +228,22 @@ public class registrazioneStudente extends HttpServlet {
     
     
 
-}  
+}
+    private boolean checkPassword(char c){
+        switch (c){
+            case '0': return false;
+            case '1': return false;
+            case '2': return false;
+            case '3': return false;
+            case '4': return false;
+            case '5': return false;
+            case '6': return false;
+            case '7': return false;
+            case '8': return false;
+            case '9': return false;
+        }
+        return true;
+    }
 
  
   private void send_registrazione(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
@@ -230,8 +262,7 @@ public class registrazioneStudente extends HttpServlet {
         String corso_laurea = request.getParameter("corso_laurea");
         String handicap = request.getParameter("handicap");
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String conf_passw = request.getParameter("conf_passw");
+        String password = Encryption.cripta(request.getParameter("password"));
         
        
         

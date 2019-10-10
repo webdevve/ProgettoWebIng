@@ -80,7 +80,8 @@
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta join internshiptutor.azienda ON azienda.id = offerta.id_azienda where azienda.email_azienda = '"+str+"'");
+                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta join internshiptutor.azienda ON azienda.id = offerta.id_azienda where azienda.email_azienda = '"+str+"'"
+                                     + "AND offerta.stato = 'chiusa'");
                              while(resultSet.next()){
                      %>
                   <form action="#" method="post">

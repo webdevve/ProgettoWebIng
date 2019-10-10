@@ -8,7 +8,6 @@ package Business.Controller;
 import DAO.OffertaDAO;
 import framework.result.HTMLResult;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -100,28 +99,6 @@ public class addOfferta extends HttpServlet {
         lista.add(idAzienda);
         boolean inserimentoOffertaDB = new OffertaDAO().insert(lista);
         return inserimentoOffertaDB;
-    }
-    
-    private void action_error(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //assumiamo che l'eccezione sia passata tramite gli attributi della request
-        //we assume that the exception has been passed using the request attributes
-        Exception exception = (Exception) request.getAttribute("exception");
-        String message;
-        if (exception != null && exception.getMessage() != null) {
-            message = exception.getMessage();
-        } else {
-            message = "Unknown error";
-        }
-        HTMLResult result = new HTMLResult(getServletContext());
-        result.setTitle("ERROR");
-        result.setBody("<p>" + message + "</p>");
-        try {
-            result.activate(request, response);
-        } catch (IOException ex) {
-            //if error page cannot be sent, try a standard HTTP error message
-            //se non possiamo inviare la pagina di errore, proviamo un messaggio di errore HTTP standard
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

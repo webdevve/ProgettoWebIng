@@ -8,6 +8,7 @@ package Business.Controller;
 import Business.Model.Azienda;
 import DAO.AziendaDAO;
 import framework.result.HTMLResult;
+import framework.security.Encryption;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -159,6 +160,22 @@ public class registrazioneAzienda extends HttpServlet {
                 return;
             }
             
+            int lenght = pwd_azienda.length();
+            if(lenght<8){
+                String errore = "Password troppo corta! Inserire almeno 8 caratteri.";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+                return;
+            }
+            
+            char c = pwd_azienda.charAt(0);
+            if(!checkPassword(c)){
+                String errore = "Il primo carattere non può essere un numero!";
+                request.setAttribute("err", errore);
+                errore_compilazione(request, response);
+                return;
+            }
+            
             if(!pwd.equals(pwd_azienda)){
                 String errore = "Attenzione! Confermare correttamente la Password!";
                 request.setAttribute("err", errore);
@@ -192,6 +209,22 @@ public class registrazioneAzienda extends HttpServlet {
         
     }
     
+    private boolean checkPassword(char c){
+        switch (c){
+            case '0': return false;
+            case '1': return false;
+            case '2': return false;
+            case '3': return false;
+            case '4': return false;
+            case '5': return false;
+            case '6': return false;
+            case '7': return false;
+            case '8': return false;
+            case '9': return false;
+        }
+        return true;
+    }
+    
     private void send_registrazione(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         System.out.println("Si procede con la registrazione...");
         String ragione_sociale = request.getParameter("ragione_sociale");
@@ -209,7 +242,7 @@ public class registrazioneAzienda extends HttpServlet {
         String email_responsabile = request.getParameter("email_responsabile");
         String foro = request.getParameter("foro");
         String email_azienda = request.getParameter("email_azienda");
-        String pwd_azienda = request.getParameter("pwd_azienda");
+        String pwd_azienda = Encryption.cripta(request.getParameter("pwd_azienda"));
         String descrizione = request.getParameter("descrizione");
         String ambito = request.getParameter("ambito");
         

@@ -11,6 +11,7 @@ import Business.Model.Studente;
 import DAO.AziendaDAO;
 import DAO.StudenteDAO;
 import framework.result.HTMLResult;
+import framework.security.Encryption;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -59,7 +60,6 @@ public class login extends HttpServlet {
     
     private void autenticazione(HttpServletRequest request, HttpServletResponse response) 
             throws IOException, ServletException{
-        System.out.println("Si procede con l'autenticazione...");
         String email = request.getParameter("username");
         String pwd = request.getParameter("password");
         boolean verifica = verificacredenziali(email, pwd);
@@ -109,9 +109,8 @@ public class login extends HttpServlet {
     
     public static boolean verificacredenziali(String email, String password){
         String e = email;
-        String p = password;
+        String p = Encryption.cripta(password);
         if(e.equals("") || p.equals("")){ //controllo ridondante
-            System.out.println("Inserire username e pwd");
             return false;
         }
         //cerca utente nel db con le credenziali inserite dall'utente
