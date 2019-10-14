@@ -38,7 +38,7 @@ public class leMieOfferte extends HttpServlet {
             chiudiOfferta(request, response);
         }
         if(stato.equals("apri")){
-            chiudiOfferta(request, response);
+            apriOfferta(request, response);
         }
         if(stato.equals("dettaglio")){
             dettaglioOfferta(request, response);
@@ -131,9 +131,9 @@ public class leMieOfferte extends HttpServlet {
         try{
             boolean Approvata = new OffertaDAO().chiudiApriOfferta(id, stato);
             if(Approvata){
-                String info = "ATTENZIONE! L'offerta n° "+ ID + "è stata aperta.";
-                request.setAttribute("getInfo", info);
-                RequestDispatcher rd = request.getRequestDispatcher("documentoConvenzione.jsp");
+                String info = "ATTENZIONE! L'offerta n° "+ ID + " è stata aperta.";
+                request.setAttribute("notify", info);
+                RequestDispatcher rd = request.getRequestDispatcher("offerteChiuse.jsp");
                 rd.forward(request, response);
             }
         }catch(IOException e){

@@ -67,7 +67,7 @@
                      <th>Modalità</th>
                      <th>Rimborsi</th>
                      <th>Dettaglio</th>
-                     <th>Chiudi Offerta</th>
+                     <th>Apri Offerta</th>
                   </tr>
                   <%
                      Connection connect = null;
@@ -84,7 +84,7 @@
                                      + "AND offerta.stato = 'chiusa'");
                              while(resultSet.next()){
                      %>
-                  <form action="#" method="post">
+                  <form action="leMieOfferte" method="post">
                       <%
                           int id = resultSet.getInt("ID");
                           String titolo = resultSet.getString("titolo");
@@ -106,9 +106,11 @@
                         <td><%=durata%></td>
                         <td><%=modalita%></td>
                         <td><%=rimborsi%></td>
-                        <td><a href="#dettaglioOfferta">Vedi</a></td>
                         <td>
-                            <button type="submit" name="stato" value="chiudi" id='btnsi' style="width: 100px;">Apri</button>
+                            <button type="submit" name="stato" value="dettaglio" id='btnsi'>Vedi</button>
+                        </td>
+                        <td>
+                            <button type="submit" name="stato" value="apri" id='btnsi' >Apri</button>
                         </td>
                      </tr>
                   </form>
