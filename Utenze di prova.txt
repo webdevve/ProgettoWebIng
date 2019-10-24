@@ -1,0 +1,35 @@
+<----------ADMIN------------------------->
+
+email: admin@gmail.com
+password: admin
+
+<----------AZIENDE----------------------->
+
+email: isweb@email.it
+password: isweb001
+
+email: engineering@email.it
+password: engineering001
+
+email: aubay@email.it
+password: aubay001
+
+email: informetica@email.it
+password: informetica001
+
+<----------STUDENTI---------------------->
+
+email: davide.simboli@gmail.com
+password: davide001
+
+email: antonio.palermo@email.it
+password: antonio001
+
+email: alessio.morgante@email.it
+password: alessio001
+
+email: gigi.baffo@email.it
+password: gigi001
+
+email: salvatore.decurtis@email.it
+password: salvatore001
