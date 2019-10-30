@@ -77,3 +77,9 @@ create table doc_finale(
     doc_finale text,
     constraint doc_finale_studente foreign key (id_studente) references studente(id) on delete cascade on update cascade
 );
+
+create view offerta_azienda AS 
+select offerta.id, offerta.titolo, offerta.luogo, offerta.durata, offerta.descrizione, offerta.modalita, offerta.orari, offerta.rimborsi, offerta.obiettivi, 
+	azienda.ragione_sociale, azienda.indirizzo
+from offerta join azienda
+where offerta.id_azienda = azienda.id;

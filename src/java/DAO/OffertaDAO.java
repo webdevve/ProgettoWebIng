@@ -6,6 +6,7 @@
 package DAO;
 
 import Business.Model.Offerta;
+import Business.Model.offertaAzienda;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -152,6 +153,57 @@ public class OffertaDAO implements DAOinterface{
         }
     }
     
+    public Object dettaglioOfferta(int id){
+        Connection connect = null;
+        Statement Statement = null;
+	ResultSet resultSet = null;
+        offertaAzienda offerta = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            System.out.println("Connessione Stabilita!");
+            Statement = connect.createStatement();
+            resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta_azienda where id = "+id);
+            while(resultSet.next()){
+                String ragioneSociale = resultSet.getString("ragione_sociale");
+                String titoloOfferta = resultSet.getString("titolo");
+                String Luogo = resultSet.getString("luogo");
+                String orari = resultSet.getString("orari");
+                String ore = resultSet.getString("durata");
+                String obiettivi = resultSet.getString("obiettivi");
+                String modalita = resultSet.getString("modalita");
+                String rimborsi = resultSet.getString("rimborsi");
+                String descrizione = resultSet.getString("descrizione");
+                String indirizzo = resultSet.getString("indirizzo");
+                
+                offerta = offertaAzienda.setInstance(id, titoloOfferta, Luogo, ore, descrizione, modalita, 
+                            orari, rimborsi, obiettivi, ragioneSociale, indirizzo);
+                connect.close();
+                Statement.close();
+                resultSet.close();
+                return offerta;
+                
+            }
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+                if (Statement != null)
+                    Statement.close();
+		if (resultSet != null)
+                    resultSet.close();
+		return offerta;
+            } catch(final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return null;
+            }
+        }
+    }
     
     
 }

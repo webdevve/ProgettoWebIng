@@ -66,9 +66,10 @@
                                 String titolo = resultSet.getString("titolo");
                                 String ragione_sociale = resultSet.getString("ragione_sociale");
                                 String descrizione = resultSet.getString("descrizione");
+                                int id = resultSet.getInt("id");
         %>
 
-        <form action="#dettaglioOfferta" method="POST">
+        <form action="dettaglioOfferta" method="POST">
         <div class="card">
             <div class="cardContainer">
               <h2><%=ragione_sociale%></h2>
@@ -76,7 +77,7 @@
               <p>
                   <%=descrizione%>
               </p>
-              <button type="submit" name="moreInformation" class="button button4" value="">Visualizza l'offerta</button>
+              <button type="submit" name="moreInformation" class="button button4" value="<%=id%>">Visualizza l'offerta</button>
             </div>
         </div>
         </form>

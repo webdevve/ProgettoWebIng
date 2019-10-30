@@ -1,5 +1,6 @@
 #SCRIPT DI LANCIO - Offerte
 #OFFERTE
+use internshiptutor;
 insert into offerta (titolo, descrizione, luogo, orari, durata, obiettivi, modalita, rimborsi, id_azienda) values ('Progettazione e 
 sviluppo Software', 'Offriamo un tirocinio formativo, con successiva possibilità di assunzione, mirato sulla progettazione e sullo 
 sviluppo di software applicativi usando tecniche di ultima generazione', 'Avezzano', '09:00 - 13:00 / 14:00 - 18:00', '150 Ore', 
