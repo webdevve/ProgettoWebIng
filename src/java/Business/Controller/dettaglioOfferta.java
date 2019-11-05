@@ -35,6 +35,7 @@ public class dettaglioOfferta extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int offerta =Integer.parseInt(request.getParameter("moreInformation"));
+        /*
         offertaAzienda dettaglioOfferta = (offertaAzienda) new OffertaDAO().dettaglioOfferta(offerta);
         request.setAttribute("ragioneSociale", dettaglioOfferta.getRagioneSociale());
         request.setAttribute("indirizzo", dettaglioOfferta.getIndirizzo());
@@ -46,6 +47,8 @@ public class dettaglioOfferta extends HttpServlet {
         request.setAttribute("modalita", dettaglioOfferta.getModalita());
         request.setAttribute("rimborsi", dettaglioOfferta.getRimborsi());
         request.setAttribute("descrizione", dettaglioOfferta.getDescrizione());
+        */
+        request.setAttribute("id", offerta);
         RequestDispatcher rd = request.getRequestDispatcher("dettaglioOfferta.jsp");
         rd.forward(request, response);
     }

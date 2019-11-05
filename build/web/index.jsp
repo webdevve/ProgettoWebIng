@@ -57,11 +57,7 @@
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
                              resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta join internshiptutor.azienda ON azienda.id = offerta.id_azienda where offerta.stato = 'aperta'");
-                             if(!resultSet.next()){
-                                 %>
-                                 <h1>Al Momento non ci sono offerte disponibili.</h1>
-                                 <%
-                             }
+                             
                              while(resultSet.next()){
                                 String titolo = resultSet.getString("titolo");
                                 String ragione_sociale = resultSet.getString("ragione_sociale");
@@ -77,7 +73,8 @@
               <p>
                   <%=descrizione%>
               </p>
-              <button type="submit" name="moreInformation" class="button button4" value="<%=id%>">Visualizza l'offerta</button>
+              <input type="hidden" value="<%=id%>" name="moreInformation"/>
+              <button type="submit" name="" class="button button4" value="">Visualizza l'offerta</button>
             </div>
         </div>
         </form>
