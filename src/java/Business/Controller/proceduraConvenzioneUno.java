@@ -5,11 +5,8 @@
  */
 package Business.Controller;
 
-import Business.Model.offertaAzienda;
-import DAO.OffertaDAO;
 import java.io.IOException;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Davide Simboli
  */
-@WebServlet(name = "dettaglioOfferta", urlPatterns = {"/dettaglioOfferta"})
-public class dettaglioOfferta extends HttpServlet {
+@WebServlet(name = "proceduraConvenzioneUno", urlPatterns = {"/proceduraConvenzioneUno"})
+public class proceduraConvenzioneUno extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,12 +31,8 @@ public class dettaglioOfferta extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int offerta =Integer.parseInt(request.getParameter("moreInformation"));
-        request.setAttribute("id", offerta);
-        RequestDispatcher rd = request.getRequestDispatcher("dettaglioOfferta.jsp");
-        rd.forward(request, response);
+        
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

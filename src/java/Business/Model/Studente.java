@@ -139,9 +139,6 @@ public class Studente {
         return pwd_studente;
     }
     
-    
-    
-   
     public static final synchronized Studente setInstance(int id, String nome, String cognome, String luogo_nascita, 
             String data_nascita,  String residenza, String cf, String telefono, String corso_laurea,
             String handicap, String email_studente, String pwd_studente) {

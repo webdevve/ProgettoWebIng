@@ -80,6 +80,7 @@ create table doc_finale(
 
 create view offerta_azienda AS 
 select offerta.id, offerta.titolo, offerta.luogo, offerta.durata, offerta.descrizione, offerta.modalita, offerta.orari, offerta.rimborsi, offerta.obiettivi, 
-	azienda.ragione_sociale, azienda.indirizzo
+	azienda.ragione_sociale, azienda.indirizzo, azienda.ambito, azienda.nome_responsabile, azienda.cognome_responsabile, azienda.telefono_responsabile, 
+    azienda.email_responsabile
 from offerta join azienda
 where offerta.id_azienda = azienda.id;

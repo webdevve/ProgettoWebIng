@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : Davide Simboli
 */
 
-h1, h3, #head{
+h1, h2, h3, #head{
     text-align: center;
 }
 .card{
@@ -78,4 +78,13 @@ h1, h3, #head{
 
 .login100-form-btn:hover {
   background-color: #403866;
+}
+.none{
+  list-style: none;
+}
+.border-none{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom-color: black;
 }

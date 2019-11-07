@@ -5,23 +5,23 @@
  */
 package Business.Controller;
 
-import Business.Model.offertaAzienda;
-import DAO.OffertaDAO;
+import Business.Model.Studente;
+import DAO.StudenteDAO;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Davide Simboli
  */
-@WebServlet(name = "dettaglioOfferta", urlPatterns = {"/dettaglioOfferta"})
-public class dettaglioOfferta extends HttpServlet {
+@WebServlet(name = "aderisciOfferta", urlPatterns = {"/aderisciOfferta"})
+public class aderisciOfferta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,12 +34,16 @@ public class dettaglioOfferta extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int offerta =Integer.parseInt(request.getParameter("moreInformation"));
+        int offerta =Integer.parseInt(request.getParameter("idOfferta"));
         request.setAttribute("id", offerta);
-        RequestDispatcher rd = request.getRequestDispatcher("dettaglioOfferta.jsp");
+        String str = request.getParameter("str");
+        Studente studente = (Studente) new StudenteDAO().getStudent(str);
+        //String nome = studente.getNome();
+        //request.setAttribute("nomeCognome", nome);
+        //request.setAttribute("luogoNascita", studente.getLuogo_nascita());
+        RequestDispatcher rd = request.getRequestDispatcher("aderisciOfferta.jsp");
         rd.forward(request, response);
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

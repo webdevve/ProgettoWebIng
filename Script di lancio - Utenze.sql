@@ -11,7 +11,7 @@ insert into amministratore (nome, cognome, email_admin, pwd_admin) values ('admi
 insert into azienda (ragione_sociale, indirizzo, partita_iva, codice_fiscale, nome_legale_rappr, cognome_legale_rappr, 
 	nome_responsabile, cognome_responsabile, telefono_responsabile, email_responsabile, foro, email_azienda, pwd_azienda,
     descrizione, ambito) values ('IsWeb', 'Via Tiburtina Valeria Km. 112,500 - 67068 Cappelle dei Marsi (AQ)', 
-    '01722270665', '01722270665', 'Mario', 'Rossi', 'Fausto', 'Leali', '123 4567890', 'mario.rossi@email.it', 
+    '01722270665', '01722270665', 'Mario', 'Rossi', 'Fausto', 'Leali', '123 4567890', 'fausto.leali@email.it', 
     'L\'Aquila', 'isweb@email.it', 'jtxfc001', 'Oggi ISWEB S.p.A. opera nel comparto della ”progettazione e 
     sviluppo di software per gli ambienti di rete”', 'Informatica');
     

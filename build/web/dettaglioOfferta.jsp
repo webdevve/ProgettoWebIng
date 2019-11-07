@@ -34,6 +34,14 @@
                 login = nome;
                 linkAccedi = "#profilo";
             }
+            String errore = (String)request.getAttribute("err");
+            if(errore == null){
+              errore="";
+            }
+            String notifica = (String)request.getAttribute("notify");
+             if(notifica == null){
+               notifica="";
+             }
         %>
     <div class="header">
         <a href="#default" class="logo">InternshipTutor</a>
@@ -44,24 +52,17 @@
           <a href="<%=linkAccedi%>"><%=login%></a>
         </div>
     </div>
+        <font color="red" id="err">
+            <p><%=errore%></p>
+          </font>
+          <font color="green">
+            <p><%=notifica%></p>
+          </font>
         <%
-            /*
-            String ragioneSociale = (String)request.getAttribute("ragioneSociale");
-            String indirizzo = (String)request.getAttribute("indirizzo");
-            String titoloOfferta = (String)request.getAttribute("titoloOfferta");
-            String Luogo = (String)request.getAttribute("luogo");
-            String orari = (String)request.getAttribute("orari");
-            String ore = (String)request.getAttribute("ore");
-            String obiettivi = (String)request.getAttribute("obiettivi");
-            String modalita = (String)request.getAttribute("modalita");
-            String rimborsi = (String)request.getAttribute("rimborsi");
-            String descrizione = (String)request.getAttribute("descrizione");
-            */
             int id = (int)request.getAttribute("id");
             Connection connect = null;
             Statement Statement = null;
             ResultSet resultSet = null;
-            offertaAzienda offerta = null;
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
@@ -81,7 +82,9 @@
                     String descrizione = resultSet.getString("descrizione");
                     String indirizzo = resultSet.getString("indirizzo");
                     %>
-                    <form action="#" method="post" class="tableform">
+        <form action="aderisciOfferta" method="post" class="tableform">
+            <input type="hidden" value="<%=id%>" name="idOfferta"/>
+            <input type="hidden" value="<%=str%>" name="str"/>
           <table class="center">
             <tr class="grey">
               <th colspan="2"><h3><%=titoloOfferta%></h3></th>
@@ -104,7 +107,7 @@
             </tr>
             <tr class="whitegrey">
               <td>Ore</td>
-              <td><%=orari%></td>
+              <td><%=ore%></td>
             </tr>
             <tr class="grey">
               <td>Obiettivi</td>
