@@ -263,7 +263,7 @@
                     <input type="date" name="today" min="2019-11-07" class="border-none"/>
                 </p>
                 <p>Firma per visione e accettazione del tirocinante</p>
-                <p id="firma"><u><%=nomeStudente%></u></p>
+                <p id="firma"><u><%=nomeCognome%></u></p>
                 <p>
                     Dipartimento di Ingegneria, Scienze dell’Informazione e Matematica dell’Università degli Studi di L'Aquila<br>
                     Il Tutor

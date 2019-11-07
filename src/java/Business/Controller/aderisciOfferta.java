@@ -37,9 +37,20 @@ public class aderisciOfferta extends HttpServlet {
         int offerta =Integer.parseInt(request.getParameter("idOfferta"));
         request.setAttribute("id", offerta);
         String str = request.getParameter("str");
-        Studente studente = (Studente) new StudenteDAO().getStudent(str);
-        //String nome = studente.getNome();
-        //request.setAttribute("nomeCognome", nome);
+        if(!"null".equals(str)){
+            Studente studente = (Studente) new StudenteDAO().getStudent(str);
+            String nome = studente.getNome();
+            String cognome = studente.getCognome();
+            String nomeCognome = nome+" "+cognome;
+            request.setAttribute("nomeCognome", nomeCognome);
+            request.setAttribute("nomeStudente", nome);
+            request.setAttribute("luogoNascita", studente.getLuogo_nascita());
+            request.setAttribute("dataNascita", studente.getData_nascita());
+            request.setAttribute("residenza", studente.getResidenza());
+            request.setAttribute("cf", studente.getCF());
+            request.setAttribute("telefonoStudente", studente.getTelefono());
+            //request.setAttribute("provNascita", studente.getProvinciaNascita);
+        }
         //request.setAttribute("luogoNascita", studente.getLuogo_nascita());
         RequestDispatcher rd = request.getRequestDispatcher("aderisciOfferta.jsp");
         rd.forward(request, response);

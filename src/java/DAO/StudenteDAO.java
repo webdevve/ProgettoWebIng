@@ -139,7 +139,7 @@ public class StudenteDAO implements DAOinterface{
 					"root", "ciao");
             System.out.println("Connessione Stabilita!");
             Statement = connect.createStatement();
-            resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.studente WHERE email_studente="+email);
+            resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.studente WHERE email_studente='"+email+"'");
             while(resultSet.next()){
                 int id = resultSet.getInt("ID");
                 String nome = resultSet.getString("nome");
