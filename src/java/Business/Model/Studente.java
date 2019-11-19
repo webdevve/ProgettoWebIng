@@ -5,10 +5,6 @@
  */
 package Business.Model;
 
-import DAO.AziendaDAO;
-import DAO.StudenteDAO;
-import java.sql.Date;
-import java.util.ArrayList;
 
 /**
  *
