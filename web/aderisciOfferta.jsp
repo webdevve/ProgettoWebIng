@@ -196,7 +196,7 @@
                 <p>
                     numero ore di tirocinio <strong><%=ore%></strong>
                     per il conseguimento di n.
-                    <input type="number" name="cfu" min="0" max="999" class="border-none"/> CFU
+                    <input type="number" name="cfu" min="0" max="999" class="border-none" required/> CFU
                 </p>
                 <br>
                 <p>Tutore universitario
