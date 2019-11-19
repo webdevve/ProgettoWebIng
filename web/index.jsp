@@ -33,6 +33,10 @@
                 login = nome;
                 linkAccedi = "#profilo";
             }
+            String notifica = (String)request.getAttribute("notify");
+            if(notifica == null){
+              notifica="";
+            }
         %>
     <div class="header">
         <a href="#default" class="logo">InternshipTutor</a>
@@ -45,6 +49,9 @@
     </div>
 
     <div class="container">
+        <font color="green">
+            <p><%=notifica%></p>
+          </font>
 
         <%
             Connection connect = null;

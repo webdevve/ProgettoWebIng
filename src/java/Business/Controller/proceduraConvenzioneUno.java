@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +37,7 @@ public class proceduraConvenzioneUno extends HttpServlet {
         String[] condizione = request.getParameterValues("condizione");
         List list = Arrays.asList(condizione);
         ArrayList<attualeCondizione> listCondizione = new ArrayList<>();
+        String condizioneAttualeStudente = "";
         for(int i = 0; i<list.size(); i++){
             if(list.get(i).equals("laureando")){
                 attualeCondizione att = new attualeCondizione("laureando", request.getParameter("laureando"));
@@ -58,7 +60,10 @@ public class proceduraConvenzioneUno extends HttpServlet {
                 listCondizione.add(att);
             }
         }
-        
+        for(attualeCondizione x : listCondizione){
+            condizioneAttualeStudente += x.getCheck() + ": " + x.getValue() + " ";
+        }
+        //String idStudente = request.getParameter("idStudente");
         String handicap = request.getParameter("handicap");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
@@ -67,6 +72,28 @@ public class proceduraConvenzioneUno extends HttpServlet {
         String telefonoTutoreUni = request.getParameter("telefonoTutoreUni");
         String emailTutoreUni = request.getParameter("emailTutoreUni");
         String dataRichiesta = request.getParameter("today");
+        String email_responsabile_azienda = request.getParameter("emailAz");
+        String emailStudente = request.getParameter("emailStudente");
+        String idOfferta = request.getParameter("idOfferta");
+        String ragioneSociale = request.getParameter("ragioneSociale");
+        String nomeStudente = request.getParameter("nomeStudente");
+        String titoloOfferta = request.getParameter("titoloOfferta");
+        String luogoNascita = request.getParameter("luogoNascita");
+        String dataNascita = request.getParameter("dataNascita");
+        String residenza = request.getParameter("residenza");
+        String telefonoStudente = request.getParameter("telefonoStudente");
+        
+        candidatura c = new candidatura(condizioneAttualeStudente,  handicap, startDate, endDate, cfu, 
+                tutoreUniversitario, telefonoTutoreUni, emailTutoreUni, dataRichiesta, email_responsabile_azienda, 
+                emailStudente, idOfferta, ragioneSociale, nomeStudente, titoloOfferta, luogoNascita, dataNascita, 
+                residenza, telefonoStudente);
+        
+        generateEmail.emailRichiestaTirocinio(email_responsabile_azienda, c, "Azienda");
+        generateEmail.emailRichiestaTirocinio(emailTutoreUni, c, "Università");
+        String notifica = "La tua richiesta è stata inviata!";
+        request.setAttribute("notify", notifica);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
