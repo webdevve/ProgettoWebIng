@@ -142,8 +142,8 @@ public class leMieOfferte extends HttpServlet {
         }
     }
 
-    private void dettaglioOfferta(HttpServletRequest request, HttpServletResponse response) {
-        
+    private void dettaglioOfferta(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("listastudentiofferta.jsp");
     }
 
 }

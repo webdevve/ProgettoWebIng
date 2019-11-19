@@ -45,6 +45,7 @@
          String cf = (String) request.getAttribute("cf");
          String telefonoStudente = (String) request.getAttribute("telefonoStudente");
          String nomeStudente = (String) request.getAttribute("nomeStudente");
+         String emailStudente = (String) request.getAttribute("emailStudente");
          Connection connect = null;
             Statement Statement = null;
             ResultSet resultSet = null;
@@ -56,6 +57,7 @@
                 Statement = connect.createStatement();
                 resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta_azienda where id = "+id);
                 while(resultSet.next()){
+                    String titolo = resultSet.getString("titolo");
                     String ragioneSociale = resultSet.getString("ragione_sociale");
                     String ambito = resultSet.getString("ambito");
                     String Luogo = resultSet.getString("luogo");
@@ -90,6 +92,16 @@
 <h1>Documento Progetto Formativo e di Orientamento</h1>
 
 <form action="proceduraConvenzioneUno" method="post">
+    <input type="hidden" name="emailStudente" value="<%=emailStudente%>"/>
+    <input type="hidden" name="idOfferta" value="<%=id%>"/>
+    <input type="hidden" name="ragioneSociale" value="<%=ragioneSociale%>"/>
+    <input type="hidden" name="nomeStudente" value="<%=nomeCognome%>"/>
+    <input type="hidden" name="titoloOfferta" value="<%=titolo%>"/>
+    <input type="hidden" name="luogoNascita" value="<%=luogoNascita%>"/>
+    <input type="hidden" name="dataNascita" value="<%=dataNascita%>"/>
+    <input type="hidden" name="residenza" value="<%=residenza%>"/>
+    <input type="hidden" name="telefonoStudente" value="<%=telefonoStudente%>"/>
+    
     <div class="card">
         <div class="cardContainer">
             <h1>UNIVERSITA' DEGLI STUDI DELL'AQUILA</h1>
@@ -201,7 +213,7 @@
                     <strong><%=telefonoTutoreAz%></strong>
                 </p>
                 <p>Email <strong><%=email_responsabile%></strong></p>
-
+                <input type="hidden" name="emailAz" value="<%=email_responsabile%>"/>
                 <p>
                     <strong>Polizze assicurative:<br>
                     Copertura assicurativa per rischio responsabilità civile terzi:</strong>

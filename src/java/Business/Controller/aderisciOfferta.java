@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,9 +38,13 @@ public class aderisciOfferta extends HttpServlet {
         String str = request.getParameter("str");
         if(!"null".equals(str)){
             Studente studente = (Studente) new StudenteDAO().getStudent(str);
+            int id = studente.getID();
             String nome = studente.getNome();
             String cognome = studente.getCognome();
             String nomeCognome = nome+" "+cognome;
+            String email = studente.getEmail_studente();
+            request.setAttribute("emailStudente", email);
+            request.setAttribute("idStudente", id);
             request.setAttribute("nomeCognome", nomeCognome);
             request.setAttribute("nomeStudente", nome);
             request.setAttribute("luogoNascita", studente.getLuogo_nascita());
