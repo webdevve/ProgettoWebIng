@@ -59,7 +59,7 @@
                <table style="width:100%">
                   <tr>
                      <th colspan="14" style="background-color: whitesmoke;">
-                         <h3>Aziende in attesa di approvazione</h3>
+                         <h3>Aziende Convenzionate</h3>
                      </th>
                   </tr>
                   <tr style="background-color: whitesmoke;">
