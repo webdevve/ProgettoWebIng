@@ -5,10 +5,14 @@
  */
 package DAO;
 
+import Business.Model.Candidatura;
+import Business.Model.Offerta;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -63,7 +67,58 @@ public class CandidaturaDAO implements DAOinterface{
 
     @Override
     public Object retrieve(ArrayList<Object> args) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Cerco di accedere al DB (CandidaturaDAO)");
+        Connection connect = null;
+        Statement Statement = null;
+	ResultSet resultSet = null;
+        Candidatura candidatura = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            System.out.println("Connessione Stabilita!");
+            Statement = connect.createStatement();
+            resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.candidature");
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String id_studente = resultSet.getString("id_studente");
+                String id_offerta = resultSet.getString("id_offerta");
+                String data_inizio = resultSet.getString("data_inizio");
+                String data_fine = resultSet.getString("data_fine");
+                String cfu = resultSet.getString("cfu");
+                String tutoreUniversitario = resultSet.getString("tutoreUniversitario");
+                String telefonoTutoreUni = resultSet.getString("telefonoTutoreUni");
+                String emailTutoreUni = resultSet.getString("emailTutoreUni");
+                String approvazione = resultSet.getString("approvazione");
+                String documento = resultSet.getString("documento");
+                
+                    
+                    candidatura = Candidatura.setInstance(id,id_studente, id_offerta, data_inizio, data_fine, cfu, tutoreUniversitario,
+                    telefonoTutoreUni, emailTutoreUni, approvazione, documento);
+                    connect.close();
+                    Statement.close();
+                    resultSet.close();
+                    return candidatura;
+            }
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+                if (Statement != null)
+                    Statement.close();
+		if (resultSet != null)
+                    resultSet.close();
+		return candidatura;
+            } catch(final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return null;
+            }
+        }
+    
     }
     
 }

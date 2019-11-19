@@ -11,7 +11,7 @@ package Business.Model;
  */
 public class Candidatura {
     private String condizioneAttualeStudente;
-	//private String idStudente;
+	private String idStudente;
 	private String handicap;
 	private String startDate;
 	private String endDate;
@@ -30,6 +30,9 @@ public class Candidatura {
         private String dataNascita;
         private String residenza;
         private String telefonoStudente;
+        private String approvazione;
+        private String documento;
+        private int id;
 	
 	public Candidatura(String condizioneAttualeStudente,  String handicap, String startDate,
 			String endDate, String cfu, String tutoreUniversitario, String telefonoTutoreUni, String emailTutoreUni,
@@ -97,7 +100,7 @@ public class Candidatura {
 	public void setCondizioneAttualeStudente(String condizioneAttualeStudente) {
 		this.condizioneAttualeStudente = condizioneAttualeStudente;
 	}
-/*
+
 	public String getIdStudente() {
 		return idStudente;
 	}
@@ -105,7 +108,7 @@ public class Candidatura {
 	public void setIdStudente(String idStudente) {
 		this.idStudente = idStudente;
 	}
-*/
+
 	public String getHandicap() {
 		return handicap;
 	}
@@ -217,4 +220,47 @@ public class Candidatura {
 	public void setTitoloOfferta(String titoloOfferta) {
 		this.titoloOfferta = titoloOfferta;
 	}
+        public Candidatura(int id, String idStudente, String startDate,
+			String endDate, String cfu, String tutoreUniversitario, 
+                        String telefonoTutoreUni, String emailTutoreUni,String idOfferta,
+                        String approvazione, String documento) {
+                this.id = id;
+		this.idStudente = idStudente;
+                this.idOfferta = idOfferta;
+                this.startDate = startDate;
+		this.endDate = endDate;
+                this.cfu = cfu;
+		this.tutoreUniversitario = tutoreUniversitario;
+                this.telefonoTutoreUni = telefonoTutoreUni;
+		this.emailTutoreUni = emailTutoreUni;
+		this.approvazione = approvazione;
+                this.documento = documento;
+	}
+        
+        public void setApprovazione(String approvazione){
+            this.approvazione = approvazione;
+        }
+        public String getApprovazione(){
+            return approvazione;
+        }
+        public void setDocumento(String documento){
+            this.documento = documento;
+        }
+        public String getDocumento(){
+            return documento;
+        }
+        public int getId(){
+            return id;
+        }
+        private static Candidatura instance;
+            public static final synchronized Candidatura setInstance(int id, String idStudente,String idOfferta, String startDate,
+			String endDate, String cfu, String tutoreUniversitario, 
+                        String telefonoTutoreUni, String emailTutoreUni,
+                        String approvazione, String documento) {
+                if ( instance == null ) {
+                    instance = new Candidatura(id,idStudente, idOfferta, startDate, endDate, cfu, tutoreUniversitario,
+                    telefonoTutoreUni, emailTutoreUni, approvazione, documento);
+                }
+            return instance;
+    }
 }
