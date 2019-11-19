@@ -67,6 +67,10 @@ create table canditature(
     id_offerta integer unsigned not null,
     data_inizio date,
     data_fine date,
+    cfu integer,
+    tutoreUniversitario varchar (100),
+    telefonoTutoreUni varchar (50),
+    emailTutoreUni varchar (100),
     approvazione enum('approvata', 'non approvata', 'attesa') default 'attesa',
     documento text
 );

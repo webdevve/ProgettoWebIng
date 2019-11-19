@@ -5,6 +5,7 @@
  */
 package Business.Controller;
 
+import Business.Model.Candidatura;
 import Business.Model.Offerta;
 import Business.Model.Studente;
 import java.io.File;
@@ -59,7 +60,7 @@ public class generateEmail {
         }
     }
     
-    public static void emailRichiestaTirocinio(String email_destinatario, candidatura c, String swich) throws IOException{
+    public static void emailRichiestaTirocinio(String email_destinatario, Candidatura c, String swich) throws IOException{
         String userprofile = System.getenv("USERPROFILE");
         Date data = new Date();
         File file = new File(userprofile + "\\Downloads/Candidatura per "+swich+"-"+ c.getNomeStudente() +".txt");

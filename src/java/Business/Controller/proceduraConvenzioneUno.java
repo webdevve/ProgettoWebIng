@@ -5,6 +5,10 @@
  */
 package Business.Controller;
 
+import Business.Model.Candidatura;
+import Business.Model.Studente;
+import DAO.CandidaturaDAO;
+import DAO.StudenteDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,7 +67,6 @@ public class proceduraConvenzioneUno extends HttpServlet {
         for(attualeCondizione x : listCondizione){
             condizioneAttualeStudente += x.getCheck() + ": " + x.getValue() + " ";
         }
-        //String idStudente = request.getParameter("idStudente");
         String handicap = request.getParameter("handicap");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
@@ -83,17 +86,44 @@ public class proceduraConvenzioneUno extends HttpServlet {
         String residenza = request.getParameter("residenza");
         String telefonoStudente = request.getParameter("telefonoStudente");
         
-        candidatura c = new candidatura(condizioneAttualeStudente,  handicap, startDate, endDate, cfu, 
+        Candidatura c = new Candidatura(condizioneAttualeStudente,  handicap, startDate, endDate, cfu, 
                 tutoreUniversitario, telefonoTutoreUni, emailTutoreUni, dataRichiesta, email_responsabile_azienda, 
                 emailStudente, idOfferta, ragioneSociale, nomeStudente, titoloOfferta, luogoNascita, dataNascita, 
                 residenza, telefonoStudente);
         
         generateEmail.emailRichiestaTirocinio(email_responsabile_azienda, c, "Azienda");
         generateEmail.emailRichiestaTirocinio(emailTutoreUni, c, "Università");
-        String notifica = "La tua richiesta è stata inviata!";
-        request.setAttribute("notify", notifica);
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        rd.forward(request, response);
+        Studente studente = (Studente) new StudenteDAO().getStudent(emailStudente);
+        int idStudente = studente.getID();
+        boolean insert = inserisciCandidaturaDB(c, idStudente);
+        if(insert){
+            String notifica = "La tua richiesta è stata inviata!";
+            request.setAttribute("notify", notifica);
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
+        }else{
+            String notifica = "C'è stato un errore durante la richiesta!";
+            request.setAttribute("err", notifica);
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
+        }
+        
+    }
+    
+    public boolean inserisciCandidaturaDB(Candidatura c, int idStudente){
+        ArrayList<Object> lista = new ArrayList<>();
+        lista.add(idStudente);
+        lista.add(c.getIdOfferta());
+        lista.add(c.getStartDate());
+        lista.add(c.getEndDate());
+        lista.add(c.getCfu());
+        lista.add(c.getTutoreUniversitario());
+        lista.add(c.getTelefonoTutoreUni());
+        lista.add(c.getEmailTutoreUni());
+        lista.add(null);
+        
+        boolean inserimentoCdb = new CandidaturaDAO().insert(lista);
+        return inserimentoCdb;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

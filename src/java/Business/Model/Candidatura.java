@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Controller;
+package Business.Model;
 
 /**
  *
  * @author Davide Simboli
  */
-public class candidatura {
+public class Candidatura {
     private String condizioneAttualeStudente;
 	//private String idStudente;
 	private String handicap;
@@ -25,13 +25,13 @@ public class candidatura {
 	private String idOfferta;
 	private String ragioneSociale;
 	private String nomeStudente;
-	private String titoloOfferta;//----------
+	private String titoloOfferta;
         private String luogoNascita;
         private String dataNascita;
         private String residenza;
         private String telefonoStudente;
 	
-	public candidatura(String condizioneAttualeStudente,  String handicap, String startDate,
+	public Candidatura(String condizioneAttualeStudente,  String handicap, String startDate,
 			String endDate, String cfu, String tutoreUniversitario, String telefonoTutoreUni, String emailTutoreUni,
 			String dataRichiesta, String email_responsabile_azienda, String emailStudente, String idOfferta,
 			String ragioneSociale, String nomeStudente, String titoloOfferta, String luogoNascita,

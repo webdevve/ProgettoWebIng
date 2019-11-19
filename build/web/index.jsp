@@ -37,6 +37,10 @@
             if(notifica == null){
               notifica="";
             }
+            String errore = (String)request.getAttribute("err");
+            if(errore == null){
+              errore="";
+            }
         %>
     <div class="header">
         <a href="#default" class="logo">InternshipTutor</a>
@@ -49,6 +53,9 @@
     </div>
 
     <div class="container">
+        <font color="red" id="err">
+            <p><%=errore%></p>
+          </font>
         <font color="green">
             <p><%=notifica%></p>
           </font>

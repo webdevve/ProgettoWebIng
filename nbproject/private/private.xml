@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/aderisciOfferta.java</file>
             <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/proceduraConvenzioneUno.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/DAO/CandidaturaDAO.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/DAO/OffertaDAO.java</file>
             <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/aderisciOfferta.jsp</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/generateEmail.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/aggiungiOfferta.java</file>
         </group>
     </open-files>
 </project-private>
