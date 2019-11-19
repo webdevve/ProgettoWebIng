@@ -6,7 +6,9 @@
 package Business.Controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +33,40 @@ public class proceduraConvenzioneUno extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String[] condizione = request.getParameterValues("condizione");
+        List list = Arrays.asList(condizione);
+        ArrayList<attualeCondizione> listCondizione = new ArrayList<>();
+        for(int i = 0; i<list.size(); i++){
+            if(list.get(i).equals("laureando")){
+                attualeCondizione att = new attualeCondizione("laureando", request.getParameter("laureando"));
+                listCondizione.add(att);
+            }
+            if(list.get(i).equals("diplomato")){
+                attualeCondizione att = new attualeCondizione("diplomato", request.getParameter("diplomato"));
+                listCondizione.add(att);
+            }
+            if(list.get(i).equals("laureato")){
+                attualeCondizione att = new attualeCondizione("laureato", request.getParameter("laureato"));
+                listCondizione.add(att);
+            }
+            if(list.get(i).equals("dottorato")){
+                attualeCondizione att = new attualeCondizione("dottorato", request.getParameter("dottorato"));
+                listCondizione.add(att);
+            }
+            if(list.get(i).equals("scuola")){
+                attualeCondizione att = new attualeCondizione("scuola", request.getParameter("scuola"));
+                listCondizione.add(att);
+            }
+        }
         
+        String handicap = request.getParameter("handicap");
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+        String cfu = request.getParameter("cfu");
+        String tutoreUniversitario = request.getParameter("tutoreUniversitario");
+        String telefonoTutoreUni = request.getParameter("telefonoTutoreUni");
+        String emailTutoreUni = request.getParameter("emailTutoreUni");
+        String dataRichiesta = request.getParameter("today");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

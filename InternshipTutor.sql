@@ -67,7 +67,7 @@ create table canditature(
     id_offerta integer unsigned not null,
     data_inizio date,
     data_fine date,
-    approvazione enum('approvata', 'non approvata') default 'non approvata',
+    approvazione enum('approvata', 'non approvata', 'attesa') default 'attesa',
     documento text
 );
 
