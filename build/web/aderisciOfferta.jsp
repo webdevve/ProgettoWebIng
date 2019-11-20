@@ -101,6 +101,17 @@
     <input type="hidden" name="dataNascita" value="<%=dataNascita%>"/>
     <input type="hidden" name="residenza" value="<%=residenza%>"/>
     <input type="hidden" name="telefonoStudente" value="<%=telefonoStudente%>"/>
+    <input type="hidden" name="cf" value="<%=cf%>"/>
+    <input type="hidden" name="luogoTirocinio" value="<%=Luogo%>"/>
+    <input type="hidden" name="ambito" value="<%=ambito%>"/>
+    <input type="hidden" name="orari" value="<%=orari%>"/>
+    <input type="hidden" name="ore" value="<%=ore%>"/>
+    <input type="hidden" name="tutoreAziendale" value="<%=tutoreAziendale%>"/>
+    <input type="hidden" name="telefonoTutoreAz" value="<%=telefonoTutoreAz%>"/>
+    <input type="hidden" name="email_responsabile" value="<%=email_responsabile%>"/>
+    <input type="hidden" name="obiettivi" value="<%=obiettivi%>"/>
+    <input type="hidden" name="modalita" value="<%=modalita%>"/>
+    <input type="hidden" name="rimborsi" value="<%=rimborsi%>"/>
     
     <div class="card">
         <div class="cardContainer">

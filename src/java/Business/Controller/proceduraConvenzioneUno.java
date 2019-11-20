@@ -5,6 +5,7 @@
  */
 package Business.Controller;
 
+import static Business.Controller.generateTirociniPDF.generaPdfUno;
 import Business.Model.Candidatura;
 import Business.Model.Studente;
 import DAO.CandidaturaDAO;
@@ -85,17 +86,31 @@ public class proceduraConvenzioneUno extends HttpServlet {
         String dataNascita = request.getParameter("dataNascita");
         String residenza = request.getParameter("residenza");
         String telefonoStudente = request.getParameter("telefonoStudente");
+        String cf = request.getParameter("cf");
+        String luogoTirocinio = request.getParameter("luogoTirocinio");
+        String ambito = request.getParameter("ambito");
+        String orari = request.getParameter("orari");
+        String ore = request.getParameter("ore");
+        String tutoreAziendale = request.getParameter("tutoreAziendale");
+        String telefonoTutoreAz = request.getParameter("telefonoTutoreAz");
+        String email_responsabile = request.getParameter("email_responsabile");
+        String obiettivi = request.getParameter("obiettivi");
+        String modalita = request.getParameter("modalita");
+        String rimborsi = request.getParameter("rimborsi");
         
         Candidatura c = new Candidatura(condizioneAttualeStudente,  handicap, startDate, endDate, cfu, 
                 tutoreUniversitario, telefonoTutoreUni, emailTutoreUni, dataRichiesta, email_responsabile_azienda, 
                 emailStudente, idOfferta, ragioneSociale, nomeStudente, titoloOfferta, luogoNascita, dataNascita, 
-                residenza, telefonoStudente);
+                residenza, telefonoStudente, cf, luogoTirocinio, ambito, orari, ore, tutoreAziendale,
+                telefonoTutoreAz, email_responsabile, obiettivi, modalita, rimborsi);
         
         generateEmail.emailRichiestaTirocinio(email_responsabile_azienda, c, "Azienda");
         generateEmail.emailRichiestaTirocinio(emailTutoreUni, c, "Università");
         Studente studente = (Studente) new StudenteDAO().getStudent(emailStudente);
         int idStudente = studente.getID();
-        boolean insert = inserisciCandidaturaDB(c, idStudente);
+        String testoDOC = generaPdfUno(c);
+        boolean insert = inserisciCandidaturaDB(c, idStudente, testoDOC);
+        
         if(insert){
             String notifica = "La tua richiesta è stata inviata!";
             request.setAttribute("notify", notifica);
@@ -110,7 +125,7 @@ public class proceduraConvenzioneUno extends HttpServlet {
         
     }
     
-    public boolean inserisciCandidaturaDB(Candidatura c, int idStudente){
+    public boolean inserisciCandidaturaDB(Candidatura c, int idStudente, String testoDOC){
         ArrayList<Object> lista = new ArrayList<>();
         lista.add(idStudente);
         lista.add(c.getIdOfferta());
@@ -120,7 +135,7 @@ public class proceduraConvenzioneUno extends HttpServlet {
         lista.add(c.getTutoreUniversitario());
         lista.add(c.getTelefonoTutoreUni());
         lista.add(c.getEmailTutoreUni());
-        lista.add(null);
+        lista.add(testoDOC);
         
         boolean inserimentoCdb = new CandidaturaDAO().insert(lista);
         return inserimentoCdb;

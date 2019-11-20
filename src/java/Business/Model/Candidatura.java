@@ -33,12 +33,26 @@ public class Candidatura {
         private String approvazione;
         private String documento;
         private int id;
+        private String cf;
+        private String luogoTirocinio;
+        private String ambito;
+        private String orari;
+        private String ore;
+        private String tutoreAziendale;
+        private String telefonoTutoreAz;
+        private String email_responsabile;
+        private String obiettivi;
+        private String modalita;
+        private String rimborsi;
 	
 	public Candidatura(String condizioneAttualeStudente,  String handicap, String startDate,
 			String endDate, String cfu, String tutoreUniversitario, String telefonoTutoreUni, String emailTutoreUni,
 			String dataRichiesta, String email_responsabile_azienda, String emailStudente, String idOfferta,
 			String ragioneSociale, String nomeStudente, String titoloOfferta, String luogoNascita,
-                        String dataNascita, String residenza, String telefonoStudente) {
+                        String dataNascita, String residenza, String telefonoStudente, String cf, 
+                        String luogoTirocinio, String ambito, String orari, String ore, String tutoreAziendale,
+                        String telefonoTutoreAz, String email_responsabile, String obiettivi,
+                        String modalita, String rimborsi) {
 		this.condizioneAttualeStudente = condizioneAttualeStudente;
 		//this.idStudente = idStudente;
 		this.handicap = handicap;
@@ -59,7 +73,92 @@ public class Candidatura {
                 this.dataNascita = dataNascita;
                 this.residenza = residenza;
                 this.telefonoStudente = telefonoStudente;
+                this.cf = cf;
+                this.luogoTirocinio = luogoTirocinio;
+                this.ambito = ambito;
+                this.orari = orari;
+                this.ore = ore;
+                this.tutoreAziendale = tutoreAziendale;
+                this.telefonoTutoreAz = telefonoTutoreAz;
+                this.email_responsabile = email_responsabile;
+                this.obiettivi = obiettivi;
+                this.modalita = modalita;
+                this.rimborsi = rimborsi;
 	}
+        public String getRimborsi(){
+            return rimborsi;
+        }
+        public void setRimborsi(String rimborsi){
+            this.rimborsi = rimborsi;
+        }
+        
+        public String getModalita(){
+            return modalita;
+        }
+        public void setModalita(String modalita){
+            this.modalita = modalita;
+        }
+        public String getObiettivi(){
+            return obiettivi;
+        }
+        public void setObiettivi(String obiettivi){
+            this.obiettivi = obiettivi;
+        }
+        public String getEmailTutAz(){
+            return email_responsabile;
+        }
+        public void setEmailAz(String email_responsabile){
+            this.email_responsabile = email_responsabile;
+        }
+        
+        public String getTelefonoTutAz(){
+            return telefonoTutoreAz;
+        }
+        public void setTelefonoTutAz(String telefonoTutoreAz){
+            this.telefonoTutoreAz = telefonoTutoreAz;
+        }
+        
+        public String getTutoreAziendale(){
+            return tutoreAziendale;
+        }
+        public void setTutoreAziendale(String tutoreAziendale){
+            this.tutoreAziendale = tutoreAziendale;
+        }
+        public String getOre(){
+            return ore;
+        }
+        public void setOre(String ore){
+            this.ore = ore;
+        }
+        
+        public String getOrari(){
+            return orari;
+        }
+        
+        private void setOrari(String orari){
+            this.orari = orari;
+        }
+        
+        public String getAmbito(){
+            return ambito;
+        }
+        public void setAmbito(String ambito){
+            this.ambito = ambito;
+        }
+        
+        public String getLuogoTirocinio(){
+            return luogoTirocinio;
+        }
+        public void setLuogoTirocinio(String luogoTirocinio){
+            this.luogoTirocinio = luogoTirocinio;
+        }
+        
+        public String getCf(){
+            return cf;
+        }
+        public void setCf(String cf){
+            this.cf = cf;
+        }
         
         public String getTelefonoStudente(){
             return telefonoStudente;
