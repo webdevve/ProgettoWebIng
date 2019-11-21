@@ -12,11 +12,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <link rel="stylesheet" href="css/header.css" type="text/css"/>
-    <link rel="stylesheet" href="css/listastudentiofferta.css" type="text/css"/>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista Studenti</title>
+        <title>Le Mie Offerte</title>
         <link rel="stylesheet" href="css/header.css" type="text/css"/>
       <link rel="stylesheet" href="css/index.css" type="text/css"/>
       <link rel="stylesheet" href="css/admin.css" type="text/css"/>
@@ -60,28 +58,97 @@
                   <tr>
                      <th colspan="14" style="background-color: whitesmoke;">
                          <h3>Studenti Candidati all'Offerta</h3>
+                         <h4>Titolo Offerta</h4>
                      </th>
                   </tr>
-                   
-                   <body>
-
-                                              
-<table id="customers">
-    <tr coolspan="3">
-        <br></br>
-        Titolo Offerta
-        <br></br>
-    </tr>
-  <tr>
-    <th>Nome</th>
-    <th>Cognome</th>
-    <th>Codice Fiscale</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-</table>
-
-</body>
+                  <tr style="background-color: whitesmoke;">
+                     <th>ID</th>
+                     <th>Nome</th>
+                     <th>Cognome</th>
+                     <th>Condizione</th>
+                     <th>Handicap</th>
+                     <th>Approva</th>
+                     <th>Respingi</th>
+                  </tr>
+                  <%
+                     Connection connect = null;
+                     Statement Statement = null;
+                     ResultSet resultSet = null;
+                     int count = 0;
+                         try{
+                             Class.forName("com.mysql.jdbc.Driver");
+                             connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+                     "root", "ciao");
+                             System.out.println("Connessione Stabilita!");
+                             Statement = connect.createStatement();
+                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.canditature join internshiptutor.studente on studente.id = canditature.id_studente "
+                                     + "where approvazione = 'attesa'");
+                             while(resultSet.next()){
+                     %>
+                  <form action="#" method="post">
+                      <%
+                          int id = resultSet.getInt("id");
+                          String nome = resultSet.getString("nome");
+                          String cognome = resultSet.getString("cognome");
+                          String condizione = resultSet.getString("cf");
+                          String handicap = resultSet.getString("handicap");
+                      %>
+                      <input type="hidden" value="<%=id%>" name="id"/>
+                      <input type="hidden" value="<%=nome%>" name="nome"/>
+                      <input type="hidden" value="<%=cognome%>" name="cognome"/>
+                      <input type="hidden" value="<%=condizione%>" name="condizione"/>
+                      <input type="hidden" value="<%=handicap%>" name="handicap"/>
+                     <tr>
+                        <td><%=id%></td>
+                        <td><%=nome%></td>
+                        <td><%=cognome%></td>
+                        <td><%=condizione%></td>
+                        <td><%=handicap%></td>
+                        <td>
+                            <button type="submit" name="stato" value="dettaglio" id='btnsi'>Approva</button>
+                        </td>
+                        <td>
+                           <button type="submit" name="stato" value="chiudi" id='btnchiudi'>Respingi</button>
+                        </td>
+                     </tr>
+                  </form>
+                  <%
+                     count += 1;
+                     }
+                     connect.close();
+                     Statement.close();
+                     resultSet.close();
+                     if(count == 0){
+                     %>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <%
+                     }
+                     }catch(SQLException e){
+                     System.out.println("ERRORE DATABASE! " + e.getMessage());
+                     }catch(Exception e){
+                     System.out.println("ERRORE GENERICO! " + e.getMessage());
+                     }finally{
+                     try{
+                         if (connect != null)
+                             connect.close();
+                         if (Statement != null)
+                             Statement.close();
+                         if (resultSet != null)
+                             resultSet.close();
+                     }catch(final SQLException e){
+                     System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                     }
+                     }
+                     %>
+               </table>
+            </div>
+         </div>
+      </div>
+    </body>
+</html>
