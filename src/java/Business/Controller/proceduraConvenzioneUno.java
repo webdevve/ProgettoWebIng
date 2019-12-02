@@ -136,6 +136,7 @@ public class proceduraConvenzioneUno extends HttpServlet {
         lista.add(c.getTelefonoTutoreUni());
         lista.add(c.getEmailTutoreUni());
         lista.add(testoDOC);
+        lista.add(c.getCondizioneAttualeStudente());
         
         boolean inserimentoCdb = new CandidaturaDAO().insert(lista);
         return inserimentoCdb;

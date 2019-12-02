@@ -32,7 +32,7 @@ public class CandidaturaDAO implements DAOinterface{
             connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
 					"root", "ciao");
             preparedStatement = connect.prepareStatement("INSERT INTO internshiptutor.canditature (id_studente, id_offerta, data_inizio, data_fine, cfu, tutoreUniversitario, telefonoTutoreUni,\n" +
-            "emailTutoreUni, documento) VALUES (?,?,?,?,?,?,?,?,?)");
+            "emailTutoreUni, documento, condizione) VALUES (?,?,?,?,?,?,?,?,?,?)");
             preparedStatement.setInt(1, (int) args.get(0));
             preparedStatement.setString(2, (String) args.get(1));
             preparedStatement.setString(3, (String) args.get(2));
@@ -42,6 +42,7 @@ public class CandidaturaDAO implements DAOinterface{
             preparedStatement.setString(7, (String) args.get(6));
             preparedStatement.setString(8, (String) args.get(7));
             preparedStatement.setString(9, (String) args.get(8));
+            preparedStatement.setString(10, (String) args.get(9));
             
             preparedStatement.executeUpdate();
             System.out.println("Sono entrato nel db, inserimento avvenuto con successo");

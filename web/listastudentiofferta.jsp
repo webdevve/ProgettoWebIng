@@ -90,7 +90,7 @@
                           int id = resultSet.getInt("id");
                           String nome = resultSet.getString("nome");
                           String cognome = resultSet.getString("cognome");
-                          String condizione = resultSet.getString("cf");
+                          String condizione = resultSet.getString("condizione");
                           String handicap = resultSet.getString("handicap");
                       %>
                       <input type="hidden" value="<%=id%>" name="id"/>
@@ -105,10 +105,10 @@
                         <td><%=condizione%></td>
                         <td><%=handicap%></td>
                         <td>
-                            <button type="submit" name="stato" value="dettaglio" id='btnsi'>Approva</button>
+                            <button type="submit" name="stato" value="approva" id='btnsi' style="width: 100px;">Approva</button>
                         </td>
                         <td>
-                           <button type="submit" name="stato" value="chiudi" id='btnchiudi'>Respingi</button>
+                           <button type="submit" name="stato" value="respingi" id='btnchiudi'>Respingi</button>
                         </td>
                      </tr>
                   </form>
