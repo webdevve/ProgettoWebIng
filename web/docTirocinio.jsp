@@ -83,12 +83,13 @@
                     String rimborsi = resultSet.getString("rimborsi");
                     String tutoreUniversitario = resultSet.getString("tutoreUniversitario");
                     String emailTutoreUni = resultSet.getString("emailTutoreUni");
+                    String telefonoTutoreUni = resultSet.getString("telefonoTutoreUni");
                 %> 
                 
          
       <h1>Documento Progetto Formativo e di Orientamento</h1>
 
-<form action="proceduraConvenzioneUno" method="post">
+<form action="#" method="post">
     <div class="card">
         <div class="cardContainer">
             <h1>UNIVERSITA' DEGLI STUDI DELL'AQUILA</h1>
@@ -157,8 +158,7 @@
                 <br>
                     <p>Tutore universitario <strong><%=tutoreUniversitario%></strong>
                 </p>
-                <p>Telefono
-                    <input type="text" name="telefonoTutoreUni" required class="border-none"/>
+                <p>Telefono <strong><%=telefonoTutoreUni%></strong>
                 </p>
                 <p>Email <strong><%=emailTutoreUni%></strong></p>
                 <p>Tutore aziendale
@@ -276,16 +276,8 @@
              }
          %>
     <div class="container-login100-form-btn m-t-17">
-        <button type="submit" name="conferma" value="richiesta" class="login100-form-btn">Conferma e invia la richiesta</button>
+        <button type="submit" name="conferma" value="richiesta" class="login100-form-btn">Accetta proposta di tirocinio</button>
     </div>
-    <div class="card">
-        <p>
-            ATTENZIONE: confermando quanto sopra descritto invierai la richiesta di 
-            effettuazione del tirocinio. Riceverai una Email quando l'azienda accetterà
-            la tua richiesta.
-        </p>
-    </div>
-    
 </form>
     </body>
 </html>
