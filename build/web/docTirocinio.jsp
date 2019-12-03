@@ -1,27 +1,25 @@
 <%-- 
-    Document   : aderisciOfferta
-    Created on : 7-nov-2019, 10.31.42
+    Document   : docTirocinio
+    Created on : 3-dic-2019, 10.49.53
     Author     : Davide Simboli
 --%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.SQLException"%>
-<?xml version="1.0" encoding="UTF-8"?>
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
-        <html xmlns="http://www.w3.org/1999/xhtml">
-
-        <head>
-            <title>Internship Tutor</title>
-            <link rel="stylesheet" href="css/header.css" type="text/css" />
-            <link rel="stylesheet" href="css/index.css" type="text/css" />
-            <link rel="stylesheet" href="css/documentoConvenzione.css" type="text/css"/>
-            <link href="https://fonts.googleapis.com/css?family=Beth+Ellen&display=swap" rel="stylesheet">
-        </head>
-
-        <body>
-            <%
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Internetship Tutor</title>
+        <link rel="stylesheet" href="css/header.css" type="text/css"/>
+        <link rel="stylesheet" href="css/index.css" type="text/css"/>
+        <link rel="stylesheet" href="css/documentoConvenzione.css" type="text/css"/>
+    </head>
+    <body>
+        <%
          HttpSession sessione = request.getSession();
          String str = (String)sessione.getAttribute("username");
          request.setAttribute("name", str);
@@ -36,83 +34,61 @@
          if(notifica == null){
            notifica="";
          }
-         int id = (int)request.getAttribute("id");
-         String nomeCognome = (String) request.getAttribute("nomeCognome");
-         String luogoNascita = (String) request.getAttribute("luogoNascita");
-         String provNascita = (String) request.getAttribute("provNascita");
-         String dataNascita = (String) request.getAttribute("dataNascita");
-         String residenza = (String) request.getAttribute("residenza");
-         String cf = (String) request.getAttribute("cf");
-         String telefonoStudente = (String) request.getAttribute("telefonoStudente");
-         String nomeStudente = (String) request.getAttribute("nomeStudente");
-         String emailStudente = (String) request.getAttribute("emailStudente");
-         Connection connect = null;
-            Statement Statement = null;
-            ResultSet resultSet = null;
-            try{
+        String id_candidatura = (String)request.getAttribute("id_candidatura");
+         %>
+      <div class="header">
+         <a href="#default" class="logo">InternshipTutor</a>
+         <div class="header-right">
+            <a href="admin.jsp">Home</a>
+            <a href="confermaConvenzione.jsp">Convenzioni da Confermare</a>
+            <a href="aziendeConvenzionate.jsp" >Convenzioni</a>
+            <a href="#profilo.jsp"><%=str%></a>
+         </div>
+      </div>
+         <%
+             Connection connect = null;
+             Statement Statement = null;
+             ResultSet resultSet = null;
+             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
-                                            "root", "ciao");
+                     "root", "ciao");
                 System.out.println("Connessione Stabilita!");
                 Statement = connect.createStatement();
-                resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta_azienda where id = "+id);
+                resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.documento_formativo where id = '"+id_candidatura+"'");
                 while(resultSet.next()){
-                    String titolo = resultSet.getString("titolo");
+                    String nome = resultSet.getString("nome");
+                    String cognome = resultSet.getString("cognome");
+                    String nomeCognome = nome +" "+cognome;
+                    String luogoNascita = resultSet.getString("luogo_nascita");
+                    String dataNascita = resultSet.getString("data_nascita");
+                    String residenza = resultSet.getString("residenza");
+                    String cf = resultSet.getString("cf");
+                    String telefonoStudente = resultSet.getString("telefono");
+                    String condizione = resultSet.getString("condizione");
+                    String handicap = resultSet.getString("handicap");
                     String ragioneSociale = resultSet.getString("ragione_sociale");
-                    String ambito = resultSet.getString("ambito");
                     String Luogo = resultSet.getString("luogo");
+                    String ambito = resultSet.getString("ambito");
                     String orari = resultSet.getString("orari");
                     String ore = resultSet.getString("durata");
+                    String cfu = resultSet.getString("cfu");
+                    String nomeResp = resultSet.getString("nome_responsabile");
+                    String cognResp = resultSet.getString("cognome_responsabile");
+                    String tutoreAziendale = nomeResp+" "+ cognResp;
+                    String telefonoTutoreAz = resultSet.getString("telefono_responsabile");
+                    String email_responsabile = resultSet.getString("email_responsabile");
                     String obiettivi = resultSet.getString("obiettivi");
                     String modalita = resultSet.getString("modalita");
                     String rimborsi = resultSet.getString("rimborsi");
-                    String email_responsabile = resultSet.getString("email_responsabile");
-                    String telefonoTutoreAz = resultSet.getString("telefono_responsabile");
-                    String cognome_responsabile = resultSet.getString("cognome_responsabile");
-                    String nome_responsabile = resultSet.getString("nome_responsabile");
-                    String tutoreAziendale = nome_responsabile+" "+cognome_responsabile;
-         %>
-        <div class="header">
-    <a href="#default" class="logo">InternshipTutor</a>
-    <div class="header-right">
-        <a href="index.jsp">Home</a>
-        <a href="#news">News</a>
-        <a href="visualizzaAziende.jsp">Aziende</a>
-        <a href="#profilo.jsp">
-            <%=str%>
-        </a>
-    </div>
-</div>
-<font color="red" id="err">
-            <p><%=errore%></p>
-          </font>
-<font color="green">
-            <p><%=notifica%></p>
-          </font>
-<h1>Documento Progetto Formativo e di Orientamento</h1>
+                    String tutoreUniversitario = resultSet.getString("tutoreUniversitario");
+                    String emailTutoreUni = resultSet.getString("emailTutoreUni");
+                %> 
+                
+         
+      <h1>Documento Progetto Formativo e di Orientamento</h1>
 
 <form action="proceduraConvenzioneUno" method="post">
-    <input type="hidden" name="emailStudente" value="<%=emailStudente%>"/>
-    <input type="hidden" name="idOfferta" value="<%=id%>"/>
-    <input type="hidden" name="ragioneSociale" value="<%=ragioneSociale%>"/>
-    <input type="hidden" name="nomeStudente" value="<%=nomeCognome%>"/>
-    <input type="hidden" name="titoloOfferta" value="<%=titolo%>"/>
-    <input type="hidden" name="luogoNascita" value="<%=luogoNascita%>"/>
-    <input type="hidden" name="dataNascita" value="<%=dataNascita%>"/>
-    <input type="hidden" name="residenza" value="<%=residenza%>"/>
-    <input type="hidden" name="telefonoStudente" value="<%=telefonoStudente%>"/>
-    <input type="hidden" name="cf" value="<%=cf%>"/>
-    <input type="hidden" name="luogoTirocinio" value="<%=Luogo%>"/>
-    <input type="hidden" name="ambito" value="<%=ambito%>"/>
-    <input type="hidden" name="orari" value="<%=orari%>"/>
-    <input type="hidden" name="ore" value="<%=ore%>"/>
-    <input type="hidden" name="tutoreAziendale" value="<%=tutoreAziendale%>"/>
-    <input type="hidden" name="telefonoTutoreAz" value="<%=telefonoTutoreAz%>"/>
-    <input type="hidden" name="email_responsabile" value="<%=email_responsabile%>"/>
-    <input type="hidden" name="obiettivi" value="<%=obiettivi%>"/>
-    <input type="hidden" name="modalita" value="<%=modalita%>"/>
-    <input type="hidden" name="rimborsi" value="<%=rimborsi%>"/>
-    
     <div class="card">
         <div class="cardContainer">
             <h1>UNIVERSITA' DEGLI STUDI DELL'AQUILA</h1>
@@ -140,47 +116,17 @@
                 <h2>PROGETTO FORMATIVO E DI ORIENTAMENTO</h2>
                 <p>
                     Nominativo del tirocinante <strong><%=nomeCognome%></strong>,
-                    <br> Nato a <strong><%=luogoNascita%> </strong> Prov. <strong><%=provNascita%></strong> il <strong><%=dataNascita%></strong>,
+                    <br> Nato a <strong><%=luogoNascita%> </strong> Prov. <strong>null</strong> il <strong><%=dataNascita%></strong>,
                     <br> Residente in <strong><%=residenza%></strong>,
                     <br> Codice fiscale <strong><%=cf%></strong>,
                     <br> Telefono <strong><%=telefonoStudente%></strong>
                 </p>
                 <p style="text-align: center;">
-                    Attuale condizione (barrare la casella – possibilità di doppia scelta):
+                    Attuale condizione: <%=condizione%>
                 </p>
-                <ul>
-                    <li class="none">
-                        <input type="checkbox" name="condizione" value="laureando" /> Studente Corso di Laurea in:
-                        <input type="text" name="laureando" class="border-none"/>
-                    </li>
-                    <li class="none">
-                        <input type="checkbox" name="condizione" value="diplomato" /> Diplomato. Diploma universitario in:
-                        <input type="text" name="diplomato" class="border-none"/>
-                        <br> (entro 12 mesi dal diploma)
-                    </li>
-                    <li class="none">
-                        <input type="checkbox" name="condizione" value="laureato" /> Laureato. Laurea in:
-                        <input type="text" name="laureato" class="border-none"/>
-                        <br> (entro 12 mesi dalla laurea)
-                    </li>
-                    <li class="none">
-                        <input type="checkbox" name="condizione" value="dottorato" /> Dottorato di ricerca in:
-                        <input type="text" name="dottorato" class="border-none"/>
-                    </li>
-                    <li class="none">
-                        <input type="checkbox" name="condizione" value="scuola" /> Scuola o corso di perfezionamento o specializzazione in:
-                        <input type="text" name="scuola" class="border-none"/>
-                    </li>
-                </ul>
-                <p>Barrare se trattasi di soggetto portatore di handicap:</p>
-                <ul>
-                    <li class="none">
-                        <input type="radio" name="handicap" value="si" /> Si
-                    </li>
-                    <li class="none">
-                        <input type="radio" name="handicap" value="no" /> No
-                    </li>
-                </ul>
+                
+                <p>Soggetto portatore di handicap: <%=handicap%></p>
+                
                 <p>Ente/Azienda ospitante <strong><%=ragioneSociale%></strong></p>
                 <p align="right" class="numPage">1</p>
             </div>
@@ -199,24 +145,22 @@
                 <p>Tempi di accesso ai locali aziendali <strong><%=orari%></strong></p>
                 <p>
                     Periodo di tirocinio n.
-                    <input type="number" name="mesi" class="border-none"/> mesi dal
-                    <input type="date" name="startDate" min="2019-11-07" class="border-none" required placeholder="AAAA-MM-dd"/> al
-                    <input type="date" name="endDate" min="2019-11-07" class="border-none" required placeholder="AAAA-MM-dd"/>
+                    <input type="number" name="mesi" class="border-none" readonly/> mesi dal
+                    <input type="date" name="startDate" min="2019-11-07" class="border-none" readonly placeholder="AAAA-MM-dd"/> al
+                    <input type="date" name="endDate" min="2019-11-07" class="border-none" readonly placeholder="AAAA-MM-dd"/>
                     <br> (con possibilità di proroga entro i limiti massimi previsti dalla normativa vigente)
                 </p>
                 <p>
                     numero ore di tirocinio <strong><%=ore%></strong>
-                    per il conseguimento di n.
-                    <input type="number" name="cfu" min="0" max="999" class="border-none" required/> CFU
+                    per il conseguimento di n. <%=cfu%>CFU
                 </p>
                 <br>
-                <p>Tutore universitario
-                    <input type="text" name="tutoreUniversitario" required class="border-none"/>
+                    <p>Tutore universitario <strong><%=tutoreUniversitario%></strong>
                 </p>
                 <p>Telefono
                     <input type="text" name="telefonoTutoreUni" required class="border-none"/>
                 </p>
-                    <p>Email <input type="email" name="emailTutoreUni" required class="border-none"/></p>
+                <p>Email <strong><%=emailTutoreUni%></strong></p>
                 <p>Tutore aziendale
                     <strong><%=tutoreAziendale%></strong>
                 </p>
@@ -224,7 +168,6 @@
                     <strong><%=telefonoTutoreAz%></strong>
                 </p>
                 <p>Email <strong><%=email_responsabile%></strong></p>
-                <input type="hidden" name="emailAz" value="<%=email_responsabile%>"/>
                 <p>
                     <strong>Polizze assicurative:<br>
                     Copertura assicurativa per rischio responsabilità civile terzi:</strong>
@@ -310,6 +253,28 @@
             </div>
         </div>
     </div>
+    <%
+                }
+                connect.close();
+                Statement.close();
+                resultSet.close();
+             }catch(SQLException e){
+                System.out.println("ERRORE DATABASE! " + e.getMessage());
+             }catch(Exception e){
+                System.out.println("ERRORE GENERICO! " + e.getMessage());
+             }finally{
+                try{
+                    if (connect != null)
+                        connect.close();
+                    if (Statement != null)
+                        Statement.close();
+                    if (resultSet != null)
+                        resultSet.close();
+                }catch(final SQLException e){
+                    System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                }
+             }
+         %>
     <div class="container-login100-form-btn m-t-17">
         <button type="submit" name="conferma" value="richiesta" class="login100-form-btn">Conferma e invia la richiesta</button>
     </div>
@@ -321,28 +286,6 @@
         </p>
     </div>
     
-</form>       <%
-                connect.close();
-                    Statement.close();
-                    resultSet.close();
-                }
-            }catch(SQLException e){
-                System.out.println("ERRORE DATABASE! " + e.getMessage());
-            }catch(Exception e){
-                System.out.println("ERRORE GENERICO! " + e.getMessage());
-            }finally{
-                try{
-                    if (connect != null)
-                        connect.close();
-                    if (Statement != null)
-                        Statement.close();
-                    if (resultSet != null)
-                        resultSet.close();
-                } catch(final SQLException e){
-                    System.out.println("final - ERRORE DATABASE! " + e.getMessage());
-                }
-            }
-%>
-        </body>
-
-        </html>
+</form>
+    </body>
+</html>

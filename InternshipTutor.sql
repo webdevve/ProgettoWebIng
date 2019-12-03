@@ -89,3 +89,18 @@ select offerta.id, offerta.titolo, offerta.luogo, offerta.durata, offerta.descri
     azienda.email_responsabile
 from offerta join azienda
 where offerta.id_azienda = azienda.id;
+
+create view candidatura_studente as
+SELECT canditature.id, canditature.condizione, canditature.cfu, canditature.tutoreUniversitario, canditature.emailTutoreUni, studente.nome, studente.cognome,
+studente.luogo_nascita, studente.residenza, studente.cf, studente.data_nascita, studente.telefono, studente.handicap, canditature.id_offerta
+ from internshiptutor.canditature join internshiptutor.studente 
+where canditature.id_studente = studente.id;
+
+create view documento_formativo as
+select 
+candidatura_studente.id, candidatura_studente.nome, candidatura_studente.cognome, candidatura_studente.luogo_nascita, candidatura_studente.data_nascita, candidatura_studente.residenza, candidatura_studente.cf,
+candidatura_studente.telefono, candidatura_studente.condizione, candidatura_studente.handicap, offerta_azienda.ragione_sociale, offerta_azienda.luogo,
+offerta_azienda.ambito, offerta_azienda.orari, offerta_azienda.durata, candidatura_studente.cfu, offerta_azienda.nome_responsabile, 
+offerta_azienda.cognome_responsabile, offerta_azienda.telefono_responsabile, offerta_azienda.email_responsabile, offerta_azienda.obiettivi,
+offerta_azienda.modalita, offerta_azienda.rimborsi, candidatura_studente.tutoreUniversitario, candidatura_studente.emailTutoreUni
+from candidatura_studente join offerta_azienda where candidatura_studente.id_offerta = offerta_azienda.id

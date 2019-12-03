@@ -35,6 +35,7 @@
          if(notifica == null){
            notifica="";
          }
+         String id_offerta = (String)request.getAttribute("id_offerta");
         %>
         <div class="header">
             <a href="#default" class="logo">InternshipTutor</a>
@@ -81,25 +82,25 @@
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.canditature join internshiptutor.studente on studente.id = canditature.id_studente "
-                                     + "where approvazione = 'attesa'");
+                             resultSet = Statement.executeQuery("SELECT canditature.id, canditature.condizione, studente.nome, studente.cognome, studente.handicap FROM internshiptutor.canditature join internshiptutor.studente on studente.id = canditature.id_studente "
+                                     + "where approvazione = 'attesa' and id_offerta = '"+id_offerta+"'");
                              while(resultSet.next()){
                      %>
-                  <form action="#" method="post">
+                  <form action="accettaProposta" method="post">
                       <%
-                          int id = resultSet.getInt("id");
+                          int id_candidatura = resultSet.getInt("id");
                           String nome = resultSet.getString("nome");
                           String cognome = resultSet.getString("cognome");
                           String condizione = resultSet.getString("condizione");
                           String handicap = resultSet.getString("handicap");
                       %>
-                      <input type="hidden" value="<%=id%>" name="id"/>
+                      <input type="hidden" value="<%=id_candidatura%>" name="id"/>
                       <input type="hidden" value="<%=nome%>" name="nome"/>
                       <input type="hidden" value="<%=cognome%>" name="cognome"/>
                       <input type="hidden" value="<%=condizione%>" name="condizione"/>
                       <input type="hidden" value="<%=handicap%>" name="handicap"/>
                      <tr>
-                        <td><%=id%></td>
+                        <td><%=id_candidatura%></td>
                         <td><%=nome%></td>
                         <td><%=cognome%></td>
                         <td><%=condizione%></td>

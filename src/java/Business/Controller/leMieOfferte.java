@@ -142,8 +142,11 @@ public class leMieOfferte extends HttpServlet {
         }
     }
 
-    private void dettaglioOfferta(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("listastudentiofferta.jsp");
+    private void dettaglioOfferta(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String id_offerta = request.getParameter("id");
+        request.setAttribute("id_offerta", id_offerta);
+        RequestDispatcher rd = request.getRequestDispatcher("listastudentiofferta.jsp");
+        rd.forward(request, response);
     }
 
 }

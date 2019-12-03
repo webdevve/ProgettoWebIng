@@ -81,27 +81,30 @@
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.offerta join internshiptutor.azienda ON azienda.id = offerta.id_azienda where azienda.email_azienda = '"+str+"'"
+                             resultSet = Statement.executeQuery("SELECT offerta.id, offerta.titolo, offerta.luogo, "
+                                     + "offerta.durata, offerta.modalita, offerta.rimborsi  "
+                                     + "FROM internshiptutor.offerta join internshiptutor.azienda ON azienda.id = offerta.id_azienda "
+                                     + "where azienda.email_azienda = '"+str+"'"
                                      + "AND offerta.stato = 'aperta'");
                              while(resultSet.next()){
                      %>
                   <form action="leMieOfferte" method="get">
                       <%
-                          int id = resultSet.getInt("ID");
+                          int id_offerta = resultSet.getInt("ID");
                           String titolo = resultSet.getString("titolo");
                           String luogo = resultSet.getString("luogo");
                           String durata = resultSet.getString("durata");
                           String modalita = resultSet.getString("modalita");
                           String rimborsi = resultSet.getString("rimborsi");
                       %>
-                      <input type="hidden" value="<%=id%>" name="id"/>
+                      <input type="hidden" value="<%=id_offerta%>" name="id"/>
                       <input type="hidden" value="<%=titolo%>" name="titolo"/>
                       <input type="hidden" value="<%=luogo%>" name="luogo"/>
                       <input type="hidden" value="<%=durata%>" name="durata"/>
                       <input type="hidden" value="<%=modalita%>" name="modalita"/>
                       <input type="hidden" value="<%=rimborsi%>" name="rimborsi"/>
                      <tr>
-                        <td><%=id%></td>
+                        <td><%=id_offerta%></td>
                         <td><%=titolo%></td>
                         <td><%=luogo%></td>
                         <td><%=durata%></td>

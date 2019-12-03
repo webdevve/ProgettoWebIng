@@ -200,8 +200,8 @@
                 <p>
                     Periodo di tirocinio n.
                     <input type="number" name="mesi" class="border-none"/> mesi dal
-                    <input type="date" name="startDate" min="2019-11-07" class="border-none" required/> al
-                    <input type="date" name="endDate" min="2019-11-07" class="border-none" required/>
+                    <input type="date" name="startDate" min="2019-11-07" class="border-none" required placeholder="AAAA-MM-dd"/> al
+                    <input type="date" name="endDate" min="2019-11-07" class="border-none" required placeholder="AAAA-MM-dd"/>
                     <br> (con possibilità di proroga entro i limiti massimi previsti dalla normativa vigente)
                 </p>
                 <p>
@@ -313,6 +313,14 @@
     <div class="container-login100-form-btn m-t-17">
         <button type="submit" name="conferma" value="richiesta" class="login100-form-btn">Conferma e invia la richiesta</button>
     </div>
+    <div class="card">
+        <p>
+            ATTENZIONE: confermando quanto sopra descritto invierai la richiesta di 
+            effettuazione del tirocinio. Riceverai una Email quando l'azienda accetterà
+            la tua richiesta.
+        </p>
+    </div>
+    
 </form>       <%
                 connect.close();
                     Statement.close();
