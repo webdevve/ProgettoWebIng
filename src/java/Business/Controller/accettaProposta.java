@@ -162,7 +162,7 @@ public class accettaProposta extends HttpServlet {
         c.setTutoreUniversitario(tutoreUniversitario);
         c.setEmailTutoreUni(emailTutoreUni);
         c.setTelefonoTutoreUni(telefonoTutoreUni);
-        String testo = generaPdfUno(c);
+        String testo = generaPdfUno(c, true);
         return testo;
     }
 

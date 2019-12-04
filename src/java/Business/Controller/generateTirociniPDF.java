@@ -18,7 +18,7 @@ import java.io.FileOutputStream;
  * @author Davide Simboli
  */
 public class generateTirociniPDF {
-    public static String generaPdfUno(Candidatura c){
+    public static String generaPdfUno(Candidatura c, boolean print){
         String testo = "UNIVERSITA' DEGLI STUDI DELL'AQUILA"+System.getProperty("line.separator")
                 +"Dipartimento di INGEGNERIA E SCIENZE DELL'INFORMAZIONE E MATEMATICA"+System.getProperty("line.separator")
                 +"SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA"+System.getProperty("line.separator")
@@ -128,8 +128,9 @@ public class generateTirociniPDF {
                 + "Il Direttore del Dipartimento di Ingegneria e Scienze dell’Informazione e Matematica. \n"
                 + "Prof. Guido Proietti "
                 + "_______________________ \n";
-        
-        generateFile(testo, c.getNomeStudente());
+        if(print){
+            generateFile(testo, c.getNomeStudente());
+        }
         return testo;
     }
     

@@ -71,7 +71,7 @@ create table canditature(
     tutoreUniversitario varchar (100),
     telefonoTutoreUni varchar (50),
     emailTutoreUni varchar (100),
-    approvazione enum('approvata', 'non approvata', 'attesa') default 'attesa',
+    approvazione enum('approvata', 'non approvata', 'attesa', 'in corso', 'chiusa') default 'attesa',
     documento text,
     condizione varchar(200)
 );

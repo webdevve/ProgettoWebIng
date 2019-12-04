@@ -108,7 +108,7 @@ public class proceduraConvenzioneUno extends HttpServlet {
         generateEmail.emailRichiestaTirocinio(emailTutoreUni, c, "Università");
         Studente studente = (Studente) new StudenteDAO().getStudent(emailStudente);
         int idStudente = studente.getID();
-        String testoDOC = generaPdfUno(c);
+        String testoDOC = generaPdfUno(c, false);
         boolean insert = inserisciCandidaturaDB(c, idStudente, testoDOC);
         
         if(insert){
