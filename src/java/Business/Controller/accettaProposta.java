@@ -45,6 +45,9 @@ public class accettaProposta extends HttpServlet {
         if(stato.equals("proposta")){
             iniziaTirocinio(request, response);
         }
+        if(stato.equals("respingi")){
+            respingiCandidatura(request, response);
+        }
         
     }
 
@@ -164,6 +167,24 @@ public class accettaProposta extends HttpServlet {
         c.setTelefonoTutoreUni(telefonoTutoreUni);
         String testo = generaPdfUno(c, true);
         return testo;
+    }
+
+    private void respingiCandidatura(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id_candidatura = request.getParameter("id");
+        String nome = request.getParameter("nome");
+        String cognome = request.getParameter("cognome");
+        boolean respingi = CandidaturaDAO.respingiCandidatura(id_candidatura);
+        if(respingi){
+            String notifica = "La candidatura di "+nome+" "+cognome+" è stata respinta.";
+            request.setAttribute("notify", notifica);
+            RequestDispatcher rd = request.getRequestDispatcher("listastudentiofferta.jsp");
+            rd.forward(request, response);
+        }else{
+            String errore = "Si è verificato un errore";
+            request.setAttribute("err", errore);
+            RequestDispatcher rd = request.getRequestDispatcher("listastudentiofferta.jsp");
+            rd.forward(request, response);
+        }
     }
 
 }

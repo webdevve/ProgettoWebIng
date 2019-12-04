@@ -20,6 +20,38 @@ import java.util.ArrayList;
  */
 public class CandidaturaDAO implements DAOinterface{
 
+    public static boolean respingiCandidatura(String id_candidatura) {
+        Connection connect = null;
+	PreparedStatement preparedStatement = null;
+	boolean success = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            preparedStatement = connect.prepareStatement("update internshiptutor.canditature "
+                    + "set approvazione = 'non approvata'");
+            
+            preparedStatement.executeUpdate();
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+            success = false;
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+            success = false;
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+		if (preparedStatement != null)
+                    preparedStatement.close();
+		return success;
+            }catch (final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return false;
+            }
+        }
+    }
+
     @Override
     public boolean insert(ArrayList<Object> args) {
         System.out.println("Entro nel db Candidatura");
