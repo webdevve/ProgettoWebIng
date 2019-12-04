@@ -69,8 +69,8 @@ public class proceduraConvenzioneUno extends HttpServlet {
             condizioneAttualeStudente += x.getCheck() + ": " + x.getValue() + " ";
         }
         String handicap = request.getParameter("handicap");
-        String startDate = request.getParameter("startDate");
-        String endDate = request.getParameter("endDate");
+        String startDate = null;
+        String endDate = null;
         String cfu = request.getParameter("cfu");
         String tutoreUniversitario = request.getParameter("tutoreUniversitario");
         String telefonoTutoreUni = request.getParameter("telefonoTutoreUni");

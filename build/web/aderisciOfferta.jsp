@@ -199,9 +199,9 @@
                 <p>Tempi di accesso ai locali aziendali <strong><%=orari%></strong></p>
                 <p>
                     Periodo di tirocinio n.
-                    <input type="number" name="mesi" class="border-none"/> mesi dal
-                    <input type="date" name="startDate" min="2019-11-07" class="border-none" required placeholder="AAAA-MM-dd"/> al
-                    <input type="date" name="endDate" min="2019-11-07" class="border-none" required placeholder="AAAA-MM-dd"/>
+                    <input type="number" name="mesi" class="border-none" readonly/> mesi dal
+                    <input type="date" name="startDate" min="2019-11-07" class="border-none" readonly placeholder="aaaa-MM-dd"/> al
+                    <input type="date" name="endDate" min="2019-11-07" class="border-none" readonly placeholder="aaaa-MM-dd"/>
                     <br> (con possibilità di proroga entro i limiti massimi previsti dalla normativa vigente)
                 </p>
                 <p>
@@ -283,7 +283,7 @@
                     Ai sensi degli artt. 10 e seguenti della legge 675/ 96, sulla tutela delle persone e di altri soggetti rispetto al trattamento dei dati personali, con la sottoscrizione il tirocinante esprime il suo consenso a che i suoi dati personali vengano comunicati all'Università limitatamente ai trattamenti connessi alle finalità del presente rapporto di tirocinio. La sottoscrizione del presente modello comporta anche il consenso del tirocinante al trattamento dei suoi dati personali nel senso sopraindicato.
                 </p>
                 <p>L'Aquila,
-                    <input type="date" name="today" min="2019-11-07" class="border-none"/>
+                    <input type="date" name="today" min="2019-11-07" class="border-none" readonly/>
                 </p>
                 <p>Firma per visione e accettazione del tirocinante</p>
                 <p id="firma"><u><%=nomeCognome%></u></p>

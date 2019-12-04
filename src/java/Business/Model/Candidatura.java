@@ -44,6 +44,10 @@ public class Candidatura {
         private String obiettivi;
         private String modalita;
         private String rimborsi;
+        
+        public Candidatura(){
+            
+        }
 	
 	public Candidatura(String condizioneAttualeStudente,  String handicap, String startDate,
 			String endDate, String cfu, String tutoreUniversitario, String telefonoTutoreUni, String emailTutoreUni,
@@ -135,7 +139,7 @@ public class Candidatura {
             return orari;
         }
         
-        private void setOrari(String orari){
+        public void setOrari(String orari){
             this.orari = orari;
         }
         

@@ -122,4 +122,40 @@ public class CandidaturaDAO implements DAOinterface{
     
     }
     
+    public static boolean approvaTirocinio(ArrayList<Object> args){
+        Connection connect = null;
+	PreparedStatement preparedStatement = null;
+	boolean success = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
+					"root", "ciao");
+            preparedStatement = connect.prepareStatement("update internshiptutor.canditature "
+                    + "set approvazione = 'approvata', data_inizio = ?, data_fine = ?"
+                    + ", documento = ? where id = ?");
+            preparedStatement.setString(1, (String) args.get(0));
+            preparedStatement.setString(2, (String) args.get(1));
+            preparedStatement.setString(3, (String) args.get(2));
+            preparedStatement.setString(4, (String) args.get(3));
+            preparedStatement.executeUpdate();
+        }catch(SQLException e){
+            System.out.println("ERRORE DATABASE! " + e.getMessage());
+            success = false;
+        }catch(Exception e){
+            System.out.println("ERRORE GENERICO! " + e.getMessage());
+            success = false;
+        }finally{
+            try{
+                if (connect != null)
+                    connect.close();
+		if (preparedStatement != null)
+                    preparedStatement.close();
+		return success;
+            }catch (final SQLException e){
+                System.out.println("final - ERRORE DATABASE! " + e.getMessage());
+                return false;
+            }
+        }
+    }
+    
 }

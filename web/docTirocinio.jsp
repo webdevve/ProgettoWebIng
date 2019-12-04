@@ -89,7 +89,31 @@
          
       <h1>Documento Progetto Formativo e di Orientamento</h1>
 
-<form action="#" method="post">
+<form action="accettaProposta" method="post">
+    <input type="hidden" name="id_candidatura" value="<%=id_candidatura%>"/>
+    <input type="hidden" name="nomeCognome" value="<%=nomeCognome%>"/>
+    <input type="hidden" name="luogoNascita" value="<%=luogoNascita%>"/>
+    <input type="hidden" name="dataNascita" value="<%=dataNascita%>"/>
+    <input type="hidden" name="residenza" value="<%=residenza%>"/>
+    <input type="hidden" name="cf" value="<%=cf%>"/>
+    <input type="hidden" name="telefonoStudente" value="<%=telefonoStudente%>"/>
+    <input type="hidden" name="condizione" value="<%=condizione%>"/>
+    <input type="hidden" name="handicap" value="<%=handicap%>"/>
+    <input type="hidden" name="ragioneSociale" value="<%=ragioneSociale%>"/>
+    <input type="hidden" name="Luogo" value="<%=Luogo%>"/>
+    <input type="hidden" name="ambito" value="<%=ambito%>"/>
+    <input type="hidden" name="orari" value="<%=orari%>"/>
+    <input type="hidden" name="ore" value="<%=ore%>"/>
+    <input type="hidden" name="cfu" value="<%=cfu%>"/>
+    <input type="hidden" name="tutoreAziendale" value="<%=tutoreAziendale%>"/>
+    <input type="hidden" name="telefonoTutoreAz" value="<%=telefonoTutoreAz%>"/>
+    <input type="hidden" name="email_responsabile" value="<%=email_responsabile%>"/>
+    <input type="hidden" name="obiettivi" value="<%=obiettivi%>"/>
+    <input type="hidden" name="modalita" value="<%=modalita%>"/>
+    <input type="hidden" name="rimborsi" value="<%=rimborsi%>"/>
+    <input type="hidden" name="tutoreUniversitario" value="<%=tutoreUniversitario%>"/>
+    <input type="hidden" name="emailTutoreUni" value="<%=emailTutoreUni%>"/>
+    <input type="hidden" name="telefonoTutoreUni" value="<%=telefonoTutoreUni%>"/>
     <div class="card">
         <div class="cardContainer">
             <h1>UNIVERSITA' DEGLI STUDI DELL'AQUILA</h1>
@@ -146,9 +170,9 @@
                 <p>Tempi di accesso ai locali aziendali <strong><%=orari%></strong></p>
                 <p>
                     Periodo di tirocinio n.
-                    <input type="number" name="mesi" class="border-none" readonly/> mesi dal
-                    <input type="date" name="startDate" min="2019-11-07" class="border-none" readonly placeholder="AAAA-MM-dd"/> al
-                    <input type="date" name="endDate" min="2019-11-07" class="border-none" readonly placeholder="AAAA-MM-dd"/>
+                    <input type="number" name="mesi" class="border-none"/> mesi dal
+                    <input type="date" name="startDate" min="2019-11-07" class="border-none" placeholder="aaaa-MM-dd"/> al
+                    <input type="date" name="endDate" min="2019-11-07" class="border-none" placeholder="aaaa-MM-dd"/>
                     <br> (con possibilità di proroga entro i limiti massimi previsti dalla normativa vigente)
                 </p>
                 <p>
@@ -276,7 +300,7 @@
              }
          %>
     <div class="container-login100-form-btn m-t-17">
-        <button type="submit" name="conferma" value="richiesta" class="login100-form-btn">Accetta proposta di tirocinio</button>
+        <button type="submit" name="stato" value="proposta" class="login100-form-btn">Accetta proposta di tirocinio</button>
     </div>
 </form>
     </body>

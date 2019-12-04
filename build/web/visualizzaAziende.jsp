@@ -58,11 +58,6 @@
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
                              resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.azienda where stato = 'convenzionata'");
-                             if(!resultSet.next()){
-                                 %>
-                                 <h1>Al Momento non ci sono aziende disponibili.</h1>
-                                 <%
-                             }
                              while(resultSet.next()){
                                 String ragione_sociale = resultSet.getString("ragione_sociale");
                                 String indirizzo = resultSet.getString("indirizzo");
