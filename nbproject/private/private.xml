@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/accettaProposta.java</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/offerteChiuse.jsp</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/azienda.jsp</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/azioniTirocinio.java</file>
             <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/tirocini.jsp</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/proceduraConvenzioneUno.java</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/generateTirociniPDF.java</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/leMieOfferte.jsp</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/DAO/CandidaturaDAO.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/listastudentiofferta.jsp</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/confermaConvenzione.java</file>
         </group>
     </open-files>
 </project-private>

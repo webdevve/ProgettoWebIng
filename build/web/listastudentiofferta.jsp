@@ -41,6 +41,7 @@
             <a href="#default" class="logo">InternshipTutor</a>
             <div class="header-right">
               <a href="azienda.jsp">Home</a>
+              <a href="tirocini.jsp">Tirocini</a>
               <a href="#news">Le Mie Offerte</a>
               <a href="offerteChiuse.jsp">Offerte Chiuse</a>
               <a href="#profilo.jsp"><%=str%></a>

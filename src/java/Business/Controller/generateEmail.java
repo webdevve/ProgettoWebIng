@@ -6,8 +6,6 @@
 package Business.Controller;
 
 import Business.Model.Candidatura;
-import Business.Model.Offerta;
-import Business.Model.Studente;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -89,6 +87,28 @@ public class generateEmail {
                     + "Email Responsabile Azienda: " + c.getEmail_responsabile_azienda()
             );
             
+            
+            fw.write(System.getProperty("line.separator")+System.getProperty("line.separator")+"InternshipTutor");
+            fw.write(System.getProperty("line.separator")+System.getProperty("line.separator")+data);
+            fw.flush();
+            fw.close();
+        }
+    }
+    
+    public static void emailConfermaTirocinio(String email_destinatario, String studente, String titolo) throws IOException{
+        String userprofile = System.getenv("USERPROFILE");
+        Date data = new Date();
+        File file = new File(userprofile + "\\Downloads/Attivazione tirocinio"+studente+".txt");
+        if(file.exists()){
+            System.out.println("il file esiste");
+        }else if(file.createNewFile()){
+            FileWriter fw = new FileWriter(file);
+            fw.write("TO: " + email_destinatario + System.getProperty("line.separator"));
+            fw.write("FROM: InternshipTutor" + System.getProperty("line.separator"));
+            fw.write("OGGETTO: Conferma attivazione tirocinio " + titolo + System.getProperty("line.separator")+System.getProperty("line.separator"));
+            fw.write("Caro studente, "+ System.getProperty("line.separator")
+                    + "siamo lieti di informarti che il tirocinio " + titolo + System.getProperty("line.separator")
+                    +" è stato attivato.");
             
             fw.write(System.getProperty("line.separator")+System.getProperty("line.separator")+"InternshipTutor");
             fw.write(System.getProperty("line.separator")+System.getProperty("line.separator")+data);
