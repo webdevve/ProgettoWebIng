@@ -1,6 +1,6 @@
 <%-- 
-    Document   : tirocini
-    Created on : 4-dic-2019, 12.44.10
+    Document   : tirociniChiusi
+    Created on : 5-dic-2019, 18.44.21
     Author     : Davide Simboli
 --%>
 
@@ -60,7 +60,7 @@
                <table style="width:100%">
                   <tr>
                      <th colspan="14" style="background-color: whitesmoke;">
-                         <h3>Lista dei tirocini da confermare</h3>
+                         <h3>Lista del tirocini terminati</h3>
                      </th>
                   </tr>
                   <tr style="background-color: whitesmoke;">
@@ -68,8 +68,7 @@
                      <th>Titolo Tirocinio</th>
                      <th>Nome</th>
                      <th>Cognome</th>
-                     <th>Documento</th>
-                     <th>Action</th>
+                     <th>Email Tirocinante</th>
                   </tr>
                   <%
                      Connection connect = null;
@@ -83,7 +82,7 @@
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
                              resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.documento_formativo WHERE email_azienda = '"+str+"' "
-                                     + "and approvazione = 'approvata'");
+                                     + "and approvazione = 'chiusa'");
                              while(resultSet.next()){
                                 int id_candidatura = resultSet.getInt("id");
                                 String nome = resultSet.getString("nome");
@@ -91,23 +90,13 @@
                                 String titolo = resultSet.getString("titolo");
                                 String email_studente = resultSet.getString("email_studente");
                       %>
-                      <form action="azioniTirocinio" method="post">
-                      <input type="hidden" value="<%=id_candidatura%>" name="id"/>
-                      <input type="hidden" value="<%=nome%>" name="nome"/>
-                      <input type="hidden" value="<%=cognome%>" name="cognome"/>
-                      <input type="hidden" value="<%=titolo%>" name="titolo"/>
-                      <input type="hidden" value="<%=email_studente%>" name="email_studente"/>
-                     <tr>
+                      <form action="terminaTirocinio" method="post">
+                      <tr>
                         <td><%=id_candidatura%></td>
                         <td><%=titolo%></td>
                         <td><%=nome%></td>
                         <td><%=cognome%></td>
-                        <td>
-                            Seleziona il Documento: <input type="file" name="myFile" id='btncaricaBlue'/>
-                        </td>
-                        <td>
-                           <button type="submit" name="stato" value="confermaDocumento" id='btncarica'>Conferma</button>
-                        </td>
+                        <td><%=email_studente%></td>
                      </tr>
                      </form>
                   <%
@@ -118,7 +107,6 @@
                      resultSet.close();
                      if(count == 0){
                      %>
-                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
@@ -148,8 +136,8 @@
          </div>
       </div>
       <div class="setCenter">
-        <p><a href="tirociniInCorso.jsp">lista dei tirocini in corso</a></p>
-        <p><a href="tirociniChiusi.jsp">lista del tirocini terminati</a></p>
+        <p><a href="tirocini.jsp">Lista dei tirocini da confermare</a></p>
+        <p><a href="tirociniInCorso.jsp">Lista dei tirocini in corso</a></p>
       </div>
         
     </body>

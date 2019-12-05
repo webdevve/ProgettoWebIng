@@ -98,7 +98,7 @@ public class accettaProposta extends HttpServlet {
         String id_candidatura = request.getParameter("id_candidatura");
         String id_studente = request.getParameter("id_studente");
         String id_azienda = request.getParameter("id_azienda");
-        String titolo = request.getParameter("titolo");
+        String titolo ="Documento Formativo -"+ request.getParameter("titolo");
         String doc = officialDocTirocinio(request,response);
         ArrayList<Object> list = new ArrayList<>();
         list.add(startDate);

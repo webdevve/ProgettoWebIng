@@ -7,7 +7,6 @@ package Business.Controller;
 
 import static Business.Controller.generateTirociniPDF.generateFile;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,10 +43,7 @@ public class scaricaDoc extends HttpServlet {
             request.setAttribute("notify", notifica);
             RequestDispatcher rd = request.getRequestDispatcher("documentiStud.jsp");
             rd.forward(request, response);
-        }else{
-            
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -103,12 +103,12 @@ public class azioniTirocinio extends HttpServlet {
             generateEmail.emailConfermaTirocinio(email_studente, studente, titolo);
             String notifica = "E' stato attivato il tirocinio "+titolo+" per lo studente "+ nome +" "+cognome;
             request.setAttribute("notify", notifica);
-            RequestDispatcher rd = request.getRequestDispatcher("leMieOfferte.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("tirocini.jsp");
             rd.forward(request, response);
         }else{
             String errore = "ERRORE: tirocinio non attivato."; 
             request.setAttribute("err", errore);
-            RequestDispatcher rd = request.getRequestDispatcher("leMieOfferte.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("tirocini.jsp");
             rd.forward(request, response);
         }
     }

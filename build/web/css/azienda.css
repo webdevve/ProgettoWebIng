@@ -24,3 +24,7 @@ and open the template in the editor.
 #btnchiudi{
     text-align: center;
 }
+.setCenter{
+    text-align: center;
+    margin: 0 auto;
+}

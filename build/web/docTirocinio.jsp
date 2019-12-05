@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/header.css" type="text/css"/>
         <link rel="stylesheet" href="css/index.css" type="text/css"/>
         <link rel="stylesheet" href="css/documentoConvenzione.css" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Beth+Ellen&display=swap" rel="stylesheet">
     </head>
     <body>
         <%
@@ -183,7 +184,7 @@
                 </p>
                 <p>
                     numero ore di tirocinio <strong><%=ore%></strong>
-                    per il conseguimento di n. <%=cfu%>CFU
+                    per il conseguimento di n. <%=cfu%> CFU
                 </p>
                 <br>
                     <p>Tutore universitario <strong><%=tutoreUniversitario%></strong>

@@ -147,7 +147,10 @@
             </div>
          </div>
       </div>
-        <p><a href="#">lista dei tirocini in corso</a></p>
-        <p><a href="#">lista del tirocini terminati</a></p>
+      <div class="setCenter">
+        <p><a href="tirociniInCorso.jsp">lista dei tirocini in corso</a></p>
+        <p><a href="tirociniChiusi.jsp">lista del tirocini terminati</a></p>
+      </div>
+        
     </body>
 </html>
