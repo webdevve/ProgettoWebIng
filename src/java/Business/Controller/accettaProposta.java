@@ -8,6 +8,7 @@ package Business.Controller;
 import static Business.Controller.generateTirociniPDF.generaPdfUno;
 import Business.Model.Candidatura;
 import DAO.CandidaturaDAO;
+import DAO.DocumentiDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -95,6 +96,9 @@ public class accettaProposta extends HttpServlet {
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         String id_candidatura = request.getParameter("id_candidatura");
+        String id_studente = request.getParameter("id_studente");
+        String id_azienda = request.getParameter("id_azienda");
+        String titolo = request.getParameter("titolo");
         String doc = officialDocTirocinio(request,response);
         ArrayList<Object> list = new ArrayList<>();
         list.add(startDate);
@@ -103,7 +107,22 @@ public class accettaProposta extends HttpServlet {
         list.add(id_candidatura);
         
         boolean startTirocinio = CandidaturaDAO.approvaTirocinio(list);
+        
+        ArrayList<Object> stud = new ArrayList<>();
+        stud.add(id_studente);
+        stud.add(id_azienda);
+        stud.add("studente");
+        stud.add(doc);
+        stud.add(titolo);
+        ArrayList<Object> az = new ArrayList<>();
+        az.add(id_studente);
+        az.add(id_azienda);
+        az.add("azienda");
+        az.add(doc);
+        az.add(titolo);
         if(startTirocinio){
+            boolean registraDocStud = new DocumentiDAO().insert(stud);
+            boolean registraDocAz = new DocumentiDAO().insert(az);
             String notifica = "Proposta di tirocinio accettata, documento in Download...";
             request.setAttribute("notify", notifica);
             RequestDispatcher rd = request.getRequestDispatcher("listastudentiofferta.jsp");

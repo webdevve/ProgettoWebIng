@@ -84,16 +84,27 @@ create table doc_finale(
     constraint doc_finale_studente foreign key (id_studente) references studente(id) on delete cascade on update cascade
 );
 
+create table documenti(
+	id integer unsigned primary key not null auto_increment,
+    id_studente integer unsigned not null,
+    id_azienda integer unsigned not null,
+    utente enum('azienda', 'studente') not null,
+    doc text not null,
+    titolo varchar(300) not null,
+    constraint doc_studente foreign key (id_studente) references studente(id) on delete cascade on update cascade,
+    constraint doc_azienda foreign key (id_azienda) references azienda(id) on delete cascade on update cascade
+);
+
 create view offerta_azienda AS 
 select offerta.id, offerta.titolo, offerta.luogo, offerta.durata, offerta.descrizione, offerta.modalita, offerta.orari, offerta.rimborsi, offerta.obiettivi, 
 	azienda.ragione_sociale, azienda.indirizzo, azienda.ambito, azienda.nome_responsabile, azienda.cognome_responsabile, azienda.telefono_responsabile, 
-    azienda.email_responsabile, azienda.email_azienda
+    azienda.email_responsabile, azienda.email_azienda, azienda.id as id_azienda
 from offerta join azienda
 where offerta.id_azienda = azienda.id;
 
 create view candidatura_studente as
 SELECT canditature.id, canditature.condizione, canditature.cfu, canditature.tutoreUniversitario, canditature.emailTutoreUni, canditature.telefonoTutoreUni, studente.nome, studente.cognome,
-studente.email_studente, studente.luogo_nascita, studente.residenza, studente.cf, studente.data_nascita, studente.telefono, studente.handicap, canditature.id_offerta, canditature.approvazione
+studente.email_studente,studente.id as id_studente, studente.luogo_nascita, studente.residenza, studente.cf, studente.data_nascita, studente.telefono, studente.handicap, canditature.id_offerta, canditature.approvazione
  from internshiptutor.canditature join internshiptutor.studente 
 where canditature.id_studente = studente.id;
 
@@ -104,5 +115,5 @@ candidatura_studente.telefono, candidatura_studente.condizione, candidatura_stud
 offerta_azienda.ambito, offerta_azienda.orari, offerta_azienda.durata, candidatura_studente.cfu, offerta_azienda.nome_responsabile, 
 offerta_azienda.cognome_responsabile, offerta_azienda.telefono_responsabile, offerta_azienda.email_responsabile, offerta_azienda.email_azienda, offerta_azienda.titolo, offerta_azienda.obiettivi,
 offerta_azienda.modalita, offerta_azienda.rimborsi, candidatura_studente.tutoreUniversitario, candidatura_studente.emailTutoreUni, candidatura_studente.telefonoTutoreUni, candidatura_studente.approvazione,
-candidatura_studente.email_studente
+candidatura_studente.email_studente, candidatura_studente.id_studente, offerta_azienda.id_azienda
 from candidatura_studente join offerta_azienda where candidatura_studente.id_offerta = offerta_azienda.id

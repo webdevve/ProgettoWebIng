@@ -57,6 +57,8 @@
                 Statement = connect.createStatement();
                 resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.documento_formativo where id = '"+id_candidatura+"'");
                 while(resultSet.next()){
+                    int id_studente = resultSet.getInt("id_studente");
+                    int id_azienda = resultSet.getInt("id_azienda");
                     String nome = resultSet.getString("nome");
                     String cognome = resultSet.getString("cognome");
                     String nomeCognome = nome +" "+cognome;
@@ -84,12 +86,15 @@
                     String tutoreUniversitario = resultSet.getString("tutoreUniversitario");
                     String emailTutoreUni = resultSet.getString("emailTutoreUni");
                     String telefonoTutoreUni = resultSet.getString("telefonoTutoreUni");
+                    String titolo = resultSet.getString("titolo");
                 %> 
                 
          
       <h1>Documento Progetto Formativo e di Orientamento</h1>
 
 <form action="accettaProposta" method="post">
+    <input type="hidden" name="id_azienda" value="<%=id_azienda%>"/>
+    <input type="hidden" name="id_studente" value="<%=id_studente%>"/>
     <input type="hidden" name="id_candidatura" value="<%=id_candidatura%>"/>
     <input type="hidden" name="nomeCognome" value="<%=nomeCognome%>"/>
     <input type="hidden" name="luogoNascita" value="<%=luogoNascita%>"/>
@@ -114,6 +119,7 @@
     <input type="hidden" name="tutoreUniversitario" value="<%=tutoreUniversitario%>"/>
     <input type="hidden" name="emailTutoreUni" value="<%=emailTutoreUni%>"/>
     <input type="hidden" name="telefonoTutoreUni" value="<%=telefonoTutoreUni%>"/>
+    <input type="hidden" name="titolo" value="<%=titolo%>"/>
     <div class="card">
         <div class="cardContainer">
             <h1>UNIVERSITA' DEGLI STUDI DELL'AQUILA</h1>
