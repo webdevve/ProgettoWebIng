@@ -31,6 +31,7 @@
                 //nome = "";
                 login = "Accedi";
                 linkAccedi = "login.jsp";
+                response.sendRedirect("login.jsp");
             }else{
                 login = nome;
                 linkAccedi = "#profilo";
@@ -48,7 +49,7 @@
         <a href="#default" class="logo">InternshipTutor</a>
         <div class="header-right">
           <a href="index.jsp">Home</a>
-          <a class="active" href="#">Documenti</a>
+          <a class="active" href="documentiStud.jsp">Documenti</a>
           <a href="visualizzaAziende.jsp" >Aziende</a>
           <a href="<%=linkAccedi%>"><%=login%></a>
         </div>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : leMieOfferte
-    Created on : 30-set-2019, 21.35.38
+    Document   : documentiAz
+    Created on : 6-dic-2019, 10.16.03
     Author     : Davide Simboli
 --%>
 
@@ -9,15 +9,15 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<?xml version="1.0" encoding="UTF-8"?>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Le Mie Offerte</title>
+        <title>Internetship Tutor</title>
         <link rel="stylesheet" href="css/header.css" type="text/css"/>
-      <link rel="stylesheet" href="css/index.css" type="text/css"/>
-      <link rel="stylesheet" href="css/admin.css" type="text/css"/>
+        <link rel="stylesheet" href="css/index.css" type="text/css"/>
+        <link rel="stylesheet" href="css/admin.css" type="text/css"/>
     </head>
     <body>
         <%
@@ -40,17 +40,19 @@
             <a href="#default" class="logo">InternshipTutor</a>
             <div class="header-right">
               <a href="azienda.jsp">Home</a>
-              <a href="documentiAz.jsp">Documenti</a>
+              <a class="active" href="documentiAz.jsp">Documenti</a>
               <a href="tirocini.jsp">Tirocini</a>
-              <a class="active" href="#news">Le Mie Offerte</a>
+              <a href="leMieOfferte.jsp">Le Mie Offerte</a>
               <a href="offerteChiuse.jsp">Offerte Chiuse</a>
               <a href="#profilo.jsp"><%=str%></a>
             </div>
         </div>
-            <font color="red" id="err">
+
+    <div class="container">
+        <font color="red" id="err">
             <p><%=errore%></p>
           </font>
-          <font color="green">
+        <font color="green">
             <p><%=notifica%></p>
           </font>
           <div class="container">
@@ -59,18 +61,14 @@
                <table style="width:100%">
                   <tr>
                      <th colspan="14" style="background-color: whitesmoke;">
-                         <h3>Le Mie Offerte</h3>
+                         <h3>Documenti</h3>
                      </th>
                   </tr>
                   <tr style="background-color: whitesmoke;">
-                     <th>ID</th>
                      <th>Titolo</th>
-                     <th>Luogo</th>
-                     <th>Durata</th>
-                     <th>Modalità</th>
-                     <th>Rimborsi</th>
-                     <th>Dettaglio</th>
-                     <th>Chiudi Offerta</th>
+                     <th>Nome</th>
+                     <th>Cognome</th>
+                     <th>Action</th>
                   </tr>
                   <%
                      Connection connect = null;
@@ -83,41 +81,29 @@
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT offerta.id, offerta.titolo, offerta.luogo, "
-                                     + "offerta.durata, offerta.modalita, offerta.rimborsi  "
-                                     + "FROM internshiptutor.offerta join internshiptutor.azienda ON azienda.id = offerta.id_azienda "
-                                     + "where azienda.email_azienda = '"+str+"'"
-                                     + "AND offerta.stato = 'aperta'");
+                             resultSet = Statement.executeQuery("select * from documenti_azienda_studente where email_azienda = '"+str+"'");
                              while(resultSet.next()){
                      %>
-                  <form action="leMieOfferte" method="get">
+                  <form action="scaricaDoc" method="post">
                       <%
-                          int id_offerta = resultSet.getInt("ID");
+                          int id_documento = resultSet.getInt("id_documento");
                           String titolo = resultSet.getString("titolo");
-                          String luogo = resultSet.getString("luogo");
-                          String durata = resultSet.getString("durata");
-                          String modalita = resultSet.getString("modalita");
-                          String rimborsi = resultSet.getString("rimborsi");
+                          String nomeStud = resultSet.getString("nome");
+                          String cognomeStud = resultSet.getString("cognome");
+                          String doc = resultSet.getString("doc");
                       %>
-                      <input type="hidden" value="<%=id_offerta%>" name="id"/>
-                      <input type="hidden" value="<%=titolo%>" name="titolo"/>
-                      <input type="hidden" value="<%=luogo%>" name="luogo"/>
-                      <input type="hidden" value="<%=durata%>" name="durata"/>
-                      <input type="hidden" value="<%=modalita%>" name="modalita"/>
-                      <input type="hidden" value="<%=rimborsi%>" name="rimborsi"/>
+                      <input type="hidden" name="id_documento" value="<%=id_documento%>"/>
+                      <input type="hidden" name="nomeStud" value="<%=nomeStud%>"/>
+                      <input type="hidden" name="cognomeStud" value="<%=cognomeStud%>"/>
+                      <input type="hidden" name="doc" value="<%=doc%>"/>
                      <tr>
-                        <td><%=id_offerta%></td>
                         <td><%=titolo%></td>
-                        <td><%=luogo%></td>
-                        <td><%=durata%></td>
-                        <td><%=modalita%></td>
-                        <td><%=rimborsi%></td>
+                        <td><%=nomeStud%></td>
+                        <td><%=cognomeStud%></td>
                         <td>
-                            <button type="submit" name="stato" value="dettaglio" id='btnsi'>Vedi</button>
+                            <button type="submit" name="stato" value="scaricaAz" id='btnsi' style="width: 100px;">Scarica</button>
                         </td>
-                        <td>
-                           <button type="submit" name="stato" value="chiudi" id='btnchiudi'>Chiudi</button>
-                        </td>
+                        
                      </tr>
                   </form>
                   <%
@@ -128,11 +114,6 @@
                      resultSet.close();
                      if(count == 0){
                      %>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <%

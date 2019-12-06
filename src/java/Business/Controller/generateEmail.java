@@ -107,8 +107,7 @@ public class generateEmail {
             fw.write("FROM: InternshipTutor" + System.getProperty("line.separator"));
             fw.write("OGGETTO: Conferma attivazione tirocinio " + titolo + System.getProperty("line.separator")+System.getProperty("line.separator"));
             fw.write("Caro studente, "+ System.getProperty("line.separator")
-                    + "siamo lieti di informarti che il tirocinio " + titolo + System.getProperty("line.separator")
-                    +" è stato attivato.");
+                    + "siamo lieti di informarti che il tirocinio " + titolo +" è stato attivato.");
             
             fw.write(System.getProperty("line.separator")+System.getProperty("line.separator")+"InternshipTutor");
             fw.write(System.getProperty("line.separator")+System.getProperty("line.separator")+data);

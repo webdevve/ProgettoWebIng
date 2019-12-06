@@ -44,6 +44,17 @@ public class scaricaDoc extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("documentiStud.jsp");
             rd.forward(request, response);
         }
+        if(status.equals("scaricaAz")){
+            String nomeStud = request.getParameter("nomeStud");
+            String cognomeStud = request.getParameter("cognomeStud");
+            String doc = request.getParameter("doc");
+            String nome = nomeStud+cognomeStud;
+            generateFile(doc, nome);
+            String notifica = "Documento scaricato nella cartella Download.";
+            request.setAttribute("notify", notifica);
+            RequestDispatcher rd = request.getRequestDispatcher("documentiAz.jsp");
+            rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

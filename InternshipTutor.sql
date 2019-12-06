@@ -77,13 +77,6 @@ create table canditature(
     file varchar(200)
 );
 
-create table doc_finale(
-	id integer unsigned primary key not null auto_increment,
-    id_studente integer unsigned not null,
-    doc_finale text,
-    constraint doc_finale_studente foreign key (id_studente) references studente(id) on delete cascade on update cascade
-);
-
 create table documenti(
 	id integer unsigned primary key not null auto_increment,
     id_studente integer unsigned not null,
@@ -117,4 +110,13 @@ offerta_azienda.ambito, offerta_azienda.orari, offerta_azienda.durata, candidatu
 offerta_azienda.cognome_responsabile, offerta_azienda.telefono_responsabile, offerta_azienda.email_responsabile, offerta_azienda.email_azienda, offerta_azienda.titolo, offerta_azienda.obiettivi,
 offerta_azienda.modalita, offerta_azienda.rimborsi, candidatura_studente.tutoreUniversitario, candidatura_studente.emailTutoreUni, candidatura_studente.telefonoTutoreUni, candidatura_studente.approvazione,
 candidatura_studente.email_studente, candidatura_studente.id_studente, offerta_azienda.id_azienda, offerta_azienda.partita_iva, candidatura_studente.data_inizio, candidatura_studente.data_fine
-from candidatura_studente join offerta_azienda where candidatura_studente.id_offerta = offerta_azienda.id
+from candidatura_studente join offerta_azienda where candidatura_studente.id_offerta = offerta_azienda.id;
+
+create view documenti_azienda_studente as 
+select documenti.id as id_documento, documenti.titolo, studente.nome, studente.cognome, documenti.doc, azienda.email_azienda 
+from internshiptutor.documenti 
+join internshiptutor.azienda 
+on documenti.id_azienda = azienda.id 
+join internshiptutor.studente
+on documenti.id_studente = studente.id
+where utente = 'azienda';

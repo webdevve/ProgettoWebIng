@@ -26,20 +26,27 @@
             String nome = (String)request.getAttribute("name");
             String login = "";
             String linkAccedi = "";
+            String linkDoc = "";
+            String documenti = "";
             if(nome == null){
                 //nome = "";
                 login = "Accedi";
                 linkAccedi = "login.jsp";
+                linkDoc = "#";
             }else{
                 login = nome;
                 linkAccedi = "#profilo";
+                linkDoc = "documentiStud.jsp";
+                documenti = "Documenti";
             }
     %> 
     <div class="header">
         <a href="#default" class="logo">InternshipTutor</a>
         <div class="header-right">
           <a href="index.jsp">Home</a>
-          <a href="#news">News</a>
+          <%if(nome != null){%>
+          <a href="<%=linkDoc%>"><%=documenti%></a>
+          <%}%>
           <a class="active" href="visualizzaAziende.jsp" >Aziende</a>
           <a href="<%=linkAccedi%>"><%=login%></a>
         </div>

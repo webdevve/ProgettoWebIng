@@ -24,9 +24,8 @@
       <a href="#default" class="logo">InternshipTutor</a>
       <div class="header-right">
         <a href="index.jsp">Home</a>
-        <a href="#news">News</a>
         <a href="visualizzaAziende.jsp" >Aziende</a>
-        <a href="#accedi" class="active">Accedi</a>
+        <a href="login.jsp" class="active">Accedi</a>
       </div>
     </div>
     <div class="limiter">
