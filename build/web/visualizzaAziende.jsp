@@ -17,6 +17,8 @@
     <title>Aziende</title>
     <link rel="stylesheet" href="css/index.css" type="text/css"/>
     <link rel="stylesheet" href="css/header.css" type="text/css"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
     <body>
      <%
@@ -49,6 +51,12 @@
           <%}%>
           <a class="active" href="visualizzaAziende.jsp" >Aziende</a>
           <a href="<%=linkAccedi%>"><%=login%></a>
+          <a>
+            <form action="ricerca.jsp">
+              <input type="text" placeholder="Search.." name="search"/>
+              <button type="submit" name="search" id="not-button"><i class="fa fa-search"></i></button>
+            </form>
+          </a>
         </div>
     </div>
 
@@ -79,7 +87,7 @@
                   <h2><%=ragione_sociale%></h2>
                   <p>Indirizzo: <%=indirizzo%></p>
                   <p>Riferimenti: <%=riferimenti%></p>
-                  <button type="submit" name="moreInformation" class="button button4" value="">Visualizza l'azienda</button>
+                  <!--<button type="submit" name="moreInformation" class="button button4" value="">Visualizza l'azienda</button>-->
                 </div>
             </div>
         </form>

@@ -16,6 +16,8 @@
         <title>Internship Tutor</title>
         <link rel="stylesheet" href="css/header.css" type="text/css"/>
         <link rel="stylesheet" href="css/index.css" type="text/css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <%
@@ -56,6 +58,12 @@
           <%}%>
           <a href="visualizzaAziende.jsp" >Aziende</a>
           <a href="<%=linkAccedi%>"><%=login%></a>
+          <a>
+            <form action="ricerca.jsp">
+              <input type="text" placeholder="Search.." name="search"/>
+              <button type="submit" name="search" id="not-button"><i class="fa fa-search"></i></button>
+            </form>
+          </a>
         </div>
     </div>
 
@@ -84,6 +92,7 @@
                                 String ragione_sociale = resultSet.getString("ragione_sociale");
                                 String descrizione = resultSet.getString("descrizione");
                                 int id = resultSet.getInt("id");
+                                String luogo = resultSet.getString("luogo");
         %>
 
         <form action="dettaglioOfferta" method="POST">
@@ -94,6 +103,7 @@
               <p>
                   <%=descrizione%>
               </p>
+              <p>Luogo: <%=luogo%></p>
               <input type="hidden" value="<%=id%>" name="moreInformation"/>
               <button type="submit" name="" class="button button4" value="">Visualizza l'offerta</button>
             </div>

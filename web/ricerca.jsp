@@ -1,10 +1,9 @@
 <%-- 
-    Document   : visualizzaAziende
-    Created on : 27-lug-2019, 11.31.45
-    Author     : alesi
+    Document   : ricerca
+    Created on : 9-dic-2019, 14.55.05
+    Author     : Davide Simboli
 --%>
 
-<%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -14,15 +13,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-    <title>Aziende</title>
-    <link rel="stylesheet" href="css/index.css" type="text/css"/>
-    <link rel="stylesheet" href="css/header.css" type="text/css"/>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
+        <title>Internship Tutor</title>
+        <link rel="stylesheet" href="css/header.css" type="text/css"/>
+        <link rel="stylesheet" href="css/index.css" type="text/css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
     <body>
-     <%
-         HttpSession sessione = request.getSession();
+        <%
+            HttpSession sessione = request.getSession();
             String str = (String)sessione.getAttribute("username");
             request.setAttribute("name", str);
             String nome = (String)request.getAttribute("name");
@@ -34,22 +33,31 @@
                 //nome = "";
                 login = "Accedi";
                 linkAccedi = "login.jsp";
-                linkDoc = "#";
+                linkDoc = "";
             }else{
                 login = nome;
                 linkAccedi = "#profilo";
                 linkDoc = "documentiStud.jsp";
                 documenti = "Documenti";
             }
-    %> 
+            String notifica = (String)request.getAttribute("notify");
+            if(notifica == null){
+              notifica="";
+            }
+            String errore = (String)request.getAttribute("err");
+            if(errore == null){
+              errore="";
+            }
+            String testo = request.getParameter("search");
+        %>
     <div class="header">
         <a href="#default" class="logo">InternshipTutor</a>
         <div class="header-right">
-          <a href="index.jsp">Home</a>
+          <a class="active" href="index.jsp">Home</a>
           <%if(nome != null){%>
           <a href="<%=linkDoc%>"><%=documenti%></a>
           <%}%>
-          <a class="active" href="visualizzaAziende.jsp" >Aziende</a>
+          <a href="visualizzaAziende.jsp" >Aziende</a>
           <a href="<%=linkAccedi%>"><%=login%></a>
           <a>
             <form action="ricerca.jsp">
@@ -61,6 +69,12 @@
     </div>
 
     <div class="container">
+        <font color="red" id="err">
+            <p><%=errore%></p>
+          </font>
+        <font color="green">
+            <p><%=notifica%></p>
+          </font>
 
         <%
             Connection connect = null;
@@ -72,24 +86,31 @@
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.azienda where stato = 'convenzionata'");
+                             resultSet = Statement.executeQuery("select * from internshiptutor.offerta join internshiptutor.azienda on offerta.id_azienda = azienda.id "+
+                                "where luogo like '%"+testo+"%' or durata like '%"+testo+"%' or obiettivi like '%"+testo+"%' or offerta.descrizione like '%"+testo+"%' "
+                                        + "or titolo like '%"+testo+"%' or ragione_sociale like '%"+testo+"%'");
+                             
                              while(resultSet.next()){
+                                String titolo = resultSet.getString("titolo");
                                 String ragione_sociale = resultSet.getString("ragione_sociale");
-                                String indirizzo = resultSet.getString("indirizzo");
-                                String email_responsabile = resultSet.getString("email_responsabile");
-                                String telefono_responsabile = resultSet.getString("telefono_responsabile");
-                                String riferimenti = email_responsabile +" "+ telefono_responsabile;
+                                String descrizione = resultSet.getString("descrizione");
+                                int id = resultSet.getInt("id");
+                                String luogo = resultSet.getString("luogo");
         %>
 
-        <form action="#dettaglioOfferta" method="POST">
-            <div class="card">
-                <div class="cardContainer">
-                  <h2><%=ragione_sociale%></h2>
-                  <p>Indirizzo: <%=indirizzo%></p>
-                  <p>Riferimenti: <%=riferimenti%></p>
-                  <!--<button type="submit" name="moreInformation" class="button button4" value="">Visualizza l'azienda</button>-->
-                </div>
+        <form action="dettaglioOfferta" method="POST">
+        <div class="card">
+            <div class="cardContainer">
+              <h2><%=ragione_sociale%></h2>
+              <h3><%=titolo%></h3>
+              <p>
+                  <%=descrizione%>
+              </p>
+              <p>Luogo: <%=luogo%></p>
+              <input type="hidden" value="<%=id%>" name="moreInformation"/>
+              <button type="submit" name="" class="button button4" value="">Visualizza l'offerta</button>
             </div>
+        </div>
         </form>
         <%
                      }
