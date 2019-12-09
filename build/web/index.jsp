@@ -55,6 +55,7 @@
           <a class="active" href="index.jsp">Home</a>
           <%if(nome != null){%>
           <a href="<%=linkDoc%>"><%=documenti%></a>
+          <a href="recensioni.jsp">Recensioni</a>
           <%}%>
           <a href="visualizzaAziende.jsp" >Aziende</a>
           <a href="<%=linkAccedi%>"><%=login%></a>
