@@ -69,7 +69,7 @@
                      <th>Durata</th>
                      <th>Modalità</th>
                      <th>Rimborsi</th>
-                     <th>Dettaglio</th>
+                     <th>Studenti</th>
                      <th>Chiudi Offerta</th>
                   </tr>
                   <%
@@ -90,7 +90,7 @@
                                      + "AND offerta.stato = 'aperta'");
                              while(resultSet.next()){
                      %>
-                  <form action="leMieOfferte" method="get">
+                  <form action="leMieOfferte" method="post">
                       <%
                           int id_offerta = resultSet.getInt("ID");
                           String titolo = resultSet.getString("titolo");

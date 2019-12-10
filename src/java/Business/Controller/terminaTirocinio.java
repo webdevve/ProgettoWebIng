@@ -83,7 +83,7 @@ public class terminaTirocinio extends HttpServlet {
     }// </editor-fold>
 
     private void redirectPageDoc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id_candidatura = request.getParameter("id_candidatura");
+        String id_candidatura = request.getParameter("id");
         String ragione_soc = request.getParameter("ragione_soc");
         String partita_iva = request.getParameter("partita_iva");
         String nome = request.getParameter("nome");

@@ -94,12 +94,56 @@
                                 String descrizione = resultSet.getString("descrizione");
                                 int id = resultSet.getInt("id");
                                 String luogo = resultSet.getString("luogo");
+                                double voto = resultSet.getDouble("recensione");
         %>
 
         <form action="dettaglioOfferta" method="POST">
         <div class="card">
             <div class="cardContainer">
               <h2><%=ragione_sociale%></h2>
+              <%
+                  if(voto<0.5){
+              %>
+              Nessuna valutazione
+              <%
+                  }
+                  if(voto>=0.5 && voto < 1.5){
+              %>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+                  if(voto>=1.5 && voto < 2.5){
+              %>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+                  if(voto>=2.5 && voto < 3.5){
+              %>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+                  if(voto>=3.5 && voto < 4.5){
+              %>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+                  if(voto>=4.5){
+              %>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+              %>
+             
               <h3><%=titolo%></h3>
               <p>
                   <%=descrizione%>

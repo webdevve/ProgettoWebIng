@@ -39,7 +39,9 @@ public class accettaProposta extends HttpServlet {
         String stato = request.getParameter("stato");
         if(stato.equals("approva")){
             String id_candidatura = request.getParameter("id");
+            String id_offerta = request.getParameter("id_offerta");
             request.setAttribute("id_candidatura", id_candidatura);
+            request.setAttribute("id_offerta", id_offerta);
             RequestDispatcher rd = request.getRequestDispatcher("docTirocinio.jsp");
             rd.forward(request, response);
         }
@@ -93,6 +95,7 @@ public class accettaProposta extends HttpServlet {
 
     private void iniziaTirocinio(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+        String id_offerta = request.getParameter("id_offerta");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         String id_candidatura = request.getParameter("id_candidatura");
@@ -125,11 +128,13 @@ public class accettaProposta extends HttpServlet {
             boolean registraDocAz = new DocumentiDAO().insert(az);
             String notifica = "Proposta di tirocinio accettata, documento in Download...";
             request.setAttribute("notify", notifica);
+            request.setAttribute("id_offerta", id_offerta);
             RequestDispatcher rd = request.getRequestDispatcher("listastudentiofferta.jsp");
             rd.forward(request, response);
         }else{
             String errore = "Si è verificato un errore";
             request.setAttribute("err", errore);
+            request.setAttribute("id_offerta", id_offerta);
             RequestDispatcher rd = request.getRequestDispatcher("listastudentiofferta.jsp");
             rd.forward(request, response);
         }

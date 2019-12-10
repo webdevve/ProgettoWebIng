@@ -137,7 +137,7 @@ delimiter //
 CREATE TRIGGER set_rec after insert ON recensione
 FOR EACH ROW
 BEGIN
-	update azienda set recensione = (SELECT truncate(AVG(valutazione),2)AS avg FROM internshiptutor.recensione where id_azienda = NEW.id_azienda)
+	update azienda set recensione = (SELECT truncate(AVG(valutazione),1)AS avg FROM internshiptutor.recensione where id_azienda = NEW.id_azienda)
 		where azienda.id = NEW.id_azienda;
 END;//
 delimiter ;

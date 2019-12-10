@@ -61,7 +61,7 @@ public class CandidaturaDAO implements DAOinterface{
             connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
 					"root", "ciao");
             preparedStatement = connect.prepareStatement("update internshiptutor.canditature "
-                    + "set approvazione = 'chiusa'");
+                    + "set approvazione = 'chiusa' where id = '"+id_candidatura+"'");
             
             preparedStatement.executeUpdate();
         }catch(SQLException e){

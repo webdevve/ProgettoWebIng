@@ -101,6 +101,7 @@
                       <input type="hidden" value="<%=cognome%>" name="cognome"/>
                       <input type="hidden" value="<%=condizione%>" name="condizione"/>
                       <input type="hidden" value="<%=handicap%>" name="handicap"/>
+                      <input type="hidden" value="<%=id_offerta%>" name="id_offerta"/>
                      <tr>
                         <td><%=id_candidatura%></td>
                         <td><%=nome%></td>

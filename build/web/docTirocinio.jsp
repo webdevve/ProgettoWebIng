@@ -36,6 +36,7 @@
            notifica="";
          }
         String id_candidatura = (String)request.getAttribute("id_candidatura");
+        String id_offerta = (String)request.getAttribute("id_offerta");
          %>
       <div class="header">
          <a href="#default" class="logo">InternshipTutor</a>
@@ -94,6 +95,7 @@
       <h1>Documento Progetto Formativo e di Orientamento</h1>
 
 <form action="accettaProposta" method="post">
+    <input type="hidden" name="id_offerta" value="<%=id_offerta%>"/>
     <input type="hidden" name="id_azienda" value="<%=id_azienda%>"/>
     <input type="hidden" name="id_studente" value="<%=id_studente%>"/>
     <input type="hidden" name="id_candidatura" value="<%=id_candidatura%>"/>
