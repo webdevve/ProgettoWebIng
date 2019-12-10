@@ -18,55 +18,9 @@
         <link rel="stylesheet" href="css/header.css" type="text/css"/>
         <link rel="stylesheet" href="css/index.css" type="text/css"/>
         <link rel="stylesheet" href="css/admin.css" type="text/css"/>
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
-        <style type="text/css">
-      #star{
-        width: 20px;
-        height: 20px;
-      }
-      @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
-
-/****** Style Star Rating Widget *****/
-
-.rating {
-  border: none;
-  float: left;
-}
-
-.rating > input { display: none; }
-.rating > label:before {
-  margin: 5px;
-  font-size: 1.25em;
-  font-family: FontAwesome;
-  display: inline-block;
-  content: "\f005";
-}
-
-.rating > .half:before {
-  content: "\f089";
-  position: absolute;
-}
-
-.rating > label {
-  color: #ddd;
- float: right;
-}
-
-/***** CSS Magic to Highlight Stars on Hover *****/
-
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
-
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
-    </style>
+        <link rel="stylesheet" href="css/recensione.css" type="text/css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <%
@@ -101,10 +55,10 @@ h1 { font-size: 1.5em; margin: 10px; }
     <div class="header">
         <a href="#default" class="logo">InternshipTutor</a>
         <div class="header-right">
-          <a class="active" href="index.jsp">Home</a>
+          <a href="index.jsp">Home</a>
           <%if(nome != null){%>
           <a href="<%=linkDoc%>"><%=documenti%></a>
-          <a href="recensioni.jsp">Recensioni</a>
+          <a class="active" href="recensioni.jsp">Recensioni</a>
           <%}%>
           <a href="visualizzaAziende.jsp" >Aziende</a>
           <a href="<%=linkAccedi%>"><%=login%></a>
@@ -147,17 +101,24 @@ h1 { font-size: 1.5em; margin: 10px; }
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT documento_formativo.titolo, documento_formativo.id "
-                                     + "from internshiptutor.documento_formativo where documento_formativo.email_studente = '"+str+"' "
-                                             + "and documento_formativo.approvazione = 'chiusa'");
+                             resultSet = Statement.executeQuery("SELECT documento_formativo.titolo, documento_formativo.id_studente, documento_formativo.id_azienda, "
+                                     + "documento_formativo.id " 
+                                +"from internshiptutor.documento_formativo "
+                                +"where documento_formativo.email_studente = '"+str+"' "
+                                +"and documento_formativo.approvazione = 'chiusa' "
+                                + "and documento_formativo.recensione = 'non recensito'");
                              while(resultSet.next()){
                      %>
                   <form action="recensione" method="post">
                       <%
-                          int id_candidatura = resultSet.getInt("id");
                           String titolo = resultSet.getString("titolo");
+                          int id_studente = resultSet.getInt("id_studente");
+                          int id_azienda = resultSet.getInt("id_azienda");
+                          int id_candidatura = resultSet.getInt("id");
                       %>
-                      <input type="hidden" value="<%=id_candidatura%>" name="id"/>
+                      <input type="hidden" value="<%=id_studente%>" name="id_studente"/>
+                      <input type="hidden" value="<%=id_azienda%>" name="id_azienda"/>
+                      <input type="hidden" value="<%=id_candidatura%>" name="id_candidatura"/>
                      <tr>
                         <td><%=titolo%></td>
                         <td>
@@ -197,10 +158,6 @@ h1 { font-size: 1.5em; margin: 10px; }
                      resultSet.close();
                      if(count == 0){
                      %>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>

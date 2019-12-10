@@ -42,7 +42,7 @@
               <a href="azienda.jsp">Home</a>
               <a href="documentiAz.jsp">Documenti</a>
               <a href="tirocini.jsp">Tirocini</a>
-              <a class="active" href="#news">Le Mie Offerte</a>
+              <a class="active" href="leMieOfferte.jsp">Le Mie Offerte</a>
               <a href="offerteChiuse.jsp">Offerte Chiuse</a>
               <a href="#profilo.jsp"><%=str%></a>
             </div>

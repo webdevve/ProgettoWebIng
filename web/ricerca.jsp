@@ -87,8 +87,8 @@
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
                              resultSet = Statement.executeQuery("select * from internshiptutor.offerta join internshiptutor.azienda on offerta.id_azienda = azienda.id "+
-                                "where luogo like '%"+testo+"%' or durata like '%"+testo+"%' or obiettivi like '%"+testo+"%' or offerta.descrizione like '%"+testo+"%' "
-                                        + "or titolo like '%"+testo+"%' or ragione_sociale like '%"+testo+"%'");
+                                "where (luogo like '%"+testo+"%' or durata like '%"+testo+"%' or obiettivi like '%"+testo+"%' or offerta.descrizione like '%"+testo+"%' "
+                                        + "or titolo like '%"+testo+"%' or ragione_sociale like '%"+testo+"%') and azienda.stato = 'convenzionata'");
                              
                              while(resultSet.next()){
                                 String titolo = resultSet.getString("titolo");

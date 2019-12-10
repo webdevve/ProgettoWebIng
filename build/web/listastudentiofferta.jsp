@@ -36,13 +36,14 @@
            notifica="";
          }
          String id_offerta = (String)request.getAttribute("id_offerta");
+         String titolo = request.getParameter("titolo");
         %>
         <div class="header">
             <a href="#default" class="logo">InternshipTutor</a>
             <div class="header-right">
               <a href="azienda.jsp">Home</a>
               <a href="tirocini.jsp">Tirocini</a>
-              <a href="#news">Le Mie Offerte</a>
+              <a href="leMieOfferte.jsp">Le Mie Offerte</a>
               <a href="offerteChiuse.jsp">Offerte Chiuse</a>
               <a href="#profilo.jsp"><%=str%></a>
             </div>
@@ -60,7 +61,7 @@
                   <tr>
                      <th colspan="14" style="background-color: whitesmoke;">
                          <h3>Studenti Candidati all'Offerta</h3>
-                         <h4>Titolo Offerta</h4>
+                         <h4><%=titolo%></h4>
                      </th>
                   </tr>
                   <tr style="background-color: whitesmoke;">
