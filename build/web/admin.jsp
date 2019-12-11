@@ -42,6 +42,7 @@
             <a class="active" href="admin.jsp">Home</a>
             <a href="confermaConvenzione.jsp">Convenzioni da Confermare</a>
             <a href="aziendeConvenzionate.jsp" >Convenzioni</a>
+            <a href="statistica.jsp">Statistiche</a>
             <a href="#profilo.jsp"><%=str%></a>
          </div>
       </div>

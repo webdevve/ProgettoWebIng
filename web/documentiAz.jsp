@@ -48,7 +48,6 @@
             </div>
         </div>
 
-    <div class="container">
         <font color="red" id="err">
             <p><%=errore%></p>
           </font>

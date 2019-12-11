@@ -15,10 +15,22 @@ public class Recensione {
     private int id_studente;
     private int id_azienda;
     private double valutazione;
+    private String ragioneSoc;
     
     public Recensione(){
         
     }
+    public Recensione(String ragioneSoc, double valutazione){
+        this.ragioneSoc = ragioneSoc;
+        this.valutazione = valutazione;
+    }
+    public void setRagioneSoc(String ragioneSoc){
+        this.ragioneSoc = ragioneSoc;
+    }
+    public String getRagioneSoc(){
+        return ragioneSoc;
+    }
+    
     public Recensione(int id, int id_studente, int id_azienda, double valutazione){
         this.id = id;
         this.id_studente = id_studente;
