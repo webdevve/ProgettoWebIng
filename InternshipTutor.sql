@@ -73,7 +73,6 @@ create table canditature(
     telefonoTutoreUni varchar (50),
     emailTutoreUni varchar (100),
     approvazione enum('approvata', 'non approvata', 'attesa', 'in corso', 'chiusa') default 'attesa',
-    documento text,
     condizione varchar(200),
     file varchar(200),
     recensione enum('non recensito', 'recensito') default 'non recensito'

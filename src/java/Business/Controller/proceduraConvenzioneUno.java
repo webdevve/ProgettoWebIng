@@ -108,8 +108,8 @@ public class proceduraConvenzioneUno extends HttpServlet {
         generateEmail.emailRichiestaTirocinio(emailTutoreUni, c, "Università");
         Studente studente = (Studente) new StudenteDAO().getStudent(emailStudente);
         int idStudente = studente.getID();
-        String testoDOC = generaPdfUno(c, false);
-        boolean insert = inserisciCandidaturaDB(c, idStudente, testoDOC);
+        //String testoDOC = generaPdfUno(c, false);
+        boolean insert = inserisciCandidaturaDB(c, idStudente);
         
         if(insert){
             String notifica = "La tua richiesta è stata inviata!";
@@ -125,7 +125,7 @@ public class proceduraConvenzioneUno extends HttpServlet {
         
     }
     
-    public boolean inserisciCandidaturaDB(Candidatura c, int idStudente, String testoDOC){
+    public boolean inserisciCandidaturaDB(Candidatura c, int idStudente){
         ArrayList<Object> lista = new ArrayList<>();
         lista.add(idStudente);
         lista.add(c.getIdOfferta());
@@ -135,7 +135,6 @@ public class proceduraConvenzioneUno extends HttpServlet {
         lista.add(c.getTutoreUniversitario());
         lista.add(c.getTelefonoTutoreUni());
         lista.add(c.getEmailTutoreUni());
-        lista.add(testoDOC);
         lista.add(c.getCondizioneAttualeStudente());
         
         boolean inserimentoCdb = new CandidaturaDAO().insert(lista);

@@ -186,8 +186,8 @@
                 <p>
                     Periodo di tirocinio n.
                     <input type="number" name="mesi" class="border-none"/> mesi dal
-                    <input type="date" name="startDate" min="2019-11-07" class="border-none" placeholder="aaaa-MM-dd"/> al
-                    <input type="date" name="endDate" min="2019-11-07" class="border-none" placeholder="aaaa-MM-dd"/>
+                    <input type="date" name="startDate" min="2019-11-07" class="border-none" placeholder="aaaa-MM-dd" required/> al
+                    <input type="date" name="endDate" min="2019-11-07" class="border-none" placeholder="aaaa-MM-dd" required/>
                     <br> (con possibilità di proroga entro i limiti massimi previsti dalla normativa vigente)
                 </p>
                 <p>

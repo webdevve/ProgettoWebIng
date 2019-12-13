@@ -106,7 +106,6 @@ public class accettaProposta extends HttpServlet {
         ArrayList<Object> list = new ArrayList<>();
         list.add(startDate);
         list.add(endDate);
-        list.add(doc);
         list.add(id_candidatura);
         
         boolean startTirocinio = CandidaturaDAO.approvaTirocinio(list);
@@ -164,6 +163,8 @@ public class accettaProposta extends HttpServlet {
         String tutoreUniversitario = request.getParameter("tutoreUniversitario");
         String emailTutoreUni = request.getParameter("emailTutoreUni");
         String telefonoTutoreUni = request.getParameter("telefonoTutoreUni");
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
         
         Candidatura c = new Candidatura();
         c.setNomeStudente(nomeCognome);
@@ -189,6 +190,8 @@ public class accettaProposta extends HttpServlet {
         c.setTutoreUniversitario(tutoreUniversitario);
         c.setEmailTutoreUni(emailTutoreUni);
         c.setTelefonoTutoreUni(telefonoTutoreUni);
+        c.setStartDate(startDate);
+        c.setEndDate(endDate);
         String testo = generaPdfUno(c, true);
         return testo;
     }

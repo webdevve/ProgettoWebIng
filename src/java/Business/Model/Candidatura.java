@@ -31,7 +31,6 @@ public class Candidatura {
         private String residenza;
         private String telefonoStudente;
         private String approvazione;
-        private String documento;
         private int id;
         private String cf;
         private String luogoTirocinio;
@@ -326,7 +325,7 @@ public class Candidatura {
         public Candidatura(int id, String idStudente, String startDate,
 			String endDate, String cfu, String tutoreUniversitario, 
                         String telefonoTutoreUni, String emailTutoreUni,String idOfferta,
-                        String approvazione, String documento) {
+                        String approvazione) {
                 this.id = id;
 		this.idStudente = idStudente;
                 this.idOfferta = idOfferta;
@@ -337,7 +336,6 @@ public class Candidatura {
                 this.telefonoTutoreUni = telefonoTutoreUni;
 		this.emailTutoreUni = emailTutoreUni;
 		this.approvazione = approvazione;
-                this.documento = documento;
 	}
         
         public void setApprovazione(String approvazione){
@@ -346,12 +344,7 @@ public class Candidatura {
         public String getApprovazione(){
             return approvazione;
         }
-        public void setDocumento(String documento){
-            this.documento = documento;
-        }
-        public String getDocumento(){
-            return documento;
-        }
+        
         public int getId(){
             return id;
         }
@@ -359,10 +352,10 @@ public class Candidatura {
             public static final synchronized Candidatura setInstance(int id, String idStudente,String idOfferta, String startDate,
 			String endDate, String cfu, String tutoreUniversitario, 
                         String telefonoTutoreUni, String emailTutoreUni,
-                        String approvazione, String documento) {
+                        String approvazione) {
                 if ( instance == null ) {
                     instance = new Candidatura(id,idStudente, idOfferta, startDate, endDate, cfu, tutoreUniversitario,
-                    telefonoTutoreUni, emailTutoreUni, approvazione, documento);
+                    telefonoTutoreUni, emailTutoreUni, approvazione);
                 }
             return instance;
     }
