@@ -145,6 +145,7 @@
           <font color="green">
             <p><%=notifica%></p>
           </font>
+          <h2><a href="statisticaStudAz.jsp">Aziende che ospitano più tirocinanti</a></h2>
        <div class="container">
          <div class="cardAdmin" style="overflow-x:auto;">
             <div class="cardContainer">

@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/scaricaDoc.java</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/documentiAz.jsp</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/documentiStud.jsp</file>
-            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/generateTirociniPDF.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/src/java/Business/Controller/aderisciOfferta.java</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/aderisciOfferta.jsp</file>
+            <file>file:/C:/Users/Davide%20Simboli/Desktop/Ingegneria%20del%20web/WebEngineeringProject/ProgettoWebIng/web/dettaglioOfferta.jsp</file>
         </group>
     </open-files>
 </project-private>

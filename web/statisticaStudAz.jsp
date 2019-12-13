@@ -55,16 +55,14 @@
                      "root", "ciao");
                              System.out.println("Connessione Stabilita!");
                              Statement = connect.createStatement();
-                             resultSet = Statement.executeQuery("SELECT azienda.ragione_sociale, azienda.recensione "
-                                     + "FROM internshiptutor.azienda "
-                                     + "where azienda.stato = 'convenzionata' "
-                                     + "order by recensione desc");
+                             resultSet = Statement.executeQuery("SELECT COUNT(id_studente) AS studenti, ragione_sociale "
+                                     + "FROM internshiptutor.documento_formativo group by id_azienda order by studenti desc");
                              while(resultSet.next()){
                                  String ragioneSoc = resultSet.getString("ragione_sociale");
-                                 double val = resultSet.getDouble("recensione");
+                                 int studenti = resultSet.getInt("studenti");
                                  %>
                    myLabels.push("<%=ragioneSoc%>");
-                   myData.push(<%=val%>);
+                   myData.push(<%=studenti%>);
                                 <%
                                 count += 1;
                                 if(count>4){break;}
@@ -97,7 +95,7 @@
               data: {
                 labels: myLabels,
                 datasets: [{
-                  label: "Valutazione",
+                  label: "n° studenti",
                   data: myData,
                   backgroundColor: [
                     '#3399ff',
@@ -111,7 +109,7 @@
               options: {
                 title: {
                   display: true,
-                  text: "Aziende con migliori valutazioni",
+                  text: "Aziende che ospitano più tirocinanti",
                   fontSize: 25
                 },
                 legend: {
@@ -145,7 +143,7 @@
           <font color="green">
             <p><%=notifica%></p>
           </font>
-          <h2><a href="statisticaStudAz.jsp">Aziende che ospitano più tirocinanti</a></h2>
+          <h2><a href="statistica.jsp">Le aziende migliori</a></h2>
        <div class="container">
          <div class="cardAdmin" style="overflow-x:auto;">
             <div class="cardContainer">
