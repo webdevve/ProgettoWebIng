@@ -45,9 +45,13 @@
               <a href="tirocini.jsp">Tirocini</a>
               <a href="leMieOfferte.jsp">Le Mie Offerte</a>
               <a href="offerteChiuse.jsp">Offerte Chiuse</a>
-              <a href="#profilo.jsp"><%=str%></a>
+              <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
             </div>
         </div>
+        <form action="logout" method="post" id="my_form"></form>
+        <%if(str!=null){%>
+        <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+        <%}%>
         <font color="red" id="err">
             <p><%=errore%></p>
           </font>

@@ -39,14 +39,20 @@
         String id_offerta = (String)request.getAttribute("id_offerta");
          %>
       <div class="header">
-         <a href="#default" class="logo">InternshipTutor</a>
-         <div class="header-right">
-            <a href="admin.jsp">Home</a>
-            <a href="confermaConvenzione.jsp">Convenzioni da Confermare</a>
-            <a href="aziendeConvenzionate.jsp" >Convenzioni</a>
-            <a href="#profilo.jsp"><%=str%></a>
-         </div>
-      </div>
+            <a href="#default" class="logo">InternshipTutor</a>
+            <div class="header-right">
+              <a class="active" href="azienda.jsp">Home</a>
+              <a href="documentiAz.jsp">Documenti</a>
+              <a href="tirocini.jsp">Tirocini</a>
+              <a href="leMieOfferte.jsp">Le Mie Offerte</a>
+              <a href="offerteChiuse.jsp">Offerte Chiuse</a>
+              <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
+            </div>
+        </div>
+        <form action="logout" method="post" id="my_form"></form>
+        <%if(str!=null){%>
+        <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+        <%}%>
          <%
              Connection connect = null;
              Statement Statement = null;

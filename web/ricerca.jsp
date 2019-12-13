@@ -58,7 +58,11 @@
           <a href="<%=linkDoc%>"><%=documenti%></a>
           <%}%>
           <a href="visualizzaAziende.jsp" >Aziende</a>
+          <%if(str==null){%>
           <a href="<%=linkAccedi%>"><%=login%></a>
+          <%}else{%>
+          <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
+          <%}%>
           <a>
             <form action="ricerca.jsp">
               <input type="text" placeholder="Search.." name="search"/>
@@ -67,7 +71,10 @@
           </a>
         </div>
     </div>
-
+    <form action="logout" method="post" id="my_form"></form>
+    <%if(str!=null){%>
+    <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+    <%}%>
     <div class="container">
         <font color="red" id="err">
             <p><%=errore%></p>

@@ -19,6 +19,10 @@
       if(errore == null){
         errore="";
       }
+      HttpSession sessione = request.getSession();
+        if(sessione!=null){
+            sessione.invalidate();
+        }
     %>
     <div class="header" id="header">
       <a href="#default" class="logo">InternshipTutor</a>

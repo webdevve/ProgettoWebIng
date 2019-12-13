@@ -134,7 +134,7 @@ public class AziendaDAO implements DAOinterface{
         }
     }
     
-    public boolean convenzionaAziendaDOC(String email, String fileName){
+    public boolean convenzionaAziendaDOC(ArrayList<Object> args){
         System.out.println("Entro nel db");
         Connection connect = null;
 	PreparedStatement preparedStatement = null;
@@ -143,9 +143,11 @@ public class AziendaDAO implements DAOinterface{
             Class.forName("com.mysql.jdbc.Driver");
             connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
 					"root", "ciao");
-            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.azienda SET documento_convenzione='"+fileName+"' WHERE email_azienda='"+email+"'");
+            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.azienda SET documento_convenzione= ? WHERE email_azienda= ? ");
+            preparedStatement.setString(1, (String) args.get(0));
+            preparedStatement.setString(2, (String) args.get(1));
             preparedStatement.executeUpdate();
-            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.azienda SET stato='convenzionata' WHERE email_azienda='"+email+"'");
+            preparedStatement = connect.prepareStatement("UPDATE internshiptutor.azienda SET stato='convenzionata' WHERE email_azienda='"+args.get(1)+"'");
             preparedStatement.executeUpdate();
             System.out.println("L'Azienda è stata convenzionata!!");
         }catch(SQLException e){

@@ -43,9 +43,14 @@
             <a href="admin.jsp">Home</a>
             <a href="confermaConvenzione.jsp" class="active">Convenzioni da Confermare</a>
             <a href="aziendeConvenzionate.jsp" >Convenzioni</a>
-            <a href="#profilo.jsp"><%=str%></a>
+            <a href="statistica.jsp">Statistiche</a>
+            <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
          </div>
       </div>
+      <form action="logout" method="post" id="my_form"></form>
+        <%if(str!=null){%>
+        <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+        <%}%>
          <font color="green">
             <p><%=notifica%></p>
           </font>

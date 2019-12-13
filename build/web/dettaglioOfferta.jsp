@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="css/header.css" type="text/css"/>
         <link rel="stylesheet" href="css/index.css" type="text/css"/>
         <link rel="stylesheet" href="css/dettaglioOfferta.css" type="text/css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <%
@@ -26,13 +28,18 @@
             String nome = (String)request.getAttribute("name");
             String login = "";
             String linkAccedi = "";
+            String linkDoc = "";
+            String documenti = "";
             if(nome == null){
                 //nome = "";
                 login = "Accedi";
                 linkAccedi = "login.jsp";
+                linkDoc = "";
             }else{
                 login = nome;
                 linkAccedi = "#profilo";
+                linkDoc = "documentiStud.jsp";
+                documenti = "Documenti";
             }
             String errore = (String)request.getAttribute("err");
             if(errore == null){
@@ -46,12 +53,29 @@
     <div class="header">
         <a href="#default" class="logo">InternshipTutor</a>
         <div class="header-right">
-          <a href="index.jsp">Home</a>
-          <a href="#news">News</a>
+          <a class="active" href="index.jsp">Home</a>
+          <%if(nome != null){%>
+          <a href="<%=linkDoc%>"><%=documenti%></a>
+          <a href="recensioni.jsp">Recensioni</a>
+          <%}%>
           <a href="visualizzaAziende.jsp" >Aziende</a>
+          <%if(str==null){%>
           <a href="<%=linkAccedi%>"><%=login%></a>
+          <%}else{%>
+          <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
+          <%}%>
+          <a>
+            <form action="ricerca.jsp">
+              <input type="text" placeholder="Search.." name="search"/>
+              <button type="submit" name="search" id="not-button"><i class="fa fa-search"></i></button>
+            </form>
+          </a>
         </div>
     </div>
+    <form action="logout" method="post" id="my_form"></form>
+    <%if(str!=null){%>
+    <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+    <%}%>
         <font color="red" id="err">
             <p><%=errore%></p>
           </font>

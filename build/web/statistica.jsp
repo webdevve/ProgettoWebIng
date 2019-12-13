@@ -128,13 +128,17 @@
       <div class="header">
          <a href="#default" class="logo">InternshipTutor</a>
          <div class="header-right">
-            <a class="active" href="admin.jsp">Home</a>
+            <a href="admin.jsp">Home</a>
             <a href="confermaConvenzione.jsp">Convenzioni da Confermare</a>
             <a href="aziendeConvenzionate.jsp" >Convenzioni</a>
-            <a href="statistica.jsp">Statistiche</a>
-            <a href="#profilo.jsp"><%=str%></a>
+            <a class="active" href="statistica.jsp">Statistiche</a>
+            <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
          </div>
       </div>
+        <form action="logout" method="post" id="my_form"></form>
+        <%if(str!=null){%>
+        <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+        <%}%>
          <font color="red" id="err">
             <p><%=errore%></p>
           </font>

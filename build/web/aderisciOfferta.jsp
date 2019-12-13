@@ -18,6 +18,8 @@
             <link rel="stylesheet" href="css/index.css" type="text/css" />
             <link rel="stylesheet" href="css/documentoConvenzione.css" type="text/css"/>
             <link href="https://fonts.googleapis.com/css?family=Beth+Ellen&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         </head>
 
         <body>
@@ -73,16 +75,25 @@
                     String tutoreAziendale = nome_responsabile+" "+cognome_responsabile;
          %>
         <div class="header">
-    <a href="#default" class="logo">InternshipTutor</a>
-    <div class="header-right">
-        <a href="index.jsp">Home</a>
-        <a href="#news">News</a>
-        <a href="visualizzaAziende.jsp">Aziende</a>
-        <a href="#profilo.jsp">
-            <%=str%>
-        </a>
+        <a href="#default" class="logo">InternshipTutor</a>
+        <div class="header-right">
+          <a class="active" href="index.jsp">Home</a>
+          <a href="documentiStud.jsp">Documenti</a>
+          <a href="recensioni.jsp">Recensioni</a>
+          <a href="visualizzaAziende.jsp" >Aziende</a>
+          <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
+          <a>
+            <form action="ricerca.jsp">
+              <input type="text" placeholder="Search.." name="search"/>
+              <button type="submit" name="search" id="not-button"><i class="fa fa-search"></i></button>
+            </form>
+          </a>
+        </div>
     </div>
-</div>
+    <form action="logout" method="post" id="my_form"></form>
+    <%if(str!=null){%>
+    <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+    <%}%>
 <font color="red" id="err">
             <p><%=errore%></p>
           </font>

@@ -63,10 +63,13 @@
               <a href="#home">Home</a>
               <a href="#confermaConvenzione">Convenzioni da Confermare</a>
               <a href="#convenzioni" >Convenzioni</a>
-              <a href="#profilo.jsp"><%=str%></a>
+              <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
             </div>
         </div>
-            
+        <form action="logout" method="post" id="my_form"></form>
+        <%if(str!=null){%>
+        <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+        <%}%>
         <h1>Documento di Convenzione</h1>
         
         <form action="generatePDF" method="post">

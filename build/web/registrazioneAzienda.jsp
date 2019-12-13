@@ -23,12 +23,15 @@
          if(notifica == null){
            notifica="";
          }
+         HttpSession sessione = request.getSession();
+        if(sessione!=null){
+            sessione.invalidate();
+        }
          %>
       <div class="header" id="header">
          <a href="#default" class="logo">InternshipTutor</a>
          <div class="header-right">
             <a href="index.jsp">Home</a>
-            <a href="#news">News</a>
             <a href="visualizzaAziende.jsp" >Aziende</a>
             <a href="login.jsp">Accedi</a>
          </div>

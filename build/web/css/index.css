@@ -69,3 +69,14 @@ and open the template in the editor.
     width: 20px;
     height: 20px;
 }
+.linkButton { 
+     background: none;
+     border: none;
+     color: #0066ff;
+     text-decoration: underline;
+     cursor: pointer; 
+}
+.centra{
+    text-align: right;
+    margin-right: 10px;
+}

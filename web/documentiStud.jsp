@@ -54,7 +54,11 @@
           <a class="active" href="documentiStud.jsp">Documenti</a>
           <a href="recensioni.jsp">Recensioni</a>
           <a href="visualizzaAziende.jsp" >Aziende</a>
+          <%if(str==null){%>
           <a href="<%=linkAccedi%>"><%=login%></a>
+          <%}else{%>
+          <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
+          <%}%>
           <a>
             <form action="ricerca.jsp">
               <input type="text" placeholder="Search.." name="search"/>
@@ -63,8 +67,10 @@
           </a>
         </div>
     </div>
-
-    <div class="container">
+    <form action="logout" method="post" id="my_form"></form>
+    <%if(str!=null){%>
+    <div class="centra"><img src="icon/user.ico"/><%=str%></div>
+    <%}%>
         <font color="red" id="err">
             <p><%=errore%></p>
           </font>
