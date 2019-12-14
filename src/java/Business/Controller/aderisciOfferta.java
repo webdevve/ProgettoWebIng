@@ -35,7 +35,24 @@ public class aderisciOfferta extends HttpServlet {
             throws ServletException, IOException {
         int offerta =Integer.parseInt(request.getParameter("idOfferta"));
         request.setAttribute("id", offerta);
-        String str = request.getParameter("str");
+        String emailStudente = request.getParameter("str");
+        String nomeStud = request.getParameter("nomeStud");
+        String cognomeStud = request.getParameter("cognomeStud");
+        String luogo_nascita = request.getParameter("luogo_nascita");
+        String data_nascita = request.getParameter("data_nascita");
+        String residenza = request.getParameter("residenza");
+        String cf = request.getParameter("cf");
+        String telefono = request.getParameter("telefono");
+        String nomeCognome = nomeStud+" "+cognomeStud;
+        request.setAttribute("nomeCognome", nomeCognome);
+        request.setAttribute("luogoNascita", luogo_nascita);
+        request.setAttribute("dataNascita", data_nascita);
+        request.setAttribute("residenza", residenza);
+        request.setAttribute("cf", cf);
+        request.setAttribute("telefonoStudente", telefono);
+        request.setAttribute("nomeStudente", nomeStud);
+        request.setAttribute("emailStudente", emailStudente);
+        /*
         if(!"null".equals(str)){
             Studente studente = (Studente) new StudenteDAO().getStudent(str);
             int id = studente.getID();
@@ -55,6 +72,7 @@ public class aderisciOfferta extends HttpServlet {
             //request.setAttribute("provNascita", studente.getProvinciaNascita);
         }
         //request.setAttribute("luogoNascita", studente.getLuogo_nascita());
+        */
         RequestDispatcher rd = request.getRequestDispatcher("aderisciOfferta.jsp");
         rd.forward(request, response);
     }

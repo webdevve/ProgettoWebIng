@@ -87,6 +87,13 @@
             Connection connect = null;
             Statement Statement = null;
             ResultSet resultSet = null;
+            String nomeStud = "";
+            String cognomeStud = "";
+            String luogo_nascita = "";
+            String data_nascita = "";
+            String residenza = "";
+            String cf = "";
+            String telefono = "";
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/internshiptutor",
@@ -155,12 +162,22 @@
               </td>
             </tr>
           </table>
-        </form>
+        
         <%
+                }
+                resultSet = Statement.executeQuery("SELECT * FROM internshiptutor.studente where email_studente = '"+str+"'");
+                while(resultSet.next()){
+                    nomeStud = resultSet.getString("nome");
+                    cognomeStud = resultSet.getString("cognome");
+                    luogo_nascita = resultSet.getString("luogo_nascita");
+                    data_nascita = resultSet.getString("data_nascita");
+                    residenza = resultSet.getString("residenza");
+                    cf = resultSet.getString("cf");
+                    telefono = resultSet.getString("telefono");
+                }
                     connect.close();
                     Statement.close();
                     resultSet.close();
-                }
             }catch(SQLException e){
                 System.out.println("ERRORE DATABASE! " + e.getMessage());
             }catch(Exception e){
@@ -177,7 +194,14 @@
                     System.out.println("final - ERRORE DATABASE! " + e.getMessage());
                 }
             }
-                     %>
-        
+            %>
+            <input type="hidden" name="nomeStud" value="<%=nomeStud%>"/>
+            <input type="hidden" name="cognomeStud" value="<%=cognomeStud%>"/>
+            <input type="hidden" name="luogo_nascita" value="<%=luogo_nascita%>"/>
+            <input type="hidden" name="data_nascita" value="<%=data_nascita%>"/>
+            <input type="hidden" name="residenza" value="<%=residenza%>"/>
+            <input type="hidden" name="cf" value="<%=cf%>"/>
+            <input type="hidden" name="telefono" value="<%=telefono%>"/>
+        </form>
     </body>
 </html>
