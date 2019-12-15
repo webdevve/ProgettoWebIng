@@ -87,12 +87,55 @@
                                 String email_responsabile = resultSet.getString("email_responsabile");
                                 String telefono_responsabile = resultSet.getString("telefono_responsabile");
                                 String riferimenti = email_responsabile +" "+ telefono_responsabile;
+                                double voto = resultSet.getDouble("recensione");
         %>
 
         <form action="#dettaglioOfferta" method="POST">
             <div class="card">
                 <div class="cardContainer">
                   <h2><%=ragione_sociale%></h2>
+                  <%
+                  if(voto<0.5){
+              %>
+              Nessuna valutazione
+              <%
+                  }
+                  if(voto>=0.5 && voto < 1.5){
+              %>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+                  if(voto>=1.5 && voto < 2.5){
+              %>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+                  if(voto>=2.5 && voto < 3.5){
+              %>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+                  if(voto>=3.5 && voto < 4.5){
+              %>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+                  if(voto>=4.5){
+              %>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/>
+              <img src="icon/star.ico" id="star"/> <%=voto%>
+              <%
+                  }
+              %>
                   <p>Indirizzo: <%=indirizzo%></p>
                   <p>Riferimenti: <%=riferimenti%></p>
                   <!--<button type="submit" name="moreInformation" class="button button4" value="">Visualizza l'azienda</button>-->
