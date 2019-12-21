@@ -1,8 +1,3 @@
-<%-- 
-    Document   : aderisciOfferta
-    Created on : 7-nov-2019, 10.31.42
-    Author     : Davide Simboli
---%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>

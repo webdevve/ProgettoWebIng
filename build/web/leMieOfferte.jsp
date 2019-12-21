@@ -1,9 +1,3 @@
-<%-- 
-    Document   : leMieOfferte
-    Created on : 30-set-2019, 21.35.38
-    Author     : Davide Simboli
---%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>

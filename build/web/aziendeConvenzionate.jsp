@@ -1,8 +1,3 @@
-<%-- 
-    Document   : aziendeConvenzionate
-    Created on : 26-ago-2019, 12.18.03
-    Author     : Davide Simboli
---%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="Business.Model.Azienda"%>
 <%@page import="java.sql.ResultSet"%>
@@ -28,6 +23,10 @@
          request.setAttribute("name", str);
          if(str == null){
              response.sendRedirect("login.jsp");
+         }else{
+             if(!str.equals("admin@gmail.com")){
+                 response.sendRedirect("login.jsp");
+             }
          }
          String errore = (String)request.getAttribute("err");
         if(errore == null){

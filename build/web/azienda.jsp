@@ -1,9 +1,3 @@
-<%-- 
-    Document   : azienda
-    Created on : 22-ago-2019, 16.22.51
-    Author     : Davide Simboli
---%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>

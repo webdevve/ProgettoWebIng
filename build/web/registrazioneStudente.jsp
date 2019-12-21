@@ -1,8 +1,3 @@
-<%-- 
-   Document   : login
-   Created on : 4-lug-2019, 19.53.38
-   Author     : Davide Simboli
-   --%>
 <?xml version="1.0" encoding="UTF-8"?>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html xmlns="http://www.w3.org/1999/xhtml">

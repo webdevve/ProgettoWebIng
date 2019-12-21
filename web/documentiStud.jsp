@@ -1,9 +1,3 @@
-<%-- 
-    Document   : documentiStud
-    Created on : 5-dic-2019, 11.06.34
-    Author     : Davide Simboli
---%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>

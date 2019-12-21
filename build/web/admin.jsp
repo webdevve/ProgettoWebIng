@@ -1,8 +1,3 @@
-<%-- 
-   Document   : admin
-   Created on : 19-ago-2019, 16.52.55
-   Author     : Aesys
-   --%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="Business.Model.Azienda"%>
 <%@page import="java.sql.ResultSet"%>
@@ -26,6 +21,10 @@
          request.setAttribute("name", str);
          if(str == null){
              response.sendRedirect("login.jsp");
+         }else{
+             if(!str.equals("admin@gmail.com")){
+                 response.sendRedirect("login.jsp");
+             }
          }
          String errore = (String)request.getAttribute("err");
         if(errore == null){

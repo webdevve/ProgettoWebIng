@@ -1,8 +1,3 @@
-<%-- 
-    Document   : offerteChiuse
-    Created on : 1-ott-2019, 22.05.05
-    Author     : Davide Simboli
---%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
