@@ -1,9 +1,3 @@
-<%-- 
-    Document   : dettaglioOfferta
-    Created on : 30-ott-2019, 19.24.59
-    Author     : Davide Simboli
---%>
-
 <%@page import="Business.Model.offertaAzienda"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>

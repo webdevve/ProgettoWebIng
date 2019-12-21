@@ -1,9 +1,3 @@
-<%-- 
-    Document   : documentoConvenzione
-    Created on : 22-ago-2019, 17.24.11
-    Author     : Davide Simboli
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

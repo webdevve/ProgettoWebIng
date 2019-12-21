@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ricerca
-    Created on : 9-dic-2019, 14.55.05
-    Author     : Davide Simboli
---%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>

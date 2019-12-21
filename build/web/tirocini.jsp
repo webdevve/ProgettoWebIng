@@ -1,9 +1,3 @@
-<%-- 
-    Document   : tirocini
-    Created on : 4-dic-2019, 12.44.10
-    Author     : Davide Simboli
---%>
-
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>

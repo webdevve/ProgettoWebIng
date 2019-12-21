@@ -1,9 +1,3 @@
-<%-- 
-    Document   : progettoFormativoAz
-    Created on : 5-dic-2019, 15.14.24
-    Author     : Davide Simboli
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

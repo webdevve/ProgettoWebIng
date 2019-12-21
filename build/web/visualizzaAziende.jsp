@@ -1,9 +1,3 @@
-<%-- 
-    Document   : visualizzaAziende
-    Created on : 27-lug-2019, 11.31.45
-    Author     : alesi
---%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>

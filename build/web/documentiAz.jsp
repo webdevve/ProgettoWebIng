@@ -1,9 +1,3 @@
-<%-- 
-    Document   : documentiAz
-    Created on : 6-dic-2019, 10.16.03
-    Author     : Davide Simboli
---%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>

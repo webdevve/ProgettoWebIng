@@ -1,9 +1,3 @@
-<%-- 
-    Document   : recensioni
-    Created on : 9-dic-2019, 15.44.32
-    Author     : Davide Simboli
---%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>

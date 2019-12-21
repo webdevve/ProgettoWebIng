@@ -1,8 +1,3 @@
-<%-- 
-    Document   : statistica
-    Created on : 11-dic-2019, 12.03.36
-    Author     : Davide Simboli
---%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Business.Model.Recensione"%>
 <%@page import="java.sql.SQLException"%>
@@ -27,6 +22,10 @@
          request.setAttribute("name", str);
          if(str == null){
              response.sendRedirect("login.jsp");
+         }else{
+             if(!str.equals("admin@gmail.com")){
+                 response.sendRedirect("login.jsp");
+             }
          }
          String errore = (String)request.getAttribute("err");
         if(errore == null){

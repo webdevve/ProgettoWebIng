@@ -1,9 +1,3 @@
-<%-- 
-    Document   : listastudentiofferta
-    Created on : 19-nov-2019, 10.45.51
-    Author     : anton
---%>
-
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
