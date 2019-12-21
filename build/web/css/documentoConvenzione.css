@@ -1,0 +1,90 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-ago-2019, 17.27.07
+    Author     : Davide Simboli
+*/
+
+h1, h2, h3, #head{
+    text-align: center;
+}
+.card{
+    background-color: #FCFCFF;
+    width: 80%;
+    margin: 0 auto;
+}
+.centro{
+    width: 80%;
+    margin: 0 auto;
+}
+.start{
+    border: 1px solid black;
+    font-variant: small-caps;
+}
+.page{
+    text-align: justify;
+    /*background-color: wheat;*/
+}
+.numPage{
+    color: #696969;
+}
+.end{
+    border: none;
+}
+#firma{
+    font-family: 'Beth Ellen', cursive;
+}
+.container-login100-form-btn {
+    width: 80%;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+.m-t-17 {
+    margin-top: 17px;
+}
+.login100-form-btn {
+  font-family: Ubuntu-Bold;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 62px;
+  background-color: dodgerblue; /* #827ffe*/
+  border-radius: 3px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background-color: #403866;
+}
+.none{
+  list-style: none;
+}
+.border-none{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom-color: black;
+}
